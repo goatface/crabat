@@ -1,0 +1,122 @@
+\hypertarget{Analyzer_8cxx}{
+\section{Analyzer.cxx File Reference}
+\label{Analyzer_8cxx}\index{Analyzer.cxx@{Analyzer.cxx}}
+}
+
+
+\hyperlink{classAnalyzer}{Analyzer} for the run data.  
+
+
+{\ttfamily \#include \char`\"{}Analyzer.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}Calibration.cxx\char`\"{}}\par
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Analyzer_8cxx_a4eaae93bcbdb873617dd1756c812e4ea}{
+Bool\_\-t {\bfseries gate\_\-30s} = false}
+\label{Analyzer_8cxx_a4eaae93bcbdb873617dd1756c812e4ea}
+
+\item 
+\hypertarget{Analyzer_8cxx_a30b8dd91279fab50efbb624e73ada615}{
+Bool\_\-t {\bfseries gate\_\-29p} = false}
+\label{Analyzer_8cxx_a30b8dd91279fab50efbb624e73ada615}
+
+\item 
+\hypertarget{Analyzer_8cxx_a15e54c7c6092fbc9406ba1f039558703}{
+Bool\_\-t {\bfseries gate\_\-31s} = false}
+\label{Analyzer_8cxx_a15e54c7c6092fbc9406ba1f039558703}
+
+\item 
+\hypertarget{Analyzer_8cxx_a594758ab9eb7f577d5f4f9b1dcc70e73}{
+Bool\_\-t {\bfseries proton\_\-beam} = false}
+\label{Analyzer_8cxx_a594758ab9eb7f577d5f4f9b1dcc70e73}
+
+\item 
+\hypertarget{Analyzer_8cxx_a949d54748e7187371572a8fa26527949}{
+Bool\_\-t {\bfseries goodRF\_\-30s} = false}
+\label{Analyzer_8cxx_a949d54748e7187371572a8fa26527949}
+
+\item 
+\hypertarget{Analyzer_8cxx_a0919069e41fa08abb33033277b178952}{
+Bool\_\-t {\bfseries goodPpacX\_\-30s} = false}
+\label{Analyzer_8cxx_a0919069e41fa08abb33033277b178952}
+
+\item 
+\hypertarget{Analyzer_8cxx_ac964e8e4e1f08009b18ae1e1eceb6acd}{
+Bool\_\-t {\bfseries goodRF\_\-29p} = false}
+\label{Analyzer_8cxx_ac964e8e4e1f08009b18ae1e1eceb6acd}
+
+\item 
+\hypertarget{Analyzer_8cxx_af93bd185276c5664f86ab62060b21507}{
+Bool\_\-t {\bfseries goodPpacX\_\-29p} = false}
+\label{Analyzer_8cxx_af93bd185276c5664f86ab62060b21507}
+
+\item 
+\hypertarget{Analyzer_8cxx_a92a7085f5daf64fb9e7ab10c94d8d27a}{
+Bool\_\-t {\bfseries goodRF\_\-31s} = false}
+\label{Analyzer_8cxx_a92a7085f5daf64fb9e7ab10c94d8d27a}
+
+\item 
+\hypertarget{Analyzer_8cxx_a1d92786ab8b5faf382c70db716df28a2}{
+Bool\_\-t {\bfseries goodPpacX\_\-31s} = false}
+\label{Analyzer_8cxx_a1d92786ab8b5faf382c70db716df28a2}
+
+\item 
+\hypertarget{Analyzer_8cxx_a63f18031aae015ba9093c3c1627e4076}{
+Short\_\-t {\bfseries tpc\_\-ch} \mbox{[}2\mbox{]}\mbox{[}144\mbox{]}}
+\label{Analyzer_8cxx_a63f18031aae015ba9093c3c1627e4076}
+
+\item 
+Double\_\-t {\bfseries padBgain} \mbox{[}2\mbox{]}\mbox{[}48\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classAnalyzer}{Analyzer} for the run data. \begin{DoxyAuthor}{Author}
+daid 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.0
+\end{DoxyVersion}
+Takes the Chain and loops over all entries.\par
+ Fill histograms, do physics. \begin{DoxyDate}{Date}
+07 Nov 2011 18:57:28 
+\end{DoxyDate}
+
+
+Definition in file \hyperlink{Analyzer_8cxx_source}{Analyzer.cxx}.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{Analyzer_8cxx_a44db34c935797c74521d787de7a1a378}{
+\index{Analyzer.cxx@{Analyzer.cxx}!padBgain@{padBgain}}
+\index{padBgain@{padBgain}!Analyzer.cxx@{Analyzer.cxx}}
+\subsubsection[{padBgain}]{\setlength{\rightskip}{0pt plus 5cm}Double\_\-t padBgain\mbox{[}2\mbox{]}\mbox{[}48\mbox{]}}}
+\label{Analyzer_8cxx_a44db34c935797c74521d787de7a1a378}
+{\bfseries Initial value:}
+\begin{DoxyCode}
+{
+{ 
+  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,
+  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , 
+  0.712629, .69137310,0.706643,0.732711,.74086605,0.655,1.,1., 
+  0.708874,0.706074,0.70031,0.701813,0.696598713,0.70119423,0.6988148,1., 
+  0.69839515,0.693352,0.69736996,0.696989,0.697088,0.696793,0.69828,0.696932,  
+  1.,0.65594417,0.701976,0.701372,0.706313,0.70744137,.70876,0.68},  
+  
+  
+
+{ 
+  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , 
+  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , 
+  1.  ,1.10,1.  ,1.  ,0.95,1.  ,1.  ,1.  , 
+  1.  ,1.  ,1.  ,1.  ,0.97,0.99,0.94,1.  , 
+  0.97,1.  ,0.98,1.  ,1.  ,1.  ,1.  ,1.  , 
+  1.03,1.03,1.  ,1.  ,1.  ,0.97,0.90,1.  
+}}
+\end{DoxyCode}
+
+
+Definition at line 102 of file Analyzer.cxx.
+

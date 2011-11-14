@@ -1,0 +1,1366 @@
+\hypertarget{run_8h}{
+\section{run.h File Reference}
+\label{run_8h}\index{run.h@{run.h}}
+}
+
+
+Global flag initalization, histogram memory control and initalization.  
+
+
+{\ttfamily \#include $<$TH2.h$>$}\par
+{\ttfamily \#include $<$TH3.h$>$}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{run_8h_a5ae07f63d6b390e42068d941038dadf2}{Usage} ()
+\begin{DoxyCompactList}\small\item\em Prints the invocation usage to standard error. \end{DoxyCompactList}\item 
+void \hyperlink{run_8h_a82ee55a7ab291cf1479b73b37ab472e9}{HistInit} ()
+\begin{DoxyCompactList}\small\item\em Initalize the histograms based on which data are to be processed. \end{DoxyCompactList}\item 
+void \hyperlink{run_8h_ae44946afbf444100024812699dd59c06}{HistWrite} ()
+\begin{DoxyCompactList}\small\item\em Write all the histograms. \end{DoxyCompactList}\item 
+void \hyperlink{run_8h_a2293ee2dc583eab21c68e42e03a47cc1}{HistClean} ()
+\begin{DoxyCompactList}\small\item\em delete all the histograms \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{run_8h_a8323946b46d82f8f47a11f4644113092}{
+Bool\_\-t {\bfseries flag\_\-Run} = false}
+\label{run_8h_a8323946b46d82f8f47a11f4644113092}
+
+\item 
+\hypertarget{run_8h_a8a8016c3370b1aeeef15a4b9c35eb44a}{
+Bool\_\-t {\bfseries flag\_\-Batch} = false}
+\label{run_8h_a8a8016c3370b1aeeef15a4b9c35eb44a}
+
+\item 
+\hypertarget{run_8h_a25c1d273512848c482513a44819c29e0}{
+Bool\_\-t {\bfseries flag\_\-Header} = false}
+\label{run_8h_a25c1d273512848c482513a44819c29e0}
+
+\item 
+\hypertarget{run_8h_afd67502568c5cebe6971730aaaea9501}{
+Bool\_\-t {\bfseries flag\_\-Inpath} = false}
+\label{run_8h_afd67502568c5cebe6971730aaaea9501}
+
+\item 
+\hypertarget{run_8h_aa166acce4211d1782cb534179c019c94}{
+Bool\_\-t {\bfseries flag\_\-raw} = false}
+\label{run_8h_aa166acce4211d1782cb534179c019c94}
+
+\item 
+\hypertarget{run_8h_a0004d1a93a4eabcb25e7586b6a9b2f22}{
+Bool\_\-t {\bfseries flag\_\-detail} = false}
+\label{run_8h_a0004d1a93a4eabcb25e7586b6a9b2f22}
+
+\item 
+\hypertarget{run_8h_a3b9a43a2ea196fcd1c1090fa2e2061e2}{
+Bool\_\-t {\bfseries flag\_\-ssd} = false}
+\label{run_8h_a3b9a43a2ea196fcd1c1090fa2e2061e2}
+
+\item 
+\hypertarget{run_8h_ab0c15e9686b3115cbc56dd6938c7f5fd}{
+Bool\_\-t {\bfseries flag\_\-strip} = false}
+\label{run_8h_ab0c15e9686b3115cbc56dd6938c7f5fd}
+
+\item 
+\hypertarget{run_8h_a6822d90e7595caf634dd6eee69125cf2}{
+Bool\_\-t {\bfseries flag\_\-ppac} = false}
+\label{run_8h_a6822d90e7595caf634dd6eee69125cf2}
+
+\item 
+\hypertarget{run_8h_aab73453e4759a0ca9cbd2336577001a6}{
+Bool\_\-t {\bfseries flag\_\-tpc} = false}
+\label{run_8h_aab73453e4759a0ca9cbd2336577001a6}
+
+\item 
+\hypertarget{run_8h_a76db7760e8edba9b8e7c4dbc27c80f18}{
+TH1F $\ast$ {\bfseries hRf} \mbox{[}2\mbox{]}}
+\label{run_8h_a76db7760e8edba9b8e7c4dbc27c80f18}
+
+\item 
+\hypertarget{run_8h_abf8b57fb970b1b4725bb75d53a953354}{
+TH1F $\ast$ {\bfseries hSiStripHit}}
+\label{run_8h_abf8b57fb970b1b4725bb75d53a953354}
+
+\item 
+\hypertarget{run_8h_aa7dfdfd0d5262530c2b12ac505e24329}{
+TH1F $\ast$ {\bfseries hSiPadHit}}
+\label{run_8h_aa7dfdfd0d5262530c2b12ac505e24329}
+
+\item 
+\hypertarget{run_8h_afbc7ea384567af16258f6bccad2621e8}{
+TH1F $\ast$ {\bfseries hfSample} \mbox{[}144\mbox{]}}
+\label{run_8h_afbc7ea384567af16258f6bccad2621e8}
+
+\item 
+\hypertarget{run_8h_a712b6a64379e2bb169223a36cb089040}{
+TH1F $\ast$ {\bfseries hTrough} \mbox{[}144\mbox{]}}
+\label{run_8h_a712b6a64379e2bb169223a36cb089040}
+
+\item 
+\hypertarget{run_8h_ac7298fc3d74f37f0ed47f45f73a2c533}{
+TH2F $\ast$ {\bfseries hBeamPadCh}}
+\label{run_8h_ac7298fc3d74f37f0ed47f45f73a2c533}
+
+\item 
+\hypertarget{run_8h_a9add34c978035b39230c0ffa7c79c085}{
+TH2F $\ast$ {\bfseries hGemMstpcCh}}
+\label{run_8h_a9add34c978035b39230c0ffa7c79c085}
+
+\item 
+\hypertarget{run_8h_a296db2703a090b6c7c0185b0602cd344}{
+TH2F $\ast$ {\bfseries hSiStripE}}
+\label{run_8h_a296db2703a090b6c7c0185b0602cd344}
+
+\item 
+\hypertarget{run_8h_a324013d37d4bcb1fa67ba04df47f5e85}{
+TH2F $\ast$ {\bfseries hSiStripEcal}}
+\label{run_8h_a324013d37d4bcb1fa67ba04df47f5e85}
+
+\item 
+\hypertarget{run_8h_afcfc9817c917c41798850742c34e8602}{
+TH2F $\ast$ {\bfseries hSiPadE}}
+\label{run_8h_afcfc9817c917c41798850742c34e8602}
+
+\item 
+\hypertarget{run_8h_a8b12074d37a96d2d5ced3b91b8bbc04c}{
+TH2F $\ast$ {\bfseries hSiEmax}}
+\label{run_8h_a8b12074d37a96d2d5ced3b91b8bbc04c}
+
+\item 
+\hypertarget{run_8h_a10c342b70edac3e6ae9d9709e31da93f}{
+TH2F $\ast$ {\bfseries hSiPadEcal}}
+\label{run_8h_a10c342b70edac3e6ae9d9709e31da93f}
+
+\item 
+\hypertarget{run_8h_ae2be75c092767933d23f03fced545ce7}{
+TH1F $\ast$ {\bfseries strip\_\-ch} \mbox{[}97\mbox{]}}
+\label{run_8h_ae2be75c092767933d23f03fced545ce7}
+
+\item 
+\hypertarget{run_8h_aa96e8ecddec457fce8923faba3f11ef0}{
+TH1F $\ast$ {\bfseries strip\_\-cal\_\-ch} \mbox{[}97\mbox{]}}
+\label{run_8h_aa96e8ecddec457fce8923faba3f11ef0}
+
+\item 
+\hypertarget{run_8h_a113d7ccfb588d101d38ea527a02ec74b}{
+TH1F $\ast$ {\bfseries strip\_\-ch\_\-gated30s} \mbox{[}97\mbox{]}}
+\label{run_8h_a113d7ccfb588d101d38ea527a02ec74b}
+
+\item 
+\hypertarget{run_8h_a16120cce55c51b089cb30ee859b1186c}{
+TH1F $\ast$ {\bfseries strip\_\-ch\_\-gated29p} \mbox{[}97\mbox{]}}
+\label{run_8h_a16120cce55c51b089cb30ee859b1186c}
+
+\item 
+\hypertarget{run_8h_a7f439addadb013022c0645a85b51b78a}{
+TH1F $\ast$ {\bfseries pad\_\-ch} \mbox{[}18\mbox{]}}
+\label{run_8h_a7f439addadb013022c0645a85b51b78a}
+
+\item 
+\hypertarget{run_8h_a26e099f9371cffb6445cef969864a25b}{
+TH1F $\ast$ {\bfseries pad\_\-ch\_\-gated} \mbox{[}18\mbox{]}}
+\label{run_8h_a26e099f9371cffb6445cef969864a25b}
+
+\item 
+\hypertarget{run_8h_ae2cec2e4f1dca864d04024bf4f4d64f7}{
+TH2F $\ast$ {\bfseries dE\_\-E} \mbox{[}6\mbox{]}}
+\label{run_8h_ae2cec2e4f1dca864d04024bf4f4d64f7}
+
+\item 
+\hypertarget{run_8h_ae68236989f90ad1b09a568c844e3c3e9}{
+TH2F $\ast$ {\bfseries dE\_\-Estrip} \mbox{[}6\mbox{]}}
+\label{run_8h_ae68236989f90ad1b09a568c844e3c3e9}
+
+\item 
+\hypertarget{run_8h_a61be4fcb5b545c0247c4f7d3fec596d0}{
+TH2F $\ast$ {\bfseries dE\_\-EBeamGateRF0} \mbox{[}6\mbox{]}}
+\label{run_8h_a61be4fcb5b545c0247c4f7d3fec596d0}
+
+\item 
+\hypertarget{run_8h_a853cdc9df58fa8f82e54f1e2bb98d344}{
+TH2F $\ast$ {\bfseries dE\_\-EBeamGateRF1} \mbox{[}6\mbox{]}}
+\label{run_8h_a853cdc9df58fa8f82e54f1e2bb98d344}
+
+\item 
+\hypertarget{run_8h_ad0d5ae73f216548013491bc960329a63}{
+TH2F $\ast$ {\bfseries dE\_\-EBeamGateRFAll}}
+\label{run_8h_ad0d5ae73f216548013491bc960329a63}
+
+\item 
+\hypertarget{run_8h_ada1685995f6aa5e2ac8099c66a376ef9}{
+TH2F $\ast$ {\bfseries hSiT}}
+\label{run_8h_ada1685995f6aa5e2ac8099c66a376ef9}
+
+\item 
+\hypertarget{run_8h_a7016a0e2478457f47672d0e5ba5edca2}{
+TH2F $\ast$ {\bfseries hSiTcal}}
+\label{run_8h_a7016a0e2478457f47672d0e5ba5edca2}
+
+\item 
+\hypertarget{run_8h_a188cc4ca5d04517fde98f8c468841c09}{
+TH1F $\ast$ {\bfseries hPpac0TpadT\_\-30s\_\-ch} \mbox{[}18\mbox{]}}
+\label{run_8h_a188cc4ca5d04517fde98f8c468841c09}
+
+\item 
+\hypertarget{run_8h_a7d72d36f6f011f8a10f9d83311c2f83e}{
+TH1F $\ast$ {\bfseries hPpac0TpadT\_\-29p\_\-ch} \mbox{[}18\mbox{]}}
+\label{run_8h_a7d72d36f6f011f8a10f9d83311c2f83e}
+
+\item 
+\hypertarget{run_8h_a91345e4174dec0598a1cfb4d657199d6}{
+TH1F $\ast$ {\bfseries hPpacToF\_\-30s}}
+\label{run_8h_a91345e4174dec0598a1cfb4d657199d6}
+
+\item 
+\hypertarget{run_8h_a8fddd91220cedd101c92ee415312067d}{
+TH1F $\ast$ {\bfseries hPpacToF\_\-29p}}
+\label{run_8h_a8fddd91220cedd101c92ee415312067d}
+
+\item 
+\hypertarget{run_8h_a546eac38bf575c2796de8b28615aec80}{
+TH2F $\ast$ {\bfseries hRF0Tof}}
+\label{run_8h_a546eac38bf575c2796de8b28615aec80}
+
+\item 
+\hypertarget{run_8h_a9af32cb43bb29a3e8aa8e8c6d93a5de0}{
+TH2F $\ast$ {\bfseries hRF1Tof}}
+\label{run_8h_a9af32cb43bb29a3e8aa8e8c6d93a5de0}
+
+\item 
+\hypertarget{run_8h_ab8ec573168b830370104c0ed35c2562f}{
+TH1F $\ast$ {\bfseries hPpac0TX1}}
+\label{run_8h_ab8ec573168b830370104c0ed35c2562f}
+
+\item 
+\hypertarget{run_8h_ace2ff35a4679c53ec0d4dc22ab021653}{
+TH1F $\ast$ {\bfseries hPpac0TX2}}
+\label{run_8h_ace2ff35a4679c53ec0d4dc22ab021653}
+
+\item 
+\hypertarget{run_8h_a0bbf5b13011e33f26ab6434879cd49d4}{
+TH1F $\ast$ {\bfseries hPpac0TY1}}
+\label{run_8h_a0bbf5b13011e33f26ab6434879cd49d4}
+
+\item 
+\hypertarget{run_8h_a9c33e9325ac83d7c67b417393e579bf4}{
+TH1F $\ast$ {\bfseries hPpac0TY2}}
+\label{run_8h_a9c33e9325ac83d7c67b417393e579bf4}
+
+\item 
+\hypertarget{run_8h_a098e2af5938e192aff63090d4ed7307a}{
+TH1F $\ast$ {\bfseries hPpac1TX1}}
+\label{run_8h_a098e2af5938e192aff63090d4ed7307a}
+
+\item 
+\hypertarget{run_8h_ae575df572df060ef8512b445a5bf6276}{
+TH1F $\ast$ {\bfseries hPpac1TX2}}
+\label{run_8h_ae575df572df060ef8512b445a5bf6276}
+
+\item 
+\hypertarget{run_8h_aaca989187d8e41293bb37e96940c9ba3}{
+TH1F $\ast$ {\bfseries hPpac1TY1}}
+\label{run_8h_aaca989187d8e41293bb37e96940c9ba3}
+
+\item 
+\hypertarget{run_8h_aa89c80cc6451d0de29211e07676ed709}{
+TH1F $\ast$ {\bfseries hPpac1TY2}}
+\label{run_8h_aa89c80cc6451d0de29211e07676ed709}
+
+\item 
+\hypertarget{run_8h_af44d7c90fb734d2e869babdd3dbd0386}{
+TH2F $\ast$ {\bfseries hPpac0XY}}
+\label{run_8h_af44d7c90fb734d2e869babdd3dbd0386}
+
+\item 
+\hypertarget{run_8h_a26a06562ad424fb927e19e2969921012}{
+TH2F $\ast$ {\bfseries hPpac1XY}}
+\label{run_8h_a26a06562ad424fb927e19e2969921012}
+
+\item 
+\hypertarget{run_8h_a5f7343df32c6b1da8b2e9b0bcae12fe9}{
+TH2F $\ast$ {\bfseries hPpac1XYcut}}
+\label{run_8h_a5f7343df32c6b1da8b2e9b0bcae12fe9}
+
+\item 
+\hypertarget{run_8h_a25b8affe320fc5d2df4b9c18ca975596}{
+TH2F $\ast$ {\bfseries hPpac0XRF0}}
+\label{run_8h_a25b8affe320fc5d2df4b9c18ca975596}
+
+\item 
+\hypertarget{run_8h_a6753be79b8bae915eafe006592195f01}{
+TH2F $\ast$ {\bfseries hPpac0XRF0\_\-29p}}
+\label{run_8h_a6753be79b8bae915eafe006592195f01}
+
+\item 
+\hypertarget{run_8h_a857c30abbb42ca2b4c69afe60ed09c67}{
+TH2F $\ast$ {\bfseries hPpac0XRF1\_\-29p}}
+\label{run_8h_a857c30abbb42ca2b4c69afe60ed09c67}
+
+\item 
+\hypertarget{run_8h_a6920104472f3e1ce9388c369516b50b6}{
+TH2F $\ast$ {\bfseries hPpac0XRF0\_\-30s}}
+\label{run_8h_a6920104472f3e1ce9388c369516b50b6}
+
+\item 
+\hypertarget{run_8h_acbaee0701bd5ae3c5df57163ba843979}{
+TH2F $\ast$ {\bfseries hPpac0XRF1\_\-30s}}
+\label{run_8h_acbaee0701bd5ae3c5df57163ba843979}
+
+\item 
+\hypertarget{run_8h_a18f20a9668ed0123349db9b012f5a077}{
+TH2F $\ast$ {\bfseries hPpac0XRF0ds}}
+\label{run_8h_a18f20a9668ed0123349db9b012f5a077}
+
+\item 
+\hypertarget{run_8h_adf4e0dc000051a1d35a798b822356ed3}{
+TH2F $\ast$ {\bfseries hPpac0XRF1ds}}
+\label{run_8h_adf4e0dc000051a1d35a798b822356ed3}
+
+\item 
+\hypertarget{run_8h_ac8432ab6c54351cdbe992c46861ae51c}{
+TH2F $\ast$ {\bfseries hPpac0XRF0ssd}}
+\label{run_8h_ac8432ab6c54351cdbe992c46861ae51c}
+
+\item 
+\hypertarget{run_8h_ae7499913bd4b38c6b1572e7eb94dee89}{
+TH2F $\ast$ {\bfseries hPpac0XRF1ssd}}
+\label{run_8h_ae7499913bd4b38c6b1572e7eb94dee89}
+
+\item 
+\hypertarget{run_8h_ad9ec703d01d338308fb182166ae0d48f}{
+TH2F $\ast$ {\bfseries hPpac1XRF0}}
+\label{run_8h_ad9ec703d01d338308fb182166ae0d48f}
+
+\item 
+\hypertarget{run_8h_ab2cce14b98d005d8f9f5d42746a25d7b}{
+TH2F $\ast$ {\bfseries hPpac1XRF0\_\-29p}}
+\label{run_8h_ab2cce14b98d005d8f9f5d42746a25d7b}
+
+\item 
+\hypertarget{run_8h_a12c284b00fe2ef90fe1d4ae6164fd82b}{
+TH2F $\ast$ {\bfseries hPpac1XRF1\_\-29p}}
+\label{run_8h_a12c284b00fe2ef90fe1d4ae6164fd82b}
+
+\item 
+\hypertarget{run_8h_a75059257db147a64dd9a76eddb4daab3}{
+TH2F $\ast$ {\bfseries hPpac1XRF0\_\-30s}}
+\label{run_8h_a75059257db147a64dd9a76eddb4daab3}
+
+\item 
+\hypertarget{run_8h_ab99f809d86aa2e5f13b2efad92e661a6}{
+TH2F $\ast$ {\bfseries hPpac1XRF1\_\-30s}}
+\label{run_8h_ab99f809d86aa2e5f13b2efad92e661a6}
+
+\item 
+\hypertarget{run_8h_a9eed09c41df45b5692ee092b303e5b61}{
+TH2F $\ast$ {\bfseries hPpac1XRF0ds}}
+\label{run_8h_a9eed09c41df45b5692ee092b303e5b61}
+
+\item 
+\hypertarget{run_8h_a6bdab532f6a89373446d29906bb02387}{
+TH2F $\ast$ {\bfseries hPpac1XRF1ds}}
+\label{run_8h_a6bdab532f6a89373446d29906bb02387}
+
+\item 
+\hypertarget{run_8h_ac6f283f5c15056f5ebe5369fa48023f1}{
+TH2F $\ast$ {\bfseries hPpac1XRF0ssd}}
+\label{run_8h_ac6f283f5c15056f5ebe5369fa48023f1}
+
+\item 
+\hypertarget{run_8h_abd45cb9aae2600acd4843af41d609c6e}{
+TH2F $\ast$ {\bfseries hPpac1XRF1ssd}}
+\label{run_8h_abd45cb9aae2600acd4843af41d609c6e}
+
+\item 
+\hypertarget{run_8h_aef0d5aa52a6e76abc187a8091abf97cc}{
+TH2F $\ast$ {\bfseries hPpac0XRF1}}
+\label{run_8h_aef0d5aa52a6e76abc187a8091abf97cc}
+
+\item 
+\hypertarget{run_8h_a08da38ef726fa84fdbe2076fa9699dc8}{
+TH2F $\ast$ {\bfseries hPpac0XRF1cut}}
+\label{run_8h_a08da38ef726fa84fdbe2076fa9699dc8}
+
+\item 
+\hypertarget{run_8h_af74cc34583a3fde51822a128616614b2}{
+TH2F $\ast$ {\bfseries hPpac1XRF1cut}}
+\label{run_8h_af74cc34583a3fde51822a128616614b2}
+
+\item 
+\hypertarget{run_8h_a1578f4c740e991d2972d8e99b1c49fb6}{
+TH2F $\ast$ {\bfseries hPpac1XRF1}}
+\label{run_8h_a1578f4c740e991d2972d8e99b1c49fb6}
+
+\item 
+\hypertarget{run_8h_aa13079044e1f01e949f5e319bda4f52c}{
+TH2F $\ast$ {\bfseries hGemMstpcAll}}
+\label{run_8h_aa13079044e1f01e949f5e319bda4f52c}
+
+\item 
+\hypertarget{run_8h_a688877ca139e731678e07760e4b05dda}{
+TH2F $\ast$ {\bfseries hGemMstpcSide}}
+\label{run_8h_a688877ca139e731678e07760e4b05dda}
+
+\item 
+\hypertarget{run_8h_af1b667eb9048485ce502a79d517b1e47}{
+TH2F $\ast$ {\bfseries hPadC}}
+\label{run_8h_af1b667eb9048485ce502a79d517b1e47}
+
+\item 
+\hypertarget{run_8h_a49b5309e20828e66ad45a4c5ee44936f}{
+TH2F $\ast$ {\bfseries hTpc\_\-dE\_\-ch} \mbox{[}144\mbox{]}}
+\label{run_8h_a49b5309e20828e66ad45a4c5ee44936f}
+
+\item 
+\hypertarget{run_8h_afdf5bc09132b1f127dc6e174646af389}{
+TH1F $\ast$ {\bfseries hBraggB\_\-ch} \mbox{[}48\mbox{]}}
+\label{run_8h_afdf5bc09132b1f127dc6e174646af389}
+
+\item 
+\hypertarget{run_8h_ad321fc2ab48505d91765dc915afe5fdc}{
+TH1F $\ast$ {\bfseries hBraggB\_\-ds\_\-ch} \mbox{[}48\mbox{]}}
+\label{run_8h_ad321fc2ab48505d91765dc915afe5fdc}
+
+\item 
+\hypertarget{run_8h_a777efd9eff8a6c9aa9339b29a41adbc4}{
+TH1F $\ast$ {\bfseries hBraggB\_\-ssd\_\-ch} \mbox{[}48\mbox{]}}
+\label{run_8h_a777efd9eff8a6c9aa9339b29a41adbc4}
+
+\item 
+\hypertarget{run_8h_a57295184df4a0e2d8a323e02fd19b4b9}{
+TH2F $\ast$ {\bfseries hBraggB\_\-30s\_\-jch} \mbox{[}15\mbox{]}}
+\label{run_8h_a57295184df4a0e2d8a323e02fd19b4b9}
+
+\item 
+\hypertarget{run_8h_afd1b4bce46013247b58068f108d993f3}{
+TH2F $\ast$ {\bfseries hBraggB\_\-rp}}
+\label{run_8h_afd1b4bce46013247b58068f108d993f3}
+
+\item 
+\hypertarget{run_8h_acaac64b4c41e1e2de607156ae1eb409a}{
+TH2F $\ast$ {\bfseries hBraggB\_\-30s}}
+\label{run_8h_acaac64b4c41e1e2de607156ae1eb409a}
+
+\item 
+\hypertarget{run_8h_a1bd334ef4a33f668f187621f15a7e85e}{
+TH2F $\ast$ {\bfseries hBraggB\_\-29p}}
+\label{run_8h_a1bd334ef4a33f668f187621f15a7e85e}
+
+\item 
+\hypertarget{run_8h_a7fba12ba32e7f0775a4f4192777f7a97}{
+TH2F $\ast$ {\bfseries hBraggB\_\-31s}}
+\label{run_8h_a7fba12ba32e7f0775a4f4192777f7a97}
+
+\item 
+\hypertarget{run_8h_a238719f029e0dcf8f3c0bc4f2fc8d3c0}{
+TH2F $\ast$ {\bfseries hBraggB}}
+\label{run_8h_a238719f029e0dcf8f3c0bc4f2fc8d3c0}
+
+\item 
+\hypertarget{run_8h_a15932cbce09effe524ac98637c076af9}{
+TH2F $\ast$ {\bfseries hPadXB}}
+\label{run_8h_a15932cbce09effe524ac98637c076af9}
+
+\item 
+\hypertarget{run_8h_adce462c02127986cdf285bc9b15d32c2}{
+TH2F $\ast$ {\bfseries hPadXB\_\-30s}}
+\label{run_8h_adce462c02127986cdf285bc9b15d32c2}
+
+\item 
+\hypertarget{run_8h_ac028bbb43865071ea62367b8844a05d5}{
+TH2F $\ast$ {\bfseries hPadYB}}
+\label{run_8h_ac028bbb43865071ea62367b8844a05d5}
+
+\item 
+\hypertarget{run_8h_a23288426e5a4f30a77cdd947bb4fb7d4}{
+TH2F $\ast$ {\bfseries hPadYB\_\-30s}}
+\label{run_8h_a23288426e5a4f30a77cdd947bb4fb7d4}
+
+\item 
+\hypertarget{run_8h_abb4e23a6d03b108a2d9c197376ef5f28}{
+TH3F $\ast$ {\bfseries hPadB\_\-3D}}
+\label{run_8h_abb4e23a6d03b108a2d9c197376ef5f28}
+
+\item 
+\hypertarget{run_8h_a49da15ea0586158de12d97d4b3f653d3}{
+TH3F $\ast$ {\bfseries hBraggB\_\-3D}}
+\label{run_8h_a49da15ea0586158de12d97d4b3f653d3}
+
+\item 
+\hypertarget{run_8h_a0c68e638ef9e7144d73640cef84d573b}{
+TH3F $\ast$ {\bfseries hBraggB\_\-3D\_\-ds}}
+\label{run_8h_a0c68e638ef9e7144d73640cef84d573b}
+
+\item 
+\hypertarget{run_8h_ad4d42b24d4116922d7784fad81db13aa}{
+TH3F $\ast$ {\bfseries hBraggB\_\-3D\_\-ssd}}
+\label{run_8h_ad4d42b24d4116922d7784fad81db13aa}
+
+\item 
+\hypertarget{run_8h_ab75b7f78d6e5e5b471a41f621d63d4de}{
+TH2F $\ast$ {\bfseries hBraggL}}
+\label{run_8h_ab75b7f78d6e5e5b471a41f621d63d4de}
+
+\item 
+\hypertarget{run_8h_a1af1fe5659f64a9a4c0b18a766fb0a6b}{
+TH2F $\ast$ {\bfseries hBraggR}}
+\label{run_8h_a1af1fe5659f64a9a4c0b18a766fb0a6b}
+
+\item 
+\hypertarget{run_8h_ac1a8f57eeb2f0b7adf60fffcf78b5dbd}{
+TH2F $\ast$ {\bfseries hBraggC}}
+\label{run_8h_ac1a8f57eeb2f0b7adf60fffcf78b5dbd}
+
+\item 
+\hypertarget{run_8h_a3ee87f43e8ef3e0fcc67087c32db33fa}{
+TH2F $\ast$ {\bfseries hPadXC}}
+\label{run_8h_a3ee87f43e8ef3e0fcc67087c32db33fa}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global flag initalization, histogram memory control and initalization. \begin{DoxyAuthor}{Author}
+daid 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.0
+\end{DoxyVersion}
+Basically allocates, initalizes and deletes memory for all histograms. \begin{DoxyDate}{Date}
+09 Nov 2011 22:50:31 
+\end{DoxyDate}
+
+
+Definition in file \hyperlink{run_8h_source}{run.h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{run_8h_a2293ee2dc583eab21c68e42e03a47cc1}{
+\index{run.h@{run.h}!HistClean@{HistClean}}
+\index{HistClean@{HistClean}!run.h@{run.h}}
+\subsubsection[{HistClean}]{\setlength{\rightskip}{0pt plus 5cm}void HistClean (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{run_8h_a2293ee2dc583eab21c68e42e03a47cc1}
+
+
+delete all the histograms 
+
+This function should be called after all histograms have been Write'n.\par
+ In principle it is not totally necessary to do this kind of garbage collection.\par
+ However, for memory checking with valgrind, this is helpful. 
+
+Definition at line 781 of file run.h.
+
+
+\begin{DoxyCode}
+                { // function to free histogram memory
+  delete hSiStripHit ;
+  delete hSiPadHit ;
+  delete hBeamPadCh ;
+  delete hGemMstpcCh ;
+  delete hSiStripE ;
+  delete hSiStripEcal ;
+  delete hSiPadE ;
+  delete hSiEmax ;
+  delete hSiPadEcal ;
+  delete dE_EBeamGateRFAll ;
+  delete hSiT ;
+  delete hSiTcal ;
+  delete hRF0Tof;
+  delete hRF1Tof;
+  delete hPpac0TX1;
+  delete hPpac0TX2;
+  delete hPpac0TY1;
+  delete hPpac0TY2;
+  delete hPpac1TX1;
+  delete hPpac1TX2;
+  delete hPpac1TY1;
+  delete hPpac1TY2;
+  delete hPpac0XY ;
+  delete hPpac1XY ;
+  delete hPpac1XYcut ;
+  delete hPpac0XRF0 ;
+  delete hPpac0XRF0_29p ;
+  delete hPpac0XRF1_29p ;
+  delete hPpac0XRF0_30s ;
+  delete hPpac0XRF1_30s ;
+  delete hPpac0XRF0ds ;
+  delete hPpac0XRF1ds ;
+  delete hPpac0XRF0ssd ;
+  delete hPpac0XRF1ssd ;
+  delete hPpac1XRF0 ;
+  delete hPpac1XRF0_29p ;
+  delete hPpac1XRF1_29p ;
+  delete hPpac1XRF0_30s ;
+  delete hPpac1XRF1_30s ;
+  delete hPpac1XRF0ds ;
+  delete hPpac1XRF1ds ;
+  delete hPpac1XRF0ssd ;
+  delete hPpac1XRF1ssd ;
+  delete hPpac0XRF1 ;
+  delete hPpac0XRF1cut ;
+  delete hPpac1XRF1cut ;
+  delete hPpac1XRF1 ;
+  delete hGemMstpcAll ;
+  delete hGemMstpcSide ;
+  delete hBraggB_30s ;
+  delete hPadXB ;
+  delete hPadXB_30s ;
+  delete hPadYB ;
+  delete hPadYB_30s ;
+  delete hBraggB_3D ;
+  delete hBraggB_3D_ds ;
+  delete hBraggB_3D_ssd ;
+  delete hPadB_3D;
+  delete hBraggB_29p ;
+  delete hBraggB_31s ;
+  delete hBraggB ;
+  delete hBraggL ;
+  delete hBraggR ;
+  delete hBraggC ;
+  delete hBraggB_rp;
+  for (int i=0;i<2;i++) delete hRf[i]; 
+  for (int j=0;j<15;j++) delete hBraggB_30s_jch[j];
+  for (int i=0;i<97;i++){
+    delete strip_ch[i];
+    delete strip_cal_ch[i];
+    delete strip_ch_gated30s[i];
+    delete strip_ch_gated29p[i];
+  }
+  delete hPpacToF_30s;
+  delete hPpacToF_29p;
+  for (int i=0;i<18;i++){
+    delete pad_ch[i];
+    delete hPpac0TpadT_30s_ch[i];
+    delete hPpac0TpadT_29p_ch[i];
+    delete pad_ch_gated[i];
+  }
+  for (int i=0;i<6;i++){
+    delete dE_E[i];
+    delete dE_Estrip[i];
+    delete dE_EBeamGateRF0[i];
+    delete dE_EBeamGateRF1[i];
+  }
+  for (int i=0;i<144;i++){
+    delete hfSample[i]; 
+    delete hTrough[i];
+    delete hTpc_dE_ch[i];
+  }
+  for (int i=0;i<48;i++){
+    delete hBraggB_ch[i];
+    delete hBraggB_ds_ch[i];
+    delete hBraggB_ssd_ch[i];
+  }
+} // close HistClean    
+\end{DoxyCode}
+\hypertarget{run_8h_a82ee55a7ab291cf1479b73b37ab472e9}{
+\index{run.h@{run.h}!HistInit@{HistInit}}
+\index{HistInit@{HistInit}!run.h@{run.h}}
+\subsubsection[{HistInit}]{\setlength{\rightskip}{0pt plus 5cm}void HistInit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{run_8h_a82ee55a7ab291cf1479b73b37ab472e9}
+
+
+Initalize the histograms based on which data are to be processed. 
+
+This function must be called before any histograms are Fill'd All memory allocation for histograms is completed previously in the run header\par
+ Here we define the histograms and set all relevant histogramming options. 
+
+Definition at line 191 of file run.h.
+
+
+\begin{DoxyCode}
+               { // histogram initalization
+   
+  char name[100];
+  
+  if (flag_ssd){ 
+    
+    if (flag_raw){ 
+       //hSiPadHit goes here
+      hSiPadHit = new TH1F("hSiPadHit","hSiPadHit",18,-0.5,17.5);
+      hSiT = new TH2F("hSiT","hSiT",18,-0.5,17.5, 30000,0.,30000.);
+      hSiT->SetOption("COL");
+      hSiPadE = new TH2F("hSiPadE","hSiPadE",18,-0.5,17.5, 410,0.,4100.);
+      hSiPadE->SetOption("COL");   
+      for (UShort_t i=0;i<18;i++) {
+        sprintf(name,"pad_ch%d",i);
+        pad_ch[i]= new TH1F(name, name, 3950,50,4000);
+      } 
+    } // end if: flag_raw
+    
+    if (flag_detail){
+      hSiTcal = new TH2F("hSiTcal","hSiTcal",18,-0.5,17.5, 30000,0.,30000.);
+      hSiTcal->SetOption("COL");
+      hSiPadEcal = new TH2F("hSiPadEcal","hSiPadEcal",18,-0.5,17.5, 410,0.,4100.)
+      ;
+    } // end if: flag_detail
+    
+  } // end if: flag_ssd
+  
+  if (flag_strip) {
+  
+    if (flag_raw){
+      hSiStripHit = new TH1F("hSiStripHit","hSiStripHit",96,-0.5,95.5);
+      hSiStripE = new TH2F("hSiStripE","hSiStripE",96,.5,96.5, 410,0.,4100.);
+      hSiStripE->SetOption("COL");
+      for (UShort_t i=1;i<97;i++) {
+        sprintf(name,"strip_ch%d",i);
+        strip_ch[i]= new TH1F(name, name, 4096,0,4096);
+      }
+    } // end if: flag_raw
+  
+    if (flag_detail){
+      hSiStripEcal = new TH2F("hSiStripEcal","hSiStripEcal",96,-0.5,95.5, 400,0.,
+      20.);
+      hSiEmax = new TH2F("hSiEmax","hSiEmax",12,-0.5,11.5, 410,0.,4100.);
+      hSiEmax->SetOption("COL");
+      for (UShort_t i=1;i<97;i++) {
+        sprintf(name,"strip_cal_ch%d",i);
+        strip_cal_ch[i]= new TH1F(name, name, 300,0,30);
+      }
+    } // end if: flag_detail
+
+  } // end if: flag_strip
+  
+  if (flag_detail && flag_ssd && flag_strip){
+    for (UShort_t i=0;i<6;i++) {
+      sprintf(name,"dE_E%d",i);
+      dE_E[i]= new TH2F(name, name, 300,0.,30., 1000,0.,100.);
+      dE_E[i]->SetOption("COL");
+      sprintf(name,"dE_Estrip%d",i);
+      dE_Estrip[i]= new TH2F(name, name, 300,0.,30., 1000,0.,100.);
+      dE_Estrip[i]->SetOption("COL");
+    }
+
+  } // end if: flag_detail & flag_ssd & flag_strip
+
+  if (flag_ppac){
+  
+    if(flag_raw){
+      for (UShort_t i=0;i<2;i++){
+        sprintf(name,"hRf%d",i);
+        hRf[i] = new TH1F(name,name,1000,0,1000);
+      }
+      hPpac0TX1 = new TH1F("hPpac0TX1","hPpac0TX1",22000,0.,22000.);
+      hPpac0TX2 = new TH1F("hPpac0TX2","hPpac0TX2",22000,0.,22000.);
+      hPpac0TY1 = new TH1F("hPpac0TY1","hPpac0TY1",22000,0.,22000.);
+      hPpac0TY2 = new TH1F("hPpac0TY2","hPpac0TY2",22000,0.,22000.);
+      hPpac1TX1 = new TH1F("hPpac1TX1","hPpac1TX1",22000,0.,22000.);
+      hPpac1TX2 = new TH1F("hPpac1TX2","hPpac1TX2",22000,0.,22000.);
+      hPpac1TY1 = new TH1F("hPpac1TY1","hPpac1TY1",22000,0.,22000.);
+      hPpac1TY2 = new TH1F("hPpac1TY2","hPpac1TY2",22000,0.,22000.);
+    } // end if: flag_raw
+    
+    if (flag_detail){
+      hRF0Tof = new TH2F("hRF0Tof","RF0 vs. PPAC Tof",600,0.,600.,200,0.,20.);
+      hRF0Tof->SetOption("COL");
+      hRF0Tof->GetXaxis()->SetTitle("RF (arb)");
+      hRF0Tof->GetXaxis()->CenterTitle(true);
+      hRF0Tof->GetYaxis()->SetTitle("Time of Flight (ns)");
+      hRF0Tof->GetYaxis()->CenterTitle(true);
+      
+      hRF1Tof = new TH2F("hRF1Tof","RF1 vs. PPAC Tof",600,0.,600.,200,0.,20.);
+      hRF1Tof->SetOption("COL");
+      hRF1Tof->GetXaxis()->SetTitle("RF (arb)");
+      hRF1Tof->GetXaxis()->CenterTitle(true);
+      hRF1Tof->GetYaxis()->SetTitle("Time of Flight (ns)");
+      hRF1Tof->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XY = new TH2F("hPpac0XY","PPACa X vs. Y",160,-40.,40.,160,-40.,40.);
+      hPpac0XY->SetOption("COL");
+      hPpac0XY->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XY->GetXaxis()->CenterTitle(true);
+      hPpac0XY->GetYaxis()->SetTitle("Y Position (mm)");
+      hPpac0XY->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XY = new TH2F("hPpac1XY","PPACb X vs. Y",160,-40.,40.,160,-40.,40.);
+      hPpac1XY->SetOption("COL");   
+      hPpac1XY->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XY->GetXaxis()->CenterTitle(true);
+      hPpac1XY->GetYaxis()->SetTitle("Y Position (mm)");
+      hPpac1XY->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XYcut = new TH2F("hPpac1XYcut","PPACb X vs. Y",160,-40.,40.,160,-40.,
+      40.);
+      hPpac1XYcut->SetOption("COL");   
+      hPpac1XYcut->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XYcut->GetXaxis()->CenterTitle(true);
+      hPpac1XYcut->GetYaxis()->SetTitle("Y Position (mm)");
+      hPpac1XYcut->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF0 = new TH2F("hPpac0XRF0","PPACa X vs. RF0",160,-40.,40.,600,0.,60
+      0.);
+      hPpac0XRF0->SetOption("COL");
+      hPpac0XRF0->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF0->GetXaxis()->CenterTitle(true);
+      hPpac0XRF0->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF1 = new TH2F("hPpac0XRF1","PPACa X vs. RF1",160,-40.,40.,600,0.,60
+      0.);
+      hPpac0XRF1->SetOption("COL");
+      hPpac0XRF1->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF1->GetXaxis()->CenterTitle(true);
+      hPpac0XRF1->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF0 = new TH2F("hPpac1XRF0","PPACb X vs. RF0",160,-40.,40.,600,0.,60
+      0.);
+      hPpac1XRF0->SetOption("COL");
+      hPpac1XRF0->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF0->GetXaxis()->CenterTitle(true);
+      hPpac1XRF0->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF0_29p = new TH2F("hPpac0XRF0_29p","PPACa X vs. RF0 29P",160,-40.,4
+      0.,600,0.,600.);
+      hPpac0XRF0_29p->SetOption("COL");
+      hPpac0XRF0_29p->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF0_29p->GetXaxis()->CenterTitle(true);
+      hPpac0XRF0_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0_29p->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF1_29p = new TH2F("hPpac0XRF1_29p","PPACa X vs. RF1 29P",160,-40.,4
+      0.,600,0.,600.);
+      hPpac0XRF1_29p->SetOption("COL");
+      hPpac0XRF1_29p->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF1_29p->GetXaxis()->CenterTitle(true);
+      hPpac0XRF1_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1_29p->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF0_30s = new TH2F("hPpac0XRF0_30s","PPACa X vs. RF0 30S",160,-40.,4
+      0.,600,0.,600.);
+      hPpac0XRF0_30s->SetOption("COL");
+      hPpac0XRF0_30s->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF0_30s->GetXaxis()->CenterTitle(true);
+      hPpac0XRF0_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0_30s->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF1_30s = new TH2F("hPpac0XRF1_30s","PPACa X vs. RF1 30S",160,-40.,4
+      0.,600,0.,600.);
+      hPpac0XRF1_30s->SetOption("COL");
+      hPpac0XRF1_30s->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF1_30s->GetXaxis()->CenterTitle(true);
+      hPpac0XRF1_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1_30s->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF0_29p = new TH2F("hPpac1XRF0_29p","PPACb X vs. RF0 29P",160,-40.,4
+      0.,600,0.,600.);
+      hPpac1XRF0_29p->SetOption("COL");
+      hPpac1XRF0_29p->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF0_29p->GetXaxis()->CenterTitle(true);
+      hPpac1XRF0_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0_29p->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF1_29p = new TH2F("hPpac1XRF1_29p","PPACb X vs. RF1 29P",160,-40.,4
+      0.,600,0.,600.);
+      hPpac1XRF1_29p->SetOption("COL");
+      hPpac1XRF1_29p->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF1_29p->GetXaxis()->CenterTitle(true);
+      hPpac1XRF1_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1_29p->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF0_30s = new TH2F("hPpac1XRF0_30s","PPACb X vs. RF0 30S",160,-40.,4
+      0.,600,0.,600.);
+      hPpac1XRF0_30s->SetOption("COL");
+      hPpac1XRF0_30s->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF0_30s->GetXaxis()->CenterTitle(true);
+      hPpac1XRF0_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0_30s->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF1_30s = new TH2F("hPpac1XRF1_30s","PPACb X vs. RF1 30S",160,-40.,4
+      0.,600,0.,600.);
+      hPpac1XRF1_30s->SetOption("COL");
+      hPpac1XRF1_30s->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF1_30s->GetXaxis()->CenterTitle(true);
+      hPpac1XRF1_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1_30s->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF1cut = new TH2F("hPpac0XRF1cut","PPACa X vs. RF1",160,-40.,40.,600
+      ,0.,600.);
+      hPpac0XRF1cut->SetOption("COL");
+      hPpac0XRF1cut->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac0XRF1cut->GetXaxis()->CenterTitle(true);
+      hPpac0XRF1cut->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1cut->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF1cut = new TH2F("hPpac1XRF1cut","PPACb X vs. RF1",160,-40.,40.,600
+      ,0.,600.);
+      hPpac1XRF1cut->SetOption("COL");
+      hPpac1XRF1cut->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF1cut->GetXaxis()->CenterTitle(true);
+      hPpac1XRF1cut->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1cut->GetYaxis()->CenterTitle(true);
+      
+      hPpac1XRF1 = new TH2F("hPpac1XRF1","PPACb X vs. RF1",160,-40.,40.,600,0.,60
+      0.);
+      hPpac1XRF1->SetOption("COL");
+      hPpac1XRF1->GetXaxis()->SetTitle("X Position (mm)");
+      hPpac1XRF1->GetXaxis()->CenterTitle(true);
+      hPpac1XRF1->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1->GetYaxis()->CenterTitle(true);
+      
+      hPpacToF_30s = new TH1F("hPpacToF_30s","hPpacToF_30s",200,0.,20.);
+      hPpacToF_29p = new TH1F("hPpacToF_29p","hPpacToF_29p",200,0.,20.);
+    } // end if: flag_detail
+  
+  } // end if: flag_ppac
+  
+  if (flag_detail && flag_ssd && flag_ppac){
+    hPpac0XRF0ds = new TH2F("hPpac0XRF0ds","PPACa X vs. RF0 downscale",160,-40.,4
+      0.,600,0.,600.);
+    hPpac0XRF0ds->SetOption("COL");
+    hPpac0XRF0ds->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac0XRF0ds->GetXaxis()->CenterTitle(true);
+    hPpac0XRF0ds->GetYaxis()->SetTitle("RF (arb)");
+    hPpac0XRF0ds->GetYaxis()->CenterTitle(true);
+    
+    hPpac0XRF1ds = new TH2F("hPpac0XRF1ds","PPACa X vs. RF1 downscale",160,-40.,4
+      0.,600,0.,600.);
+    hPpac0XRF1ds->SetOption("COL");
+    hPpac0XRF1ds->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac0XRF1ds->GetXaxis()->CenterTitle(true);
+    hPpac0XRF1ds->GetYaxis()->SetTitle("RF (arb)");
+    hPpac0XRF1ds->GetYaxis()->CenterTitle(true);
+    
+    hPpac0XRF0ssd = new TH2F("hPpac0XRF0ssd","PPACa X vs. RF0 SSD-OR",160,-40.,40
+      .,600,0.,600.);
+    hPpac0XRF0ssd->SetOption("COL");
+    hPpac0XRF0ssd->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac0XRF0ssd->GetXaxis()->CenterTitle(true);
+    hPpac0XRF0ssd->GetYaxis()->SetTitle("RF (arb)");
+    hPpac0XRF0ssd->GetYaxis()->CenterTitle(true);
+    
+    hPpac0XRF1ssd = new TH2F("hPpac0XRF1ssd","PPACa X vs. RF1 SSD-OR",160,-40.,40
+      .,600,0.,600.);
+    hPpac0XRF1ssd->SetOption("COL");
+    hPpac0XRF1ssd->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac0XRF1ssd->GetXaxis()->CenterTitle(true);
+    hPpac0XRF1ssd->GetYaxis()->SetTitle("RF (arb)");
+    hPpac0XRF1ssd->GetYaxis()->CenterTitle(true);
+    
+    hPpac1XRF0ds = new TH2F("hPpac1XRF0ds","PPACb X vs. RF0 downscale",160,-40.,4
+      0.,600,0.,600.);
+    hPpac1XRF0ds->SetOption("COL");
+    hPpac1XRF0ds->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac1XRF0ds->GetXaxis()->CenterTitle(true);
+    hPpac1XRF0ds->GetYaxis()->SetTitle("RF (arb)");
+    hPpac1XRF0ds->GetYaxis()->CenterTitle(true);
+    
+    hPpac1XRF1ds = new TH2F("hPpac1XRF1ds","PPACb X vs. RF1 downscale",160,-40.,4
+      0.,600,0.,600.);
+    hPpac1XRF1ds->SetOption("COL");
+    hPpac1XRF1ds->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac1XRF1ds->GetXaxis()->CenterTitle(true);
+    hPpac1XRF1ds->GetYaxis()->SetTitle("RF (arb)");
+    hPpac1XRF1ds->GetYaxis()->CenterTitle(true);
+    
+    hPpac1XRF0ssd = new TH2F("hPpac1XRF0ssd","PPACb X vs. RF0 SSD-OR",160,-40.,40
+      .,600,0.,600.);
+    hPpac1XRF0ssd->SetOption("COL");
+    hPpac1XRF0ssd->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac1XRF0ssd->GetXaxis()->CenterTitle(true);
+    hPpac1XRF0ssd->GetYaxis()->SetTitle("RF (arb)");
+    hPpac1XRF0ssd->GetYaxis()->CenterTitle(true);
+
+    hPpac1XRF1ssd = new TH2F("hPpac1XRF1ssd","PPACb X vs. RF1 SSD-OR",160,-40.,40
+      .,600,0.,600.);
+    hPpac1XRF1ssd->SetOption("COL");
+    hPpac1XRF1ssd->GetXaxis()->SetTitle("X Position (mm)");
+    hPpac1XRF1ssd->GetXaxis()->CenterTitle(true);
+    hPpac1XRF1ssd->GetYaxis()->SetTitle("RF (arb)");
+    hPpac1XRF1ssd->GetYaxis()->CenterTitle(true);
+
+    for (UShort_t i=0;i<18;i++) {
+      sprintf(name,"hPpac0TpadT_30s_ch%d",i);
+      hPpac0TpadT_30s_ch[i]= new TH1F(name, name, 15000,0.,1500.);
+      sprintf(name,"hPpac0TpadT_29p_ch%d",i);
+      hPpac0TpadT_29p_ch[i]= new TH1F(name, name, 15000,0,1500.);
+      sprintf(name,"pad_ch_gated%d",i);
+      pad_ch_gated[i]= new TH1F(name, name, 800,0,4100);
+    }
+  } // end if: flag_detail & flag_ssd & flag_ppac
+  
+  
+  if (flag_detail && flag_strip && flag_ppac){
+    for (UShort_t i=1;i<97;i++) {
+      sprintf(name,"strip_ch_gated30s%d",i);     
+      strip_ch_gated30s[i]= new TH1F(name, name, 4096,0,4096);
+      sprintf(name,"strip_ch_gated29p%d",i);     
+      strip_ch_gated29p[i]= new TH1F(name, name, 4096,0,4096);
+    }
+  } // end if: flag_detail & flag_strip & flag_ppac
+  
+  if (flag_detail && flag_ssd && flag_strip && flag_ppac){
+    dE_EBeamGateRFAll = new TH2F("dE_EBeamGateRFAll", "dE_EBeamGateRFAll", 205,0,
+      4100, 205,0,4100);
+    dE_EBeamGateRFAll->SetOption("COL");
+    for (UShort_t i=0;i<6;i++) {
+      sprintf(name,"dE_EBeamGateRF0_%d",i);
+      dE_EBeamGateRF0[i]= new TH2F(name, name, 300,0,30, 300,0,30);
+      dE_EBeamGateRF0[i]->SetOption("COL");
+      sprintf(name,"dE_EBeamGateRF1_%d",i);
+      dE_EBeamGateRF1[i]= new TH2F(name, name, 300,0,30, 300,0,30);
+      dE_EBeamGateRF1[i]->SetOption("COL");
+    }
+  } // end if: flag_detail & flag_ssd & flag_strip & flag_ppac
+  
+  if (flag_tpc){
+  
+    if (flag_raw){
+      hGemMstpcAll = new TH2F("hGemMstpcAll","GEM-MSTPC fadc all channels/events"
+      ,200,0.,500.,300,0.,2000.);
+      hGemMstpcAll->SetOption("COLZ");
+      hGemMstpcSide = new TH2F("hGemMstpcSide","GEM-MSTPC fadc high gain channels
+      /events",200,0.,500.,300,0.,2000.);
+      hGemMstpcSide->SetOption("COLZ");
+      hBeamPadCh = new TH2F("hBeamPadCh","hBeamPadCh",96,0.,96.,2000,0.,2000.);
+      hGemMstpcCh = new TH2F("hGemMstpcCh","hGemMstpcCh",144,0.,144.,2000,0.,2000
+      .);
+      for (UShort_t i=0;i<144;i++) {
+        sprintf(name,"hfSample%d",i);
+        hfSample[i] = new TH1F(name,name,1000,0,1500);
+        sprintf(name,"hTpc_dE_ch%d",i);
+        hTpc_dE_ch[i]= new TH2F(name, name, 200,0,200, 200,0,2000);
+        hTpc_dE_ch[i]->SetOption("COLZ");
+      }
+    } // end if: flag_raw
+  
+    if (flag_detail){ 
+      hBraggB = new TH2F("hBraggB","Beam Bragg Curves",48,-0.5,47.5,200,0.,2000.)
+      ;
+      hBraggB->SetOption("COLZ");
+      hBraggB->GetXaxis()->SetTitle("Pad No.");
+      hBraggB->GetXaxis()->CenterTitle(true);
+      hBraggB->GetYaxis()->SetTitle("#DeltaE (arb.)");
+      hBraggB->GetYaxis()->CenterTitle(true);
+       
+      hBraggL = new TH2F("hBraggL","hBraggL",8,-0.5,7.5,200,0.,2000.);
+      hBraggL->SetOption("COLZ");
+      hBraggR = new TH2F("hBraggR","hBraggR",8,-0.5,7.5,200,0.,2000.);
+      hBraggR->SetOption("COLZ");
+      hBraggC = new TH2F("hBraggC","hBraggC",8,-0.5,7.5,2000,0.,2000.);
+      hBraggC->SetOption("COLZ");
+      hPadXC = new TH2F("hPadXC","hPadXC",8,-0.5,7.5,200,-10.,10.);
+      hPadXC->SetOption("COLZ");
+      
+      hBraggB_30s = new TH2F("hBraggB_30s","Beam Bragg Curve Gated on ^{30}S",48,
+      -0.5,47.5,200,0.,2000.);
+      hBraggB_30s->SetOption("COLZ");
+      hBraggB_30s->GetXaxis()->SetTitle("Pad No.");
+      hBraggB_30s->GetXaxis()->CenterTitle(true);
+      hBraggB_30s->GetYaxis()->SetTitle("#DeltaE (arb.)");
+      hBraggB_30s->GetYaxis()->CenterTitle(true);
+      
+      hBraggB_rp = new TH2F("hBraggB_rp","Beam Scattering Location for ^{30}S",48
+      ,-0.5,47.5,45,6.,50.);
+      hBraggB_rp->SetOption("COLZ");
+      hBraggB_rp->GetXaxis()->SetTitle("Pad No.");
+      hBraggB_rp->GetXaxis()->CenterTitle(true);
+      hBraggB_rp->GetYaxis()->SetTitle("(#DeltaE_{i}-#DeltaE_{i-1})/Pad i");
+      hBraggB_rp->GetYaxis()->CenterTitle(true);
+      
+      hBraggB_29p = new TH2F("hBraggB_29p","hBraggB_29p",48,-0.5,47.5,200,0.,2000
+      .);
+      hBraggB_29p->SetOption("COLZ");
+      hBraggB_31s = new TH2F("hBraggB_31s","hBraggB_31s",48,-0.5,47.5,200,0.,2000
+      .);
+      hBraggB_31s->SetOption("COLZ");
+
+      hPadXB = new TH2F("hPadXB","Beam X",48,-0.5,47.5,80,-5.,5.);
+      hPadXB->SetOption("COLZ");
+      hPadXB->GetXaxis()->SetTitle("Pad No.");
+      hPadXB->GetXaxis()->CenterTitle(true);
+      hPadXB->GetYaxis()->SetTitle("X position (cm)");
+      hPadXB->GetYaxis()->CenterTitle(true);
+      
+      hPadXB_30s = new TH2F("hPadXB_30s","Beam X Gated on ^{30}S",48,-0.5,47.5,80
+      ,-5.,5.);
+      hPadXB_30s->SetOption("COLZ");
+      hPadXB_30s->GetXaxis()->SetTitle("Pad No.");
+      hPadXB_30s->GetXaxis()->CenterTitle(true);
+      hPadXB_30s->GetYaxis()->SetTitle("X position (cm)");
+      hPadXB_30s->GetYaxis()->CenterTitle(true);
+      
+      hPadYB = new TH2F("hPadYB","Beam Y",48,-0.5,47.5,300,0.,300.);
+      hPadYB->SetOption("COLZ");
+      hPadYB->GetXaxis()->SetTitle("Pad No.");
+      hPadYB->GetXaxis()->CenterTitle(true);
+      hPadYB->GetYaxis()->SetTitle("Y position (arb.)");
+      hPadYB->GetYaxis()->CenterTitle(true);
+      
+      hPadYB_30s = new TH2F("hPadYB_30s","Beam Y Gated on ^{30}S",48,-0.5,47.5,30
+      0,0.,300.);
+      hPadYB_30s->SetOption("COLZ");
+      hPadYB_30s->GetXaxis()->SetTitle("Pad No.");
+      hPadYB_30s->GetXaxis()->CenterTitle(true);
+      hPadYB_30s->GetYaxis()->SetTitle("Y position (cm)");
+      hPadYB_30s->GetYaxis()->CenterTitle(true);
+      
+      hBraggB_3D = new TH3F("hBraggB_3D","hBraggB_3D",48,-0.5,47.5,4,-0.5,3.5,400
+      ,0.,2000.);
+      hBraggB_3D->SetOption("GLCOL");
+      hBraggB_3D_ds = new TH3F("hBraggB_3D_ds","hBraggB_3D_ds",48,-0.5,47.5,4,-0.
+      5,3.5,400,0.,2000.);
+      hBraggB_3D_ds->SetOption("GLCOL");
+      hBraggB_3D_ssd = new TH3F("hBraggB_3D_ssd","hBraggB_3D_ssd",48,-0.5,47.5,4,
+      -0.5,3.5,400,0.,2000.);
+      hBraggB_3D_ssd->SetOption("GLCOL");
+      
+      hPadB_3D = new TH3F("hPadB_3D","hPadB_3D",3,-2.,1.,10,70.,115.,48,-0.5,47.5
+      );
+      hPadB_3D->SetOption("GLCOL");
+
+      for (UShort_t i=0;i<144;i++) {
+        sprintf(name,"hTrough%d",i);
+        hTrough[i] = new TH1F(name,name,1500,-500.,1000.);
+        if (i < 48) { // Beam Bragg pads
+          sprintf(name,"hBraggB_ch%d",i);
+          hBraggB_ch[i] = new TH1F(name,name,2000,0,2000);
+          sprintf(name,"hBraggB_ds_ch%d",i);
+          hBraggB_ds_ch[i] = new TH1F(name,name,2000,0,2000);
+          hBraggB_ds_ch[i]->GetXaxis()->SetTitle("#DeltaE (arb.)");
+          hBraggB_ds_ch[i]->GetXaxis()->CenterTitle(true);
+          hBraggB_ds_ch[i]->GetYaxis()->SetTitle("Counts");
+          hBraggB_ds_ch[i]->GetYaxis()->CenterTitle(true);
+          sprintf(name,"hBraggB_ssd_ch%d",i);
+          hBraggB_ssd_ch[i] = new TH1F(name,name,2000,0,2000);
+          hBraggB_ssd_ch[i]->GetXaxis()->SetTitle("#DeltaE (arb.)");
+          hBraggB_ssd_ch[i]->GetXaxis()->CenterTitle(true);
+          hBraggB_ssd_ch[i]->GetYaxis()->SetTitle("Counts");
+          hBraggB_ssd_ch[i]->GetYaxis()->CenterTitle(true);
+        }
+      }
+      
+      for (UShort_t j=0;j<15;j++){
+        sprintf(name,"hBraggB_30s_jch%d",j);
+        hBraggB_30s_jch[j] = new TH2F(name,name,48,-0.5,47.5,200,0.,2000.);
+        hBraggB_30s_jch[j]->SetOption("COLZ");
+      }
+    
+    } // end if: flag_detail
+  
+  } // end if: flag_tpc
+  
+} // close HistInit
+\end{DoxyCode}
+\hypertarget{run_8h_ae44946afbf444100024812699dd59c06}{
+\index{run.h@{run.h}!HistWrite@{HistWrite}}
+\index{HistWrite@{HistWrite}!run.h@{run.h}}
+\subsubsection[{HistWrite}]{\setlength{\rightskip}{0pt plus 5cm}void HistWrite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{run_8h_ae44946afbf444100024812699dd59c06}
+
+
+Write all the histograms. 
+
+This function should be called after all histograms have been Fill'd in \hyperlink{classAnalyzer}{Analyzer}.\par
+ It will write all histograms that were initalized based on the data options.\par
+ 
+
+Definition at line 631 of file run.h.
+
+
+\begin{DoxyCode}
+                 {
+  // WRITE THE HISTOGRAMS
+
+  if (flag_ssd) { // process SSD?
+    if (flag_raw) { // write the SSD pad raw histograms
+      hSiT->Write(); 
+      hSiPadE->Write(); 
+      hSiPadHit->Write();  
+      for (UShort_t i=0;i<18;i++) {
+         pad_ch[i]->Write();
+      } // end for : i
+    } // end if: flag_raw
+    
+    if (flag_detail) { // write the SSD pad detailed histograms
+      hSiTcal->Write(); 
+      hSiPadEcal->Write();
+    } // end if: flag_detail
+  } //end if: flag_ssd
+
+  if(flag_strip){
+    if (flag_raw){ // write the SSD strip raw histograms
+      hSiStripE->Write(); 
+      hSiStripHit->Write(); 
+      for (UShort_t i=1;i<97;i++) {
+         strip_ch[i]->Write();
+       }
+    } // end if: flag_raw
+    
+    if (flag_detail){ // write the SSD strip detailed histograms
+      hSiEmax->Write(); 
+      for (UShort_t i=1;i<97;i++) {
+         strip_cal_ch[i]->Write();
+      }
+    } // end if : flag_detail
+  } //end if: flag_strip
+
+  if (flag_detail && flag_ssd && flag_strip){
+      for (UShort_t i=0;i<6;i++) {
+         dE_E[i]->Write();
+         dE_Estrip[i]->Write();
+      }
+  } // end if: flag_detail & flag_ssd & flag_strip
+
+  if (flag_ppac){ // process PPAC?
+    if (flag_raw) { // write the PPAC raw histograms
+       for (UShort_t i=0;i<2;i++) hRf[i]->Write();
+       hPpac0TX1->Write();
+       hPpac0TX2->Write();
+       hPpac0TY1->Write();
+       hPpac0TY2->Write();
+       hPpac1TX1->Write();
+       hPpac1TX2->Write();
+       hPpac1TY1->Write();
+       hPpac1TY2->Write();
+    } // end if: flag_raw
+
+    if (flag_detail) { // write the PPAC detailed histograms
+       hRF0Tof->Write();
+       hRF1Tof->Write();
+       hPpac0XY->Write();
+       hPpac1XY->Write();  
+       hPpac1XYcut->Write();  
+       hPpac0XRF0->Write(); 
+       hPpac1XRF0->Write(); 
+       hPpac0XRF1->Write(); 
+       hPpac0XRF1cut->Write(); 
+       hPpac1XRF1cut->Write(); 
+       hPpac1XRF1->Write();
+       hPpac0XRF0_29p->Write(); 
+       hPpac0XRF1_29p->Write(); 
+       hPpac0XRF0_30s->Write(); 
+       hPpac0XRF1_30s->Write(); 
+       hPpac1XRF0_29p->Write(); 
+       hPpac1XRF1_29p->Write(); 
+       hPpac1XRF0_30s->Write(); 
+       hPpac1XRF1_30s->Write(); 
+    } // end if: flag_detail
+  } // end if: flag_ppac
+
+  if (flag_ssd && flag_ppac){ // process PPAC & SSD?
+    if (flag_detail) { // write PPAC / SSD detailed histograms
+       hPpac0XRF0ds->Write(); 
+       hPpac0XRF1ds->Write(); 
+       hPpac0XRF0ssd->Write(); 
+       hPpac0XRF1ssd->Write(); 
+       hPpac1XRF0ds->Write(); 
+       hPpac1XRF1ds->Write(); 
+       hPpac1XRF0ssd->Write(); 
+       hPpac1XRF1ssd->Write(); 
+       hPpacToF_30s->Write();
+       hPpacToF_29p->Write();
+       for (UShort_t i=0;i<18;i++){
+         hPpac0TpadT_30s_ch[i]->Write();
+         hPpac0TpadT_29p_ch[i]->Write();
+       }
+    } // end if: flag_detail
+  } // end if: flag_ssd & flag_ppac
+
+  if (flag_tpc) { // process TPC?
+    if (flag_raw) { // write TPC raw histograms
+       hGemMstpcAll->Write();
+       hGemMstpcSide->Write();
+       hGemMstpcCh->Write();
+       hBeamPadCh->Write();
+       for (UShort_t i=0;i<144;i++) {
+          hfSample[i]->Write();
+          hTpc_dE_ch[i]->Write();
+       }
+    } // end if: flag_raw
+    if (flag_detail) { // write TPC detailed histograms
+       //hPadC->Write();
+       hBraggB->Write();
+       hBraggL->Write();
+       hBraggR->Write();
+       hBraggC->Write();
+       hPadXB->Write();
+       hPadXB_30s->Write();
+       hPadYB->Write();
+       hPadYB_30s->Write();
+       hPadXC->Write();
+       hBraggB_rp->Write();
+       hBraggB_30s->Write();
+       hBraggB_3D->Write();
+       hBraggB_3D_ds->Write();
+       hBraggB_3D_ssd->Write();
+       hPadB_3D->Write();
+       //hBraggB_30s2->Write();
+       hBraggB_29p->Write();
+       //hBraggB_31s->Write();
+       for (UShort_t i=0;i<144;i++) {
+          hTrough[i]->Write();
+          if (i<48){
+            hBraggB_ch[i]->Write();
+            hBraggB_ds_ch[i]->Write();
+            hBraggB_ssd_ch[i]->Write();
+          }
+          if (i<15) hBraggB_30s_jch[i]->Write();
+       }
+    } // end if: flag_detail
+  } // end if: flag_tpc
+
+} // close HistWrite
+\end{DoxyCode}
+\hypertarget{run_8h_a5ae07f63d6b390e42068d941038dadf2}{
+\index{run.h@{run.h}!Usage@{Usage}}
+\index{Usage@{Usage}!run.h@{run.h}}
+\subsubsection[{Usage}]{\setlength{\rightskip}{0pt plus 5cm}void Usage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{run_8h_a5ae07f63d6b390e42068d941038dadf2}
+
+
+Prints the invocation usage to standard error. 
+
+The function is called whenever we get strange runtime options.\par
+ Prints to standard error the options accepted by the binary run.\par
+ 
+
+Definition at line 41 of file run.h.
+
+
+\begin{DoxyCode}
+             {
+  fprintf(stderr, "\nrun processes the data analysis\n");
+  fprintf(stderr, "Must analyze at least one data type (raw and/or detailed)\n");
+      
+  fprintf(stderr, "Must analyze at least one detector type (ssd, strip, ppac, tpc
+      )\n");
+  fprintf(stderr, "Copyright 2011 daid KAHL (and others, see AUTHORS)\n");
+  fprintf(stderr, "Usage: run [-R RunNumber] [-B ] [-H header] [-I path] [-r ] [-
+      d ] [-s ] [-x ] [-p ] [-t ]\n");
+  fprintf(stderr, "Description of options:\n");
+  fprintf(stderr, "  -R <int>\t: Call run on RunNumber <int> (can be entered manu
+      ally at runtime also)\n");
+  fprintf(stderr, "  -B\t\t: Call run in non-interactive Batch mode.  Requires -R
+       flag.\n");
+  fprintf(stderr, "  -H <string>\t: Use run header <string> instead of run header
+       in run.conf\n");
+  fprintf(stderr, "  -I <string>\t: Use ROOT Tree input directory path <string> i
+      nstead of reading from run.conf\n");
+  fprintf(stderr, "  -r\t\t: Raw data histograms\n");
+  fprintf(stderr, "  -d\t\t: Detailed data histograms\n");
+  fprintf(stderr, "  -s\t\t: Analyze SSD pad data\n");
+  fprintf(stderr, "  -x\t\t: Analyze SSD strip data\n");
+  fprintf(stderr, "  -p\t\t: Analyze PPAC data\n");
+  fprintf(stderr, "  -t\t\t: Analyze TPC data\n");
+};
+\end{DoxyCode}

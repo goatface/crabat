@@ -1,0 +1,1322 @@
+\hypertarget{classAnalyzer}{
+\section{Analyzer Class Reference}
+\label{classAnalyzer}\index{Analyzer@{Analyzer}}
+}
+
+
+Class for analyzing the data.  
+
+
+
+
+{\ttfamily \#include $<$Analyzer.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAnalyzer_a04237ea5580940cce0d009fbffcf282c}{
+{\bfseries Analyzer} (TChain $\ast$tree=0)}
+\label{classAnalyzer_a04237ea5580940cce0d009fbffcf282c}
+
+\item 
+\hypertarget{classAnalyzer_ace4ea5e2c3885c124fd694d21b466d5f}{
+virtual Int\_\-t {\bfseries Cut} (Long64\_\-t entry)}
+\label{classAnalyzer_ace4ea5e2c3885c124fd694d21b466d5f}
+
+\item 
+\hypertarget{classAnalyzer_a99e765e874179f03ea33b7f343af5b3b}{
+virtual Int\_\-t {\bfseries GetEntry} (Long64\_\-t entry)}
+\label{classAnalyzer_a99e765e874179f03ea33b7f343af5b3b}
+
+\item 
+\hypertarget{classAnalyzer_acacc1aed99754d5f109e8aa0770f9667}{
+virtual Long64\_\-t {\bfseries LoadTree} (Long64\_\-t entry)}
+\label{classAnalyzer_acacc1aed99754d5f109e8aa0770f9667}
+
+\item 
+\hypertarget{classAnalyzer_aad4ad117a85b53307b0428348f821b3a}{
+void {\bfseries Init} (TChain $\ast$tree)}
+\label{classAnalyzer_aad4ad117a85b53307b0428348f821b3a}
+
+\item 
+virtual void \hyperlink{classAnalyzer_a076d7593609882a46a8c3ca60ecd5e9f}{Loop} (Int\_\-t run=0, Bool\_\-t flag\_\-raw=0, Bool\_\-t flag\_\-detail=0, Bool\_\-t flag\_\-ssd=0, Bool\_\-t flag\_\-strip=0, Bool\_\-t flag\_\-ppac=0, Bool\_\-t flag\_\-tpc=0)
+\begin{DoxyCompactList}\small\item\em Loops over the TChain and entries. \end{DoxyCompactList}\item 
+\hypertarget{classAnalyzer_aae8b33446a48876027e1740cfbdb62c4}{
+virtual Bool\_\-t {\bfseries Notify} ()}
+\label{classAnalyzer_aae8b33446a48876027e1740cfbdb62c4}
+
+\item 
+\hypertarget{classAnalyzer_a13b54c5dafedb38099cea8bbb3afe9ee}{
+virtual void {\bfseries Show} (Long64\_\-t entry=-\/1)}
+\label{classAnalyzer_a13b54c5dafedb38099cea8bbb3afe9ee}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAnalyzer_abe391c85bba5d5f207e4545822079491}{
+TChain $\ast$ {\bfseries fChain}}
+\label{classAnalyzer_abe391c85bba5d5f207e4545822079491}
+
+\item 
+\hypertarget{classAnalyzer_ae2858ca4bc4b407377b0895bf26560fe}{
+Int\_\-t \hyperlink{classAnalyzer_ae2858ca4bc4b407377b0895bf26560fe}{fCurrent}}
+\label{classAnalyzer_ae2858ca4bc4b407377b0895bf26560fe}
+
+\begin{DoxyCompactList}\small\item\em pointer to the analyzed TTree or TChain \end{DoxyCompactList}\item 
+\hypertarget{classAnalyzer_a383f04a660f9015786c52f7056f4e063}{
+Double\_\-t \hyperlink{classAnalyzer_a383f04a660f9015786c52f7056f4e063}{fSiE} \mbox{[}18\mbox{]}\mbox{[}9\mbox{]}}
+\label{classAnalyzer_a383f04a660f9015786c52f7056f4e063}
+
+\begin{DoxyCompactList}\small\item\em current Tree number in a TChain \end{DoxyCompactList}\item 
+\hypertarget{classAnalyzer_a4313d7457257af33b51346b8a14a7367}{
+Double\_\-t {\bfseries fSiEcal} \mbox{[}18\mbox{]}\mbox{[}9\mbox{]}}
+\label{classAnalyzer_a4313d7457257af33b51346b8a14a7367}
+
+\item 
+\hypertarget{classAnalyzer_ac69100098e7fe1efe06bd590b8bd88a1}{
+Double\_\-t {\bfseries fSiEmax} \mbox{[}18\mbox{]}}
+\label{classAnalyzer_ac69100098e7fe1efe06bd590b8bd88a1}
+
+\item 
+\hypertarget{classAnalyzer_ae4458a37a406fb80d11217ce33627bcb}{
+Double\_\-t {\bfseries fSiEStripmax} \mbox{[}12\mbox{]}}
+\label{classAnalyzer_ae4458a37a406fb80d11217ce33627bcb}
+
+\item 
+\hypertarget{classAnalyzer_a0f80e92c70741c8f498913a0c89f5bd6}{
+Double\_\-t {\bfseries fSiT} \mbox{[}18\mbox{]}}
+\label{classAnalyzer_a0f80e92c70741c8f498913a0c89f5bd6}
+
+\item 
+\hypertarget{classAnalyzer_afe82d81688f53f9bf48783f321ca5b07}{
+Double\_\-t {\bfseries fSiTcal} \mbox{[}18\mbox{]}}
+\label{classAnalyzer_afe82d81688f53f9bf48783f321ca5b07}
+
+\item 
+\hypertarget{classAnalyzer_ad5ec0ed5438d0524025c5bf962fdf6b0}{
+Bool\_\-t {\bfseries SiIsHit} \mbox{[}18\mbox{]}}
+\label{classAnalyzer_ad5ec0ed5438d0524025c5bf962fdf6b0}
+
+\item 
+\hypertarget{classAnalyzer_a68e8fcba57eef65dd77d450e5dbc39f6}{
+Bool\_\-t {\bfseries SsdOR}}
+\label{classAnalyzer_a68e8fcba57eef65dd77d450e5dbc39f6}
+
+\item 
+\hypertarget{classAnalyzer_abe6e94d58141930a6a9de424c980cd37}{
+UShort\_\-t {\bfseries ssd\_\-mult}}
+\label{classAnalyzer_abe6e94d58141930a6a9de424c980cd37}
+
+\item 
+\hypertarget{classAnalyzer_ac1b549d417612eaa59e2fee4cbace914}{
+UShort\_\-t {\bfseries ssdhit} \mbox{[}5\mbox{]}\mbox{[}2\mbox{]}}
+\label{classAnalyzer_ac1b549d417612eaa59e2fee4cbace914}
+
+\item 
+\hypertarget{classAnalyzer_a27bcafcdc47a3539168de12e3518e9bd}{
+Double\_\-t {\bfseries fPPAC} \mbox{[}2\mbox{]}\mbox{[}5\mbox{]}}
+\label{classAnalyzer_a27bcafcdc47a3539168de12e3518e9bd}
+
+\item 
+\hypertarget{classAnalyzer_a63fabb56274321b37fb4cae56125dca7}{
+Double\_\-t {\bfseries fPPACcal} \mbox{[}2\mbox{]}\mbox{[}5\mbox{]}}
+\label{classAnalyzer_a63fabb56274321b37fb4cae56125dca7}
+
+\item 
+\hypertarget{classAnalyzer_af1e958e045074a28c3f6301a6ca0ba87}{
+Double\_\-t {\bfseries fRF} \mbox{[}2\mbox{]}}
+\label{classAnalyzer_af1e958e045074a28c3f6301a6ca0ba87}
+
+\item 
+\hypertarget{classAnalyzer_a7a3c9889fd30e7ed72dffb0483d24c43}{
+Double\_\-t {\bfseries tof} \mbox{[}2\mbox{]}}
+\label{classAnalyzer_a7a3c9889fd30e7ed72dffb0483d24c43}
+
+\item 
+\hypertarget{classAnalyzer_aeb9761e0d170d6241874c05634a81f5f}{
+Double\_\-t {\bfseries Tof}}
+\label{classAnalyzer_aeb9761e0d170d6241874c05634a81f5f}
+
+\item 
+\hypertarget{classAnalyzer_a571529e59288d2ff7fff4cfaef369c52}{
+Bool\_\-t {\bfseries PpacIsHit} \mbox{[}2\mbox{]}}
+\label{classAnalyzer_a571529e59288d2ff7fff4cfaef369c52}
+
+\item 
+\hypertarget{classAnalyzer_a3a7208795a1394f324ad7fd2a8eb069f}{
+Bool\_\-t {\bfseries PadIsHit} \mbox{[}144\mbox{]}}
+\label{classAnalyzer_a3a7208795a1394f324ad7fd2a8eb069f}
+
+\item 
+\hypertarget{classAnalyzer_aae36b23a81cbc5cd8b3140ac9bdf2428}{
+Double\_\-t {\bfseries fSampleMax} \mbox{[}144\mbox{]}\mbox{[}20\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_aae36b23a81cbc5cd8b3140ac9bdf2428}
+
+\item 
+\hypertarget{classAnalyzer_a455af1b76ab70d79d9bbc4a10cf910f5}{
+Double\_\-t {\bfseries fClockMax} \mbox{[}144\mbox{]}\mbox{[}20\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a455af1b76ab70d79d9bbc4a10cf910f5}
+
+\item 
+\hypertarget{classAnalyzer_ad853646bb82dd8aa56c4fb183fa020bd}{
+Double\_\-t {\bfseries fTimeMax} \mbox{[}144\mbox{]}\mbox{[}20\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_ad853646bb82dd8aa56c4fb183fa020bd}
+
+\item 
+\hypertarget{classAnalyzer_a7516f4c792e3e5c286f61fc229b0933d}{
+UShort\_\-t {\bfseries HitNo} \mbox{[}144\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a7516f4c792e3e5c286f61fc229b0933d}
+
+\item 
+\hypertarget{classAnalyzer_a04589f5f0f5a27b46bb36b9c134cb0fd}{
+Short\_\-t {\bfseries fNHit} \mbox{[}144\mbox{]}}
+\label{classAnalyzer_a04589f5f0f5a27b46bb36b9c134cb0fd}
+
+\item 
+\hypertarget{classAnalyzer_a0389bb9c0ec88102927e94f4d93cb0b5}{
+Double\_\-t {\bfseries fHitMax} \mbox{[}144\mbox{]}}
+\label{classAnalyzer_a0389bb9c0ec88102927e94f4d93cb0b5}
+
+\item 
+\hypertarget{classAnalyzer_a706cffaadf13ff911eb76140bf7beb61}{
+Double\_\-t {\bfseries baseline} \mbox{[}144\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a706cffaadf13ff911eb76140bf7beb61}
+
+\item 
+\hypertarget{classAnalyzer_a02493d12feb2824791c79cd5e3df8bd8}{
+Double\_\-t {\bfseries baseline\_\-dev} \mbox{[}144\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a02493d12feb2824791c79cd5e3df8bd8}
+
+\item 
+\hypertarget{classAnalyzer_aece63a8e69fafe6ec2ab2fe4cb6a25a5}{
+Double\_\-t {\bfseries trough}}
+\label{classAnalyzer_aece63a8e69fafe6ec2ab2fe4cb6a25a5}
+
+\item 
+\hypertarget{classAnalyzer_aaa98dc5c1fcb45fc12ba13227666e0e8}{
+UShort\_\-t {\bfseries pad} \mbox{[}144\mbox{]}}
+\label{classAnalyzer_aaa98dc5c1fcb45fc12ba13227666e0e8}
+
+\item 
+\hypertarget{classAnalyzer_aa3bbfb395d568ca9b1f0458c5492f6be}{
+UShort\_\-t {\bfseries TracksB} \mbox{[}48\mbox{]}}
+\label{classAnalyzer_aa3bbfb395d568ca9b1f0458c5492f6be}
+
+\item 
+\hypertarget{classAnalyzer_a74411f419129115910f76fb58f8746ef}{
+Double\_\-t {\bfseries XpadB} \mbox{[}48\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a74411f419129115910f76fb58f8746ef}
+
+\item 
+\hypertarget{classAnalyzer_acb0b00e0df4dc4be7c78675be44fa181}{
+Double\_\-t {\bfseries YpadB} \mbox{[}48\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_acb0b00e0df4dc4be7c78675be44fa181}
+
+\item 
+\hypertarget{classAnalyzer_a1649ac6881dd92f8e47ea1d58762125a}{
+Double\_\-t {\bfseries ZpadB} \mbox{[}48\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a1649ac6881dd92f8e47ea1d58762125a}
+
+\item 
+\hypertarget{classAnalyzer_a44c9db7c489f6d681d75589309365eae}{
+Double\_\-t {\bfseries dEpadB} \mbox{[}48\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a44c9db7c489f6d681d75589309365eae}
+
+\item 
+\hypertarget{classAnalyzer_aa9e7ede008e7f5dd2a266dcf594a89b0}{
+Double\_\-t {\bfseries TpadB} \mbox{[}48\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_aa9e7ede008e7f5dd2a266dcf594a89b0}
+
+\item 
+\hypertarget{classAnalyzer_a2669c9b8d5ceba62ee22abab73493bf9}{
+UShort\_\-t {\bfseries TracksL} \mbox{[}8\mbox{]}}
+\label{classAnalyzer_a2669c9b8d5ceba62ee22abab73493bf9}
+
+\item 
+\hypertarget{classAnalyzer_a3e9c0e83ccd775ef436cbe330a703ebe}{
+Double\_\-t {\bfseries XpadL} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a3e9c0e83ccd775ef436cbe330a703ebe}
+
+\item 
+\hypertarget{classAnalyzer_a876e1b06b4ac1a525d2edeafedf764c9}{
+Double\_\-t {\bfseries YpadL} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a876e1b06b4ac1a525d2edeafedf764c9}
+
+\item 
+\hypertarget{classAnalyzer_a65f0a542df1f8acaab3f945b5593b24b}{
+Double\_\-t {\bfseries ZpadL} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a65f0a542df1f8acaab3f945b5593b24b}
+
+\item 
+\hypertarget{classAnalyzer_a6a419a33a19ce824813fdf604ed2d5d1}{
+Double\_\-t {\bfseries dEpadL} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a6a419a33a19ce824813fdf604ed2d5d1}
+
+\item 
+\hypertarget{classAnalyzer_aba5db282a583f731268bd5e26dc91bd9}{
+Double\_\-t {\bfseries TpadL} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_aba5db282a583f731268bd5e26dc91bd9}
+
+\item 
+\hypertarget{classAnalyzer_aa2d1e34f69cd0803a696a0bdf2a494f0}{
+UShort\_\-t {\bfseries TracksR} \mbox{[}8\mbox{]}}
+\label{classAnalyzer_aa2d1e34f69cd0803a696a0bdf2a494f0}
+
+\item 
+\hypertarget{classAnalyzer_a59c0749173e1ddf60f1e383130249197}{
+Double\_\-t {\bfseries XpadR} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a59c0749173e1ddf60f1e383130249197}
+
+\item 
+\hypertarget{classAnalyzer_a9489a21bcbd6ad48fcd6f6a89536aa38}{
+Double\_\-t {\bfseries YpadR} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a9489a21bcbd6ad48fcd6f6a89536aa38}
+
+\item 
+\hypertarget{classAnalyzer_a1e423ec4c37592a5b878fd066a6f1ce1}{
+Double\_\-t {\bfseries ZpadR} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a1e423ec4c37592a5b878fd066a6f1ce1}
+
+\item 
+\hypertarget{classAnalyzer_a24a8d6e38ea5abbbf53950994f391f7f}{
+Double\_\-t {\bfseries dEpadR} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a24a8d6e38ea5abbbf53950994f391f7f}
+
+\item 
+\hypertarget{classAnalyzer_a20d61702bf8aefac3c196aa9fb7c212f}{
+Double\_\-t {\bfseries TpadR} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a20d61702bf8aefac3c196aa9fb7c212f}
+
+\item 
+\hypertarget{classAnalyzer_aaaddac2c5e09be56476fce6264f8aeda}{
+UShort\_\-t {\bfseries TracksC} \mbox{[}8\mbox{]}}
+\label{classAnalyzer_aaaddac2c5e09be56476fce6264f8aeda}
+
+\item 
+\hypertarget{classAnalyzer_a6157c153d4f660c75318b646e06c30e6}{
+Double\_\-t {\bfseries XpadC} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a6157c153d4f660c75318b646e06c30e6}
+
+\item 
+\hypertarget{classAnalyzer_a192d58f713f39840b00a8eaad8d9d885}{
+Double\_\-t {\bfseries YpadC} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a192d58f713f39840b00a8eaad8d9d885}
+
+\item 
+\hypertarget{classAnalyzer_a13efb26ee778b6385b7308c4926960ed}{
+Double\_\-t {\bfseries ZpadC} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a13efb26ee778b6385b7308c4926960ed}
+
+\item 
+\hypertarget{classAnalyzer_a179bf02d3fbaa3150d3d19f203634cde}{
+Double\_\-t {\bfseries dEpadC} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a179bf02d3fbaa3150d3d19f203634cde}
+
+\item 
+\hypertarget{classAnalyzer_a5f544616e0a4f2ec970cf6ab643f5730}{
+Double\_\-t {\bfseries TpadC} \mbox{[}8\mbox{]}\mbox{[}20\mbox{]}}
+\label{classAnalyzer_a5f544616e0a4f2ec970cf6ab643f5730}
+
+\item 
+\hypertarget{classAnalyzer_a415ca8660341be26b484e01df6888cd7}{
+Float\_\-t {\bfseries dxy} \mbox{[}2\mbox{]}}
+\label{classAnalyzer_a415ca8660341be26b484e01df6888cd7}
+
+\item 
+\hypertarget{classAnalyzer_a7cf050af0d74f3c43a137755d05b2996}{
+Float\_\-t {\bfseries PpacOffset} \mbox{[}2\mbox{]}\mbox{[}2\mbox{]}}
+\label{classAnalyzer_a7cf050af0d74f3c43a137755d05b2996}
+
+\item 
+\hypertarget{classAnalyzer_a39b19d0c00f295309390c63b0540eecd}{
+Float\_\-t {\bfseries PpacOffsetLine} \mbox{[}2\mbox{]}\mbox{[}2\mbox{]}}
+\label{classAnalyzer_a39b19d0c00f295309390c63b0540eecd}
+
+\item 
+\hypertarget{classAnalyzer_af6aca7aeec0490936c36ebfadf18d5af}{
+Float\_\-t {\bfseries PpacPositionGain} \mbox{[}2\mbox{]}\mbox{[}2\mbox{]}}
+\label{classAnalyzer_af6aca7aeec0490936c36ebfadf18d5af}
+
+\item 
+\hypertarget{classAnalyzer_a0f560c7b89a2fe50794878e1b53441fa}{
+Float\_\-t {\bfseries PpacOffsetGeometry} \mbox{[}2\mbox{]}\mbox{[}2\mbox{]}}
+\label{classAnalyzer_a0f560c7b89a2fe50794878e1b53441fa}
+
+\item 
+\hypertarget{classAnalyzer_a2812ca7df7ad49c641c08c5095146d69}{
+Double\_\-t {\bfseries PpacX} \mbox{[}2\mbox{]}}
+\label{classAnalyzer_a2812ca7df7ad49c641c08c5095146d69}
+
+\item 
+\hypertarget{classAnalyzer_a5599cd6030beabdedfe4fb07718d405b}{
+Double\_\-t {\bfseries PpacY} \mbox{[}2\mbox{]}}
+\label{classAnalyzer_a5599cd6030beabdedfe4fb07718d405b}
+
+\item 
+\hypertarget{classAnalyzer_ada10ed71c3b2bed5b2fd1bea1437b256}{
+TClonesArray $\ast$ {\bfseries arr}}
+\label{classAnalyzer_ada10ed71c3b2bed5b2fd1bea1437b256}
+
+\item 
+\hypertarget{classAnalyzer_ad2ad973fb1bd3ebc6ad59dbe9de15c32}{
+TBranch $\ast$ {\bfseries b\_\-fSiE}}
+\label{classAnalyzer_ad2ad973fb1bd3ebc6ad59dbe9de15c32}
+
+\item 
+\hypertarget{classAnalyzer_ada565a27c5bab718465f3420f466a8a8}{
+TBranch $\ast$ {\bfseries b\_\-fSiT}}
+\label{classAnalyzer_ada565a27c5bab718465f3420f466a8a8}
+
+\item 
+\hypertarget{classAnalyzer_af54978643fb7aeb76b3acc9803626f06}{
+TBranch $\ast$ {\bfseries b\_\-fPPAC}}
+\label{classAnalyzer_af54978643fb7aeb76b3acc9803626f06}
+
+\item 
+\hypertarget{classAnalyzer_af0bcede88021797829ce5ae72373a206}{
+TBranch $\ast$ {\bfseries b\_\-fRF}}
+\label{classAnalyzer_af0bcede88021797829ce5ae72373a206}
+
+\item 
+\hypertarget{classAnalyzer_ad0159e5750015bcd7c814d01769a589d}{
+TBranch $\ast$ {\bfseries b\_\-fadc\_\-}}
+\label{classAnalyzer_ad0159e5750015bcd7c814d01769a589d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for analyzing the data. 
+
+Creates the TChain and branch addresses for the passed tree.\par
+ Creates all the basic data variables.\par
+ ADC and TDC data are just done with simple variables.\par
+ Flash ADC data is handled with running TClonesArray on \hyperlink{classTArtFadcHit}{TArtFadcHit}.\par
+ 
+
+Definition at line 94 of file Analyzer.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAnalyzer_a076d7593609882a46a8c3ca60ecd5e9f}{
+\index{Analyzer@{Analyzer}!Loop@{Loop}}
+\index{Loop@{Loop}!Analyzer@{Analyzer}}
+\subsubsection[{Loop}]{\setlength{\rightskip}{0pt plus 5cm}void Analyzer::Loop (
+\begin{DoxyParamCaption}
+\item[{Int\_\-t}]{run = {\ttfamily 0}, }
+\item[{Bool\_\-t}]{flag\_\-raw = {\ttfamily 0}, }
+\item[{Bool\_\-t}]{flag\_\-detail = {\ttfamily 0}, }
+\item[{Bool\_\-t}]{flag\_\-ssd = {\ttfamily 0}, }
+\item[{Bool\_\-t}]{flag\_\-strip = {\ttfamily 0}, }
+\item[{Bool\_\-t}]{flag\_\-ppac = {\ttfamily 0}, }
+\item[{Bool\_\-t}]{flag\_\-tpc = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classAnalyzer_a076d7593609882a46a8c3ca60ecd5e9f}
+
+
+Loops over the TChain and entries. 
+
+Oh my god there are so many details here. 
+
+Definition at line 137 of file Analyzer.cxx.
+
+
+\begin{DoxyCode}
+{
+  cout << "Analyzer::Loop processing run number " << run << endl;
+
+  if (fChain == 0) return;
+  //Fast function returns kBigNumber when it is TChain
+  //Long64_t nentries = fChain->GetEntriesFast(); // I think this caused segfault
+       -- daid
+  Long64_t nentries = fChain->GetEntries();
+   cout << "Entries: " << nentries << endl;
+
+   Long64_t nbytes = 0, nb = 0;
+
+   //Fancy color palette
+   gStyle->SetPalette(1,0);
+
+   //Calibration params
+
+   Calibration *ssd_strip_calib=new Calibration("ssd_strip_calib.dat",96);//12x8
+   Calibration *ssd_pad_calib=new Calibration("ssd_pad_calib.dat",19);
+   Calibration *ppac_calib=new Calibration("ppac_calib.dat",10);
+   
+   if (flag_detail){
+     if (flag_strip){
+       ssd_strip_calib->ScanFile();
+       ssd_strip_calib->ShowEntries();
+     }
+     if (flag_ssd){
+       ssd_pad_calib->ScanFile();
+       ssd_pad_calib->ShowEntries();
+     }
+     if (flag_ppac){
+       ppac_calib->ScanFile();
+       ppac_calib->ShowEntries();
+       //PPACa -- check these values! 24 Jan 2011 11:56:55 
+       PpacOffset[0][0]=0.92; //18 Jul 2011 16:56:44 
+       PpacOffset[0][1]=1.58; //18 Jul 2011 16:56:57 
+       PpacOffsetLine[0][0]=0.0; //18 Jul 2011 16:58:08 
+       PpacOffsetLine[0][1]=-0.22; //18 Jul 2011 16:58:10 
+       PpacPositionGain[0][0]=0.6200; // 18 Jul 2011 16:54:57 
+       PpacPositionGain[0][1]=0.6210; // 18 Jul 2011 16:54:59 
+       PpacOffsetGeometry[0][0]=-0.60;
+       PpacOffsetGeometry[0][1]=0.0; // checked 08 Jul 2011 16:00:27 
+       //PpacOffsetGeometry[1][1]=1.83;
+       //PPACb -- check these values! 24 Jan 2011 11:56:52 
+       PpacOffset[1][0]=0.17; //18 Jul 2011 16:57:56 
+       PpacOffset[1][1]=0.11; //18 Jul 2011 16:57:54 
+       PpacOffsetLine[1][0]=-4.3; //18 Jul 2011 16:58:03 
+       PpacOffsetLine[1][1]=-1.0; //18 Jul 2011 16:58:04 
+       PpacPositionGain[1][0]=0.6205; //18 Jul 2011 16:55:04 
+       PpacPositionGain[1][1]=0.6125; //18 Jul 2011 16:55:06 
+       PpacOffsetGeometry[1][0]=0.0;
+       PpacOffsetGeometry[1][1]=0.0; // checked 08 Jul 2011 16:00:22 
+       //PpacOffsetGeometry[1][1]=-3.5;
+     }
+   } // end if: flag_detail
+   //int ssdTime[18] = {0};
+
+   //Loop on entries
+   for (Long64_t jentry=0; jentry<nentries-1;jentry++) {//-1...needed when the la
+      st event is not complete.
+   // cout << jentry << endl;
+      if (jentry%100==0 || jentry==nentries-2) {
+         cout << jentry << "/" << nentries-1 << "\r"<< flush;
+      }
+      Long64_t ientry = LoadTree(jentry);
+      if (ientry < 0) break;
+
+      //      arr->Clear(); 
+
+
+      nb = fChain->GetEntry(jentry);   nbytes += nb;
+      //      cout << nb << "Bytes, Entry:"<< ientry << ","<<jentry << endl;
+      //      fChain->Show(jentry);
+
+
+      // if (Cut(ientry) < 0) continue;
+        
+      //Can begin filling any histrograms you defined
+      
+      //SSD Pad
+      if (flag_ssd) { // process SSD data?
+        for (UShort_t i=0; i<18; i++) {
+          SiIsHit[i] = false;
+          if ( fSiT[i] > -90 ) {
+            SiIsHit[i] = true;
+          } // end if : fSiT[i] > 0
+        } // end for i
+        if (flag_raw) { // process raw SSD data?
+          for (UShort_t i=0; i<18; i++) {
+            if (SiIsHit[i]) {
+              hSiPadHit->Fill(i);       
+              hSiPadE->Fill(i,fSiE[i][0]);
+              hSiT->Fill(i,fSiT[i]);
+              pad_ch[i]->Fill(fSiEcal[i][0]);
+            } // end if: SiIsHit
+          } // end for: i
+        } // end if: flag_raw
+        
+        if (flag_detail){
+          proton_beam=false;
+          //if  (( (fSiE[1][1] > 890.) && (fSiE[1][1]<950.) ) || ( (fSiE[1][2] > 
+      920.) && (fSiE[1][2]<1000.)  ) || ((fSiE[1][3] > 920.) && (fSiE[1][3] < 1000.))){
+      // proton beam (I assume?)
+          if  (( (fSiE[1][2] > 920.) && (fSiE[1][2]<1000.) ) ){// proton beam (I 
+      assume?)
+          //if  (( fSiE[1][1] > 890. && fSiE[1][1] < 950. ) || ( fSiE[1][2] > 920
+      . && fSiE[1][2] < 1000. ) || ( fSiE[1][3] > 920. && fSiE < 980.)){// proton beam 
+      (I assume?)
+            proton_beam=true;
+          }
+          //all data in fSiE[18][9],fSiT[18]
+          for (UShort_t i=0; i<18; i++) {
+            fSiEcal[i][0]=-100.;
+            if (SiIsHit[i] == true ){
+              fSiTcal[i]=0.09765625*fSiT[i]; //calibration from ch to ns
+            //if (SiIsHit[i] == true && proton_beam == true){
+              //if (i==1)
+              hSiTcal->Fill(i,fSiT[i]);
+              //hSiT->Fill(1,fSiT[1]);
+              //Fill individual ssd data 
+              if (fSiE[i][0] > 0 ){ // don't fill the histogram with junk
+                fSiEcal[i][0]=ssd_pad_calib->CalibMeV(i,fSiE[i][0]);
+                //pad_ch[i]->Fill(fSiE[i][0]);
+                // BUG gate_30s is false up to here!!
+                if (gate_30s) { // this will only do something useful if ppac_det
+      ail == 1
+                   pad_ch_gated[i]->Fill(fSiE[i][0]);
+                }
+                hSiPadEcal->Fill(i,fSiEcal[i][0]);      
+              } // end if: fSiE[i][0] > 0
+            } // end if: SiIsHit
+
+                // this is all garbage: clean it out
+                // anyway it needs an ssd_strip_detail check, otherwise can seg f
+      ault
+                /*
+                if (i<6) {//dE-E... which is which telescope?
+                  if ((fRF[0] > 240 && fRF[0] < 330)||(fRF[0] > 470 && fRF[0] < 5
+      40 )){
+                         dE_EBeamGateRF0[i]->Fill(fSiE[i][0],fSiE[i+6][0]);
+                         dE_EBeamGateRFAll->Fill(fSiE[i][0],fSiE[i+6][0]);
+                      }
+                  if ((fRF[1] > 240 && fRF[1] < 340)||(fRF[1]>480)||(fRF[1]<130))
+      {
+                         dE_EBeamGateRF1[i]->Fill(fSiE[i][0],fSiE[i+6][0]);
+                         dE_EBeamGateRFAll->Fill(fSiE[i][0],fSiE[i+6][0]);
+                      }
+                }*/
+                 
+          } // end for: i<18
+/*
+            for (Int_t i=0; i<6; i++){
+                        if (fSiEmax[i] > 0. && fSiEmax[i+6] > 0. && fSiEcal[i+12]
+      [0] == 0.){
+                dE_Estrip[i]->Fill(fSiEmax[i],(fSiEmax[i]+fSiEmax[i+6]));}
+                        else if(fSiEmax[i] > 0. && fSiEmax[i+6] > 0. && fSiEcal[i
+      +12][0] > 0.){
+                dE_Estrip[i]->Fill(fSiEmax[i],(fSiEmax[i]+fSiEmax[i+6]+fSiEcal[i+
+      12][0]));       }
+                  if (fSiEcal[i][0] > 0. && fSiEcal[i+6][0] > 0. && fSiEcal[i+12]
+      [0]==0.){
+                dE_E[i]->Fill(fSiEcal[i][0],(fSiEcal[i][0]+fSiEcal[i+6][0]));}
+                  else if (fSiEcal[i][0] > 0. && fSiEcal[i+6][0] > 0. && fSiEcal[
+      i+12][0] > 0.){
+                dE_E[i]->Fill(fSiEcal[i][0],(fSiEcal[i][0]+fSiEcal[i+6][0]+fSiEca
+      l[i+12][0]));}
+            
+                }
+  */    
+          // Set up the SSD-OR trigger condition
+          SsdOR = false; // SSD-OR is always false until true
+          ssd_mult = 0; // SSD Multiplicity is 0 until we know otherwise
+          for ( UShort_t i=0;i<5;i++){ //which SSDs triggered?
+            // SSD numbers
+            if (i==0) ssdhit[i][0]=0;
+            if (i==1) ssdhit[i][0]=1;
+            if (i==2) ssdhit[i][0]=2;
+            if (i==3) ssdhit[i][0]=4;
+            if (i==4) ssdhit[i][0]=11;
+            // By default, none are hit
+            ssdhit[i][1]=0; 
+          }
+          // Experiment trigger condition before run 1008: 1a,2a,3a,6b
+          if ( run < 1008 && ( SiIsHit[0] || SiIsHit[1] || SiIsHit[2] || SiIsHit[
+      11] )) SsdOR = true; // SSD-OR trigger started the event
+          // Experiment trigger condition from run 1008 and later: 1a,2a,3a,5a,6b
+      
+          if ( run > 1007 && ( SiIsHit[0] || SiIsHit[1] || SiIsHit[2] || SiIsHit[
+      4] || SiIsHit[11] )) SsdOR = true; // SSD-OR trigger started the event
+          // was 4a in the trigger?!  check the dE-E telescopes!
+
+          if ( SsdOR ) { // Get the SSD trigger multiplicity
+            if ( SiIsHit[0] ) {
+              ssd_mult++;
+              ssdhit[0][1]=1;
+            }
+            if ( SiIsHit[1] ) {
+              ssd_mult++;
+              ssdhit[1][1]=1;
+            }
+            if ( SiIsHit[2] ) {
+              ssd_mult++;
+              ssdhit[2][1]=1;
+            }
+            if ( SiIsHit[4] && run > 1007 ) {
+              ssd_mult++;
+              ssdhit[3][1]=1;
+            }
+            if ( SiIsHit[11] ) {
+              ssd_mult++;
+              ssdhit[4][1]=1;
+            }
+          }
+        }//end if: flag_detail
+      } // end if: ssd
+     
+     if (flag_strip){
+        // SSD Strip
+        if (flag_raw) { // process raw SSD strip data?
+          for(UShort_t i=0;i<12;i++){
+            for (UShort_t j=1; j<9; j++) {
+              hSiStripE->Fill(i*8+j,fSiE[i][j]);
+              strip_ch[i*8+j]->Fill(fSiE[i][j]); 
+            } // end for: j
+          } // end for: i
+        } // end if: ssd_strip_raw
+        if (flag_detail){
+          for(UShort_t i=0;i<12;i++){
+            fSiEmax[i]=0;
+            for (UShort_t j=1; j<9; j++) {
+              fSiEcal[i][j]=ssd_strip_calib->CalibMeV(i*8+j,fSiE[i][j]);
+              if (fSiEcal[i][j]>fSiEmax[i] && fSiE[i][j]<4000.) {//find maximum s
+      trip
+                fSiEmax[i]=fSiEcal[i][j];
+              }
+              //Fill each strip data 
+              hSiStripEcal->Fill(i*8+j,fSiEcal[i][j]);
+              //if ( fSiE[i][j] > 0 && fSiE[i][j] < 4000 && proton_beam){ // just
+       for high and low pedestals (high part is too tight)
+              //if ( fSiE[i][j] > 0 && fSiE[i][j] < 4097){ // just for high and l
+      ow pedestals (high part is too tight)
+              //if ( (SiIsHit[i]) && (fSiE[i][j] > -100) ){ // just for high and 
+      low pedestals (high part is too tight)
+              //if ( (fSiE[i][j] > -100 && !SsdOR) ){
+              if ( (fSiE[i][j] > -100) ){
+                strip_cal_ch[i*8+j]->Fill(fSiEcal[i][j]);
+              }
+              /*
+              if (gate_29p) {
+                 strip_ch_gated29p[i*8+j]->Fill(fSiE[i][j]);
+              }
+              if (gate_30s) {
+                 strip_ch_gated30s[i*8+j]->Fill(fSiE[i][j]);
+              }*/
+            } //end for: j
+            hSiEmax->Fill(i,fSiEmax[i]);
+          } //end for: i
+        } // end if: flag_detail 
+      } // end if: flag_strip
+
+      if (flag_detail && flag_ssd && flag_strip){
+         
+/*
+        // telescopes at zero degrees have cabling switched somehow...
+        //if (fSiEmax[0] > 0. && fSiEmax[7] > 0. && SiIsHit[0]) // 1X + 2Y 
+        if (fSiEmax[0] > 0. && fSiEmax[7] > 0.) // 1X + 2Y 
+          dE_Estrip[0]->Fill(fSiEmax[0],(fSiEmax[0]+fSiEmax[7]+fSiEcal[12][0]));
+        //if (fSiEmax[1] > 0. && fSiEmax[6] > 0. && SiIsHit[1]) // 2X + 1Y + 1c
+        if (fSiEmax[1] > 0. && fSiEmax[6] > 0.) // 2X + 1Y + 1c
+          dE_Estrip[1]->Fill(fSiEmax[1],(fSiEmax[1]+fSiEmax[6]+fSiEcal[13][0]));
+        //if (fSiE[2][0] > 0. && fSiE[8][0] > 0. && SiIsHit[2])
+        if (fSiE[2][0] > 0. && fSiE[8][0] > 0.)
+        //if (fSiEcal[2][0] > 0. && fSiEcal[8][0] > 0.) // causes strange problem
+      s...
+          dE_Estrip[2]->Fill(fSiEcal[2][0],(fSiEcal[2][0]+fSiEcal[8][0]));
+        
+        //if (fSiEmax[3] > 0. && fSiEmax[9] > 0. && SiIsHit[3] )
+        if (fSiEmax[3] > 0. && fSiEmax[9] > 0. )
+          dE_Estrip[3]->Fill(fSiEmax[3],(fSiEmax[3]+fSiEmax[9]));
+  */    
+
+
+        if (fSiEmax[0] > 0. && fSiEmax[7] > 0. ) // 1X + 2Y 
+          dE_Estrip[0]->Fill(fSiEmax[0],(fSiEmax[0]+fSiEmax[7]+fSiEcal[12][0]));
+        if (fSiEmax[1] > 0. && fSiEmax[6] > 0. ) // 2X + 1Y + 1c
+          dE_Estrip[1]->Fill(fSiEmax[1],(fSiEmax[1]+fSiEmax[6]+fSiEcal[13][0]));
+        if (fSiEcal[2][0] > 0. && fSiEcal[8][0] > 0.) 
+          dE_Estrip[2]->Fill(fSiEcal[2][0],(fSiEcal[2][0]+fSiEcal[8][0]+fSiEcal[1
+      4][0]));
+        if (fSiEmax[3] > 0. && fSiEmax[9] > 0.) 
+          dE_Estrip[3]->Fill(fSiEmax[3],(fSiEmax[3]+fSiEmax[9]));
+  
+      } // end if: flag_detail & flag_ssd & flag_strip
+
+      //PPAC
+      if (flag_ppac) { // process PPAC?
+        if (flag_raw) { // raw PPAC data?
+          for (UShort_t i=0;i<2;i++) if (fRF[i] > 0) hRf[i]->Fill(fRF[i]);
+          
+          //raw PPAC data
+          if (fPPAC[0][0]>0.) hPpac0TX1->Fill(fPPAC[0][0]);
+          if (fPPAC[0][1]>0.) hPpac0TX2->Fill(fPPAC[0][1]);
+          if (fPPAC[0][2]>0.) hPpac0TY1->Fill(fPPAC[0][2]);
+          if (fPPAC[0][3]>0.) hPpac0TY2->Fill(fPPAC[0][3]);
+          if (fPPAC[1][0]>0.) hPpac1TX1->Fill(fPPAC[1][0]);
+          if (fPPAC[1][1]>0.) hPpac1TX2->Fill(fPPAC[1][1]);
+          if (fPPAC[1][2]>0.) hPpac1TY1->Fill(fPPAC[1][2]);
+          if (fPPAC[1][3]>0.) hPpac1TY2->Fill(fPPAC[1][3]);
+        
+        } // end if: flag_raw
+        
+        if (flag_detail) { // detailed PPAC data?
+          //Calibration 
+          
+          for(UShort_t i=0;i<2;i++){
+          PpacIsHit[i] = false;
+          if (fPPAC[i][0]>0. && fPPAC[i][1]>0. && fPPAC[i][2]>0. && fPPAC[i][3]>0
+      .) PpacIsHit[i]=true;
+            for(UShort_t j=0;j<4;j++){
+              fPPACcal[i][j]=0.;
+              //check here for PPACb X centering issue 18 Jul 2011 17:37:49 
+              if ( fPPAC[i][j] > 0. )  {
+                fPPACcal[i][j]=ppac_calib->Calib(i*5+j,fPPAC[i][j]);
+              }
+            }    
+          }
+
+          // PPAC calibration for loop
+          for (UShort_t i=0;i<2;i++){
+            //average time
+            tof[i] = 0.25*(fPPACcal[i][0]+fPPACcal[i][1]+fPPACcal[i][2]+fPPACcal[
+      i][3]);
+            dxy[0]=(fPPACcal[i][0]-fPPACcal[i][1]);
+            dxy[1]=(fPPACcal[i][2]-fPPACcal[i][3]);
+            for (UShort_t ii = 0; ii < 2; ii++) {
+             // time calibration
+              dxy[ii] -=PpacOffset[i][ii];
+              dxy[ii] -= PpacOffsetLine[i][ii];
+             // position calibration
+              dxy[ii] *= PpacPositionGain[i][ii];
+              dxy[ii] -= PpacOffsetGeometry[i][ii];
+            }
+              PpacX[i]=dxy[0];
+              if (i==0 ){PpacY[i]=dxy[1];} // PPACaY is normal
+              if (i==1 ){PpacY[i]=(dxy[1]*-1.0);} // PPACbY cables were inverted
+          } //end PPAC calibration for loop
+          if (tof[0]>0. && tof[1]>0. && PpacIsHit[0] && PpacIsHit[1] ) Tof=tof[1]
+      -tof[0]; 
+          
+          // fill basic PPAC histograms
+          hRF0Tof->Fill(fRF[0],Tof);
+          hRF1Tof->Fill(fRF[1],Tof);
+          hPpac0XY->Fill(PpacX[0],PpacY[0]);
+          hPpac1XY->Fill(PpacX[1],PpacY[1]);
+          if (fRF[0] > 0)
+          {
+            hPpac0XRF0->Fill(PpacX[0],fRF[0]);
+            hPpac1XRF0->Fill(PpacX[1],fRF[0]);
+          }
+          if (fRF[1] > 0)
+          {
+            hPpac0XRF1->Fill(PpacX[0],fRF[1]);
+            hPpac1XRF1->Fill(PpacX[1],fRF[1]);
+          }
+          
+          // Turn off all the gates for a new event
+          gate_30s=false;
+          gate_29p=false;
+          gate_31s=false;
+          goodRF_30s=false;
+          goodPpacX_30s=false;
+          goodRF_29p=false;
+          goodPpacX_29p=false;
+          goodRF_31s=false;
+          goodPpacX_31s=false;
+          // Set the gates for 30S/29P RI beams
+          // 30S done again w/ new PPAC calib 20 Sep 2011 17:22:52  
+          if (  ((fRF[0]>=250) && (fRF[0]<=330)) || ((fRF[0]>=460)&&(fRF[0]<=540)
+      ) ||
+            ((fRF[1]>=255)&&(fRF[1]<=335)) || ((fRF[1]>=480)&&(fRF[1]<=530)) || (
+      (fRF[1]>=95)&&(fRF[1]<=120))
+            ) {goodRF_30s=true;} //30S gate
+          if ((PpacX[0]>=-9 && PpacX[0]<=8) && (PpacX[1]>=-10 && PpacX[1]<=10)) {
+      goodPpacX_30s=true;} //30S gate
+          if (goodRF_30s && goodPpacX_30s) {gate_30s=true;}
+          // PPAC X was redone 20 Sep 2011 17:23:07 
+          if (  ((fRF[0]>=160) && (fRF[0]<=210)) || ((fRF[0]>=375)&&(fRF[0]<=425)
+      ) ||
+            ((fRF[1]>=160)&&(fRF[1]<=220)) || ((fRF[1]>=380)&&(fRF[1]<=440))
+             ) {goodRF_29p=true;} //29P gate
+          if ((PpacX[0]>=-4 && PpacX[0]<=9) && (PpacX[1]>=-5 && PpacX[1]<=14)) {g
+      oodPpacX_29p=true;} //29P gate
+          if (goodRF_29p && goodPpacX_29p) {gate_29p=true;}
+          // don't think this is 31S...but maybe something...
+          if (((fRF[0]>=355) && (fRF[0]<=430)) || ((fRF[1]>=140)&&(fRF[1]<=220)))
+       {goodRF_31s=true;} //30S gate
+          if ((PpacX[0]>=-6 && PpacX[0]<=2) && (PpacX[1]>=-5 && PpacX[1]<=3)) {go
+      odPpacX_31s=true;} //30S gate
+          if (goodRF_31s && goodPpacX_31s) {gate_31s=true;}
+          
+          if (gate_30s) {
+            hPpacToF_30s->Fill(Tof);
+              hPpac0XRF0_30s->Fill(PpacX[0],fRF[0]);
+              hPpac1XRF0_30s->Fill(PpacX[1],fRF[0]);
+              hPpac0XRF1_30s->Fill(PpacX[0],fRF[1]);
+              hPpac1XRF1_30s->Fill(PpacX[1],fRF[1]);
+          }
+          if (gate_29p) {
+            hPpacToF_29p->Fill(Tof);
+              hPpac0XRF0_29p->Fill(PpacX[0],fRF[0]);
+              hPpac1XRF0_29p->Fill(PpacX[1],fRF[0]);
+              hPpac0XRF1_29p->Fill(PpacX[0],fRF[1]);
+              hPpac1XRF1_29p->Fill(PpacX[1],fRF[1]);
+          }
+          if (gate_30s){
+                hPpac0XRF1cut->Fill(PpacX[0],fRF[1]);
+                hPpac1XRF1cut->Fill(PpacX[1],fRF[1]);
+          }
+        } // end if: flag_detail
+      } // end if: flag_ppac
+
+      // PPAC and SSD
+      if (flag_detail && flag_ssd && flag_ppac){
+        if (SsdOR){ // physics event
+          if (fRF[0] > 0. ) {
+            hPpac0XRF0ssd->Fill(PpacX[0],fRF[0]);
+            hPpac1XRF0ssd->Fill(PpacX[1],fRF[0]);
+            hPpac1XYcut->Fill(PpacX[1],PpacY[1]);
+          }
+          if (fRF[1] > 0. ) {
+            hPpac0XRF1ssd->Fill(PpacX[0],fRF[1]);
+            hPpac1XRF1ssd->Fill(PpacX[1],fRF[1]);
+          }
+        }
+        else{ // downscale event
+          if (fRF[0] > 0.){
+            hPpac0XRF0ds->Fill(PpacX[0],fRF[0]);
+            hPpac1XRF0ds->Fill(PpacX[1],fRF[0]);
+            if (gate_30s){
+            // can fill here
+            }
+          }
+          if (fRF[1] > 0.){
+            hPpac0XRF1ds->Fill(PpacX[0],fRF[1]);
+            hPpac1XRF1ds->Fill(PpacX[1],fRF[1]);
+            if (gate_30s){
+              //hPpac1XRF1cut->Fill(PpacX[1],fRF[1]);
+            }
+          }
+        }
+
+      } // end if : flag_detail & flag_ssd & flag_ppac
+
+      if (flag_detail && flag_strip && flag_ppac) { // PPAC and SSD Strip detaile
+      d analysis?
+        for(UShort_t i=0;i<18;i++){
+            if (SiIsHit[i]){
+              if (gate_30s)  hPpac0TpadT_30s_ch[i]->Fill(fSiT[i]-tof[0]);
+              if (gate_29p) hPpac0TpadT_29p_ch[i]->Fill(fSiT[i]-tof[0]);
+            }
+        }
+      } // end if: flag_detail & flag_strip & flag_ppac
+
+      //GEM-MSTPC
+      if (flag_tpc){  // analyze TPC data?
+        
+        TArtFadcHit *fadc;
+        Int_t nadclines = arr->GetEntriesFast();
+        // Init the FADC Max arrays
+        if (flag_detail) { // process TPC detailed analysis? 
+          for(UShort_t j=0;j<144;j++){
+            PadIsHit[j]=false;
+            fNHit[j]=0;  
+            for(UShort_t k=0;k<20;k++){ // fNHit
+              baseline[j][k] = 0.;
+              baseline_dev[j][k] = 0.;
+              HitNo[j][k] = 1; // Multiple hit number 
+              for(UShort_t l=0;l<20;l++){ // HitNo
+              fSampleMax[j][k][l] = 0.; 
+              fClockMax[j][k][l] = 0.;
+              fTimeMax[j][k][l] = 0.;
+              }    
+            }    
+          }
+        } // end if: flag_detail
+
+        for (Int_t i=0; i<nadclines; i++) { // loop over the number of ADC lines
+          fadc=(TArtFadcHit *) arr->At(i);
+          UShort_t id=fadc->fID; // pad ID (range 0 to 143)
+          fNHit[id]=fadc->fHit;  // Pulse number: if hit never 0
+          
+          if (flag_raw) {// process TPC raw data?
+            for (Int_t j=0; j<fadc->fNSample; j++) {
+              hGemMstpcAll->Fill(fadc->fClock[j], fadc->fSample[j]);
+              hGemMstpcCh->Fill(id,fadc->fSample[j]);
+              hTpc_dE_ch[id]->Fill(fadc->fClock[j], fadc->fSample[j]);
+              hfSample[id]->Fill(fadc->fSample[j]);
+              if (id < 96){//Main (low gain) beam pads
+                   hBeamPadCh->Fill(id,fadc->fSample[j]); 
+              }
+              else {//high gain pads
+                 hGemMstpcSide->Fill(fadc->fClock[j], fadc->fSample[j]);
+              } // end if: id<96
+            } // end for: j fNSample
+          } // end if: flag_raw
+
+          if (flag_detail) { // process TPC detailed analysis?
+            if (fNHit[id]!=0) PadIsHit[id] = true;
+            else continue; // junk; truncate
+            
+            //baseline check 
+            for(UShort_t j=0; j<5;j++){ // get the first five pulses
+              if (fadc->fSample[j]>0.) baseline[id][fNHit[id]] = baseline[id][fNH
+      it[id]] + fadc->fSample[j]; 
+            } // end for j: baseline determination
+            
+            // make sure there are 5 pulses
+            if ((fadc->fSample[0]!=0.) && (fadc->fSample[1]!=0.) && (fadc->fSampl
+      e[2]!=0.) && (fadc->fSample[3]!=0.) && (fadc->fSample[4]!=0.)){
+              baseline[id][fNHit[id]]=baseline[id][fNHit[id]]/5.;
+              // find maximum deviation of the first five samples from the baseli
+      ne
+              Double_t maxdeviation=0.;
+              for (UShort_t j=0;j<5;j++){
+                if (TMath::Abs(fadc->fSample[j]-baseline[id][fNHit[id]])>maxdevia
+      tion) maxdeviation=TMath::Abs(fadc->fSample[j]-baseline[id][fNHit[id]]);
+              }
+              baseline_dev[id][fNHit[id]]=(TMath::Abs(maxdeviation/baseline[id][f
+      NHit[id]]));
+            }
+            else continue; // junk; truncate
+        
+            // peak finder
+            trough=1e6; //init trough
+            if (fadc->fNSample > 30 )  // make sure the pulse width is reasonable
+      
+              for (UShort_t j=3; j<fadc->fNSample-3; j++) { // loop all the FADC 
+      samples
+                //hGemMstpcAll->Fill(fadc->fClock[j], fadc->fSample[j]);
+                if (fadc->fSample[j]<trough && fadc->fSample[j]>0.) trough=fadc->
+      fSample[j];
+                if((fadc->fSample[j]) < 400) continue; // 500 should be the basel
+      ine ?
+                  if(fSampleMax[id][fNHit[id]][HitNo[id][fNHit[id]]] > fadc->fSam
+      ple[j]) continue; // is the present fSample larger than fSampleMax?
+                    if( !(  // be sure it is a true peak, by looking +3 and -3 sa
+      mples
+                        (fadc->fSample[j-3] < fadc->fSample[j-2]) && 
+                        (fadc->fSample[j-2] < fadc->fSample[j-1]) &&
+                        (fadc->fSample[j-1] < fadc->fSample[j])   &&
+                        (fadc->fSample[j]   > fadc->fSample[j+1]) &&
+                        (fadc->fSample[j+1] > fadc->fSample[j+2]) &&
+                        (fadc->fSample[j+2] > fadc->fSample[j+3])
+                        )) continue; // no peak -- skip
+                      // true peak: fill the FADC Max arrays
+                      if (TMath::Abs(trough-baseline[id][fNHit[id]])>(baseline_de
+      v[id][fNHit[id]]*baseline[id][fNHit[id]])){ 
+                        // trough and baseline don't agree!
+                        hTrough[id]->Fill(trough-baseline[id][fNHit[id]]);
+                      }
+                      fSampleMax[id][fNHit[id]][HitNo[id][fNHit[id]]] = fadc->fSa
+      mple[j]-baseline[id][fNHit[id]];
+                      fClockMax[id][fNHit[id]][HitNo[id][fNHit[id]]] = fadc->fClo
+      ck[j];
+                      fTimeMax[id][fNHit[id]][HitNo[id][fNHit[id]]] = fadc->fTime
+      ; // we should modify fTime somehow for each peak?
+                      HitNo[id][fNHit[id]]++; // valid peak: increment the hit nu
+      mber
+                      trough=1e6; // reset trough
+              } // end for j: FADC samples
+          } // end if: flag_detail
+
+        } // end for i: nadclines
+   
+        if (flag_detail) { // process TPC detailed analysis?
+          //*  *****************************
+          //   START GEM-MSTPC PHYSICS HERE!
+          //*  *****************************
+          // init arrays
+          for (UShort_t i=0;i<48;i++){
+            TracksB[i]=0; 
+            for (UShort_t j=0;j<20;j++) {
+              XpadB[i][j]=0.;
+              YpadB[i][j]=0.;
+              ZpadB[i][j]=0.;
+              dEpadB[i][j]=0.;
+              TpadB[i][j]=0.;
+            }
+          }
+          for (UShort_t i=0;i<8;i++){
+            TracksC[i]=0; 
+            TracksL[i]=0; 
+            TracksR[i]=0; 
+            for (UShort_t j=0;j<20;j++) {
+              XpadC[i][j]=0.;
+              XpadR[i][j]=0.;
+              XpadL[i][j]=0.;
+              YpadC[i][j]=0.;
+              YpadR[i][j]=0.;
+              YpadL[i][j]=0.;
+              ZpadC[i][j]=0.;
+              ZpadR[i][j]=0.;
+              ZpadL[i][j]=0.;
+              dEpadC[i][j]=0.;
+              dEpadR[i][j]=0.;
+              dEpadL[i][j]=0.;
+              TpadC[i][j]=0.;
+              TpadR[i][j]=0.;
+              TpadL[i][j]=0.;
+            }
+          }
+          
+          // Beam
+          for(UShort_t i=0;i<96;i++) // all right Beam pads
+            for(UShort_t j=0;j<96;j++){ // all left Beam pads
+              if((tpc_ch[0][i]==-1)||(tpc_ch[1][j]==-1) || // tpc_ch will get us 
+      the pad number (0 to 47)
+              (tpc_ch[0][i] != tpc_ch[1][j]) || 
+              (PadIsHit[i] == false ) || (PadIsHit[j] == false )) continue; // on
+      ly run for the same pads; make sure both pads are hit
+                pad[i] = tpc_ch[0][i]; // place holder for the loop
+                for(UShort_t k=1;k<=fNHit[i];k++) // loop on left side pulse numb
+      er
+                  for(UShort_t l=1;l<=HitNo[i][k];l++) // loop on left side hit n
+      umber
+                    for(UShort_t m=1;m<= fNHit[j];m++) // loop on right side puls
+      e number
+                      for(UShort_t n=1;n<=HitNo[j][m]; n++){ // loop on right sid
+      e hit number
+                        if (TracksB[pad[i]] >= 20 ) continue; // don't screw up m
+      emory; TracksB[i] cannot access more than 19
+                        if(!(fSampleMax[i][k][l] > 0.1) || !(fSampleMax[j][m][n] 
+      > 0.1)  || // both samples are nonzero?
+                           !(fClockMax[i][k][l] >0.1) || !(fClockMax[j][m][n] > 0
+      .1)) continue;  // both clocks are nonzero?
+                        if(TMath::Abs((fClockMax[i][k][l]+fTimeMax[i][k][l])-(fCl
+      ockMax[j][m][n]+fTimeMax[j][m][n])) >= 5 ) continue; // the clock times are simil
+      ar?
+                        XpadB[pad[i]][TracksB[pad[i]]] = 5.5*((fSampleMax[i][k][l
+      ]-fSampleMax[j][m][n])/
+                          (fSampleMax[i][k][l]+fSampleMax[j][m][n]));
+                        YpadB[pad[i]][TracksB[pad[i]]] = 0.5*(fClockMax[i][k][l] 
+      
+                          + fTimeMax[i][k][l]+fClockMax[j][m][n] + fTimeMax[j][m]
+      [n]);
+                        ZpadB[pad[i]][TracksB[pad[i]]] = 0.42*(pad[i]-23)-0.21;
+                        dEpadB[pad[i]][TracksB[pad[i]]] = (fSampleMax[i][k][l]+fS
+      ampleMax[j][m][n]);
+                        TpadB[pad[i]][TracksB[pad[i]]] = (fTimeMax[i][k][l]+fTime
+      Max[j][m][n])/2.;
+                        TracksB[pad[i]]++; // increase the number of tracks for t
+      hat pad
+                      } // end for n: right side hit number
+            } // end for j: loop over left Beam pads 
+
+          // Center
+          for(UShort_t i=120;i<128;i++) // all right Center pads
+            for(UShort_t j=96;j<104;j++){ // all left Center pads
+              if((tpc_ch[0][i]==-1)||(tpc_ch[1][j]==-1) || // tpc_ch will get us 
+      the pad number (0 to 7)
+              (tpc_ch[0][i] != tpc_ch[1][j]) || 
+              (PadIsHit[i] == false ) || (PadIsHit[j] == false )) continue; // on
+      ly run for the same pads; make sure both pads are hit
+                pad[i] = tpc_ch[0][i]; // place holder for the loop
+                for(UShort_t k=1;k<=fNHit[i];k++) // loop on left side pulse numb
+      er
+                for(UShort_t l=1;l<=HitNo[i][k];l++) // loop on left side hit num
+      ber
+                    for(UShort_t m=1;m<= fNHit[j];m++) // loop on right side puls
+      e number
+                      for(UShort_t n=1;n<=HitNo[j][m]; n++){ // loop on right sid
+      e hit number
+                        if (TracksC[pad[i]] >= 20 ) continue; // don't screw up m
+      emory; TracksC[i] cannot access more than 19
+                        if(!(fSampleMax[i][k][l] > 0.1) || !(fSampleMax[j][m][n] 
+      > 0.1)  || // both samples are nonzero?
+                           !(fClockMax[i][k][l] >0.1) || !(fClockMax[j][m][n] > 0
+      .1)) continue;  // both clocks are nonzero?
+                        if(TMath::Abs((fClockMax[i][k][l]+fTimeMax[i][k][l])-(fCl
+      ockMax[j][m][n]+fTimeMax[j][m][n])) >= 5 ) continue; // the clock times are simil
+      ar?
+                        XpadC[pad[i]][TracksC[pad[i]]] = 5.0*((fSampleMax[i][k][l
+      ]-fSampleMax[j][m][n])/
+                          (fSampleMax[i][k][l]+fSampleMax[j][m][n]));
+                        YpadC[pad[i]][TracksC[pad[i]]] = 0.5*(fClockMax[i][k][l] 
+      
+                          + fTimeMax[i][k][l]+fClockMax[j][m][n] + fTimeMax[j][m]
+      [n]);
+                        ZpadC[pad[i]][TracksC[pad[i]]] = 9.575 + 0.42*(pad[i]); 
+                        dEpadC[pad[i]][TracksC[pad[i]]] = (fSampleMax[i][k][l]+fS
+      ampleMax[j][m][n]);
+                        TracksC[pad[i]]++; // increase the number of tracks for t
+      hat pad
+                      } // end for n: right side hit number
+            } // end for j: loop over left Center pads 
+          
+          // Left
+          for(UShort_t i=112;i<120;i++) // all upstream Left pads
+            for(UShort_t j=104;j<112;j++){ // all downstream Left pads
+              if((tpc_ch[0][i]==-1)||(tpc_ch[1][j]==-1) || // tpc_ch will get us 
+      the pad number (0 to 7)
+              (tpc_ch[0][i] != tpc_ch[1][j]) || 
+              (PadIsHit[i] == false ) || (PadIsHit[j] == false )) continue; // on
+      ly run for the same pads; make sure both pads are hit
+                pad[i] = tpc_ch[0][i]; // place holder for the loop
+                for(UShort_t k=1;k<=fNHit[i];k++) // loop on left side pulse numb
+      er
+                for(UShort_t l=1;l<=HitNo[i][k];l++) // loop on left side hit num
+      ber
+                    for(UShort_t m=1;m<= fNHit[j];m++) // loop on right side puls
+      e number
+                      for(UShort_t n=1;n<=HitNo[j][m]; n++){ // loop on right sid
+      e hit number
+                        if (TracksL[pad[i]] >= 20 ) continue; // don't screw up m
+      emory; TracksL[i] cannot access more than 19
+                        if(!(fSampleMax[i][k][l] > 0.1) || !(fSampleMax[j][m][n] 
+      > 0.1)  || // both samples are nonzero?
+                           (!fClockMax[i][k][l] >0.1) || !(fClockMax[j][m][n] > 0
+      .1)) continue;  // both clocks are nonzero?
+                        if(TMath::Abs((fClockMax[i][k][l]+fTimeMax[i][k][l])-(fCl
+      ockMax[j][m][n]+fTimeMax[j][m][n])) >= 5 ) continue; // the clock times are simil
+      ar?
+                        ZpadL[pad[i]][TracksL[pad[i]]] = 11.75*((fSampleMax[i][k]
+      [l]-fSampleMax[j][m][n])/
+                          (fSampleMax[i][k][l]+fSampleMax[j][m][n]));
+                        YpadL[pad[i]][TracksL[pad[i]]] = 0.5*(fClockMax[i][k][l] 
+      
+                          + fTimeMax[i][k][l]+fClockMax[j][m][n] + fTimeMax[j][m]
+      [n]);
+                        XpadL[pad[i]][TracksL[pad[i]]] = -7.621 - 0.42*(pad[i]); 
+      
+                        dEpadL[pad[i]][TracksL[pad[i]]] = (fSampleMax[i][k][l]+fS
+      ampleMax[j][m][n]);
+                        TracksL[pad[i]]++; // increase the number of tracks for t
+      hat pad
+                      } // end for n: right side hit number
+            } // end for j: loop over downstream Left pads 
+          
+          // Right
+          for(UShort_t i=136;i<144;i++) // all upstream Right pads
+            for(UShort_t j=128;j<136;j++){ // all downstream Right pads
+              if((tpc_ch[0][i]==-1)||(tpc_ch[1][j]==-1) || // tpc_ch will get us 
+      the pad number (0 to 7)
+              (tpc_ch[0][i] != tpc_ch[1][j]) || 
+              (PadIsHit[i] == false ) || (PadIsHit[j] == false )) continue; // on
+      ly run for the same pads; make sure both pads are hit
+                pad[i] = tpc_ch[0][i]; // place holder for the loop
+                for(UShort_t k=1;k<=fNHit[i];k++) // loop on left side pulse numb
+      er
+                for(UShort_t l=1;l<=HitNo[i][k];l++) // loop on left side hit num
+      ber
+                    for(UShort_t m=1;m<= fNHit[j];m++) // loop on right side puls
+      e number
+                      for(UShort_t n=1;n<=HitNo[j][m]; n++){ // loop on right sid
+      e hit number
+                        if (TracksR[pad[i]] >= 20 ) continue; // don't screw up m
+      emory; TracksR[i] cannot access more than 19
+                        if(!(fSampleMax[i][k][l] > 0.1) || !(fSampleMax[j][m][n] 
+      > 0.1)  || // both samples are nonzero?
+                           !(fClockMax[i][k][l] >0.1) || !(fClockMax[j][m][n] > 0
+      .1)) continue;  // both clocks are nonzero?
+                        if(TMath::Abs((fClockMax[i][k][l]+fTimeMax[i][k][l])-(fCl
+      ockMax[j][m][n]+fTimeMax[j][m][n])) >= 5 ) continue; // the clock times are simil
+      ar?
+                        ZpadR[pad[i]][TracksR[pad[i]]] = 11.75*((fSampleMax[i][k]
+      [l]-fSampleMax[j][m][n])/
+                          (fSampleMax[i][k][l]+fSampleMax[j][m][n]));
+                        YpadR[pad[i]][TracksR[pad[i]]] = 0.5*(fClockMax[i][k][l] 
+      
+                          + fTimeMax[i][k][l]+fClockMax[j][m][n] + fTimeMax[j][m]
+      [n]);
+                        XpadR[pad[i]][TracksR[pad[i]]] = 7.621 + 0.42*(pad[i]); 
+                        dEpadR[pad[i]][TracksR[pad[i]]] = (fSampleMax[i][k][l]+fS
+      ampleMax[j][m][n]);
+                        TracksR[pad[i]]++; // increase the number of tracks for t
+      hat pad
+                    } // end for n: right side hit number
+            } // end for j: loop over downstream Right pads 
+          
+          //beam
+          for(UShort_t i=0;i<48;i++){ // loop over all pads (now by pad number)
+            for(UShort_t j=0;j<TracksB[i];j++){ // loop for each track
+             if ( run < 1006 ) dEpadB[i][j] = dEpadB[i][j] * padBgain[0][i]; // a
+      rtificial internal calibration
+             if ( run > 1005 ) dEpadB[i][j] = dEpadB[i][j] * padBgain[1][i]; // a
+      rtificial internal calibration
+             hBraggB->Fill(i,dEpadB[i][j]);
+             hPadXB->Fill(i,XpadB[i][j]);
+             hPadYB->Fill(i,YpadB[i][j]);
+             if (SsdOR) hPadB_3D->Fill(XpadB[i][j],YpadB[i][j],i);
+               //if (ssd_detail && !SsdOR) { //downscale beam condition
+               //  hBraggB_ds_ch[i]->Fill(dEpadB[i][j]);
+               //}
+               //if (ssd_detail && SsdOR) { // ssd-or condition
+               //  hBraggB_ssd_ch[i]->Fill(dEpadB[i][j]);
+               //}
+             if (gate_30s) {
+               
+               hBraggB_30s->Fill(i,dEpadB[i][j]);
+               hBraggB_ch[i]->Fill(dEpadB[i][j]);
+               hBraggB_3D->Fill(i,j,dEpadB[i][j]);
+               hPadXB_30s->Fill(i,XpadB[i][j]);
+               if (flag_ssd && !SsdOR) { //downscale beam condition
+                 hBraggB_ds_ch[i]->Fill(dEpadB[i][j]);
+                 hBraggB_3D_ds->Fill(i,j,dEpadB[i][j]);
+               } // end if : flag_ssd && !SsdOR
+               // PUT PHYSICS HERE
+               if (flag_ssd && SsdOR) { // ssd-or condition
+                 hPadYB_30s->Fill(i,YpadB[i][j]);
+                 hBraggB_ssd_ch[i]->Fill(dEpadB[i][j]);
+                 hBraggB_3D_ssd->Fill(i,j,dEpadB[i][j]);
+                 
+                 UShort_t k=i-1; // channel to check against
+                 if (k==31) k--; // these channels are always bad
+                 if (run < 1006){
+                   if (k==40) k--;
+                 if (i==24) k=21;
+                 }
+                 if (run > 1005) { 
+                   if ( i==24) k=20;
+                   if ( k==47) k--; // inclusion makes no sense because it's the 
+      last pad.
+                 }
+                 if (i>15) { // below this is junk, also avoids seg faults for i<
+      0
+                   Float_t deltaE=(dEpadB[i][j]-dEpadB[k][j])/i; 
+                   //if (1) { // view all
+                   if (deltaE>6) { // condition of reaction point
+                     hBraggB_rp->Fill(i,deltaE);
+                     
+                   //work from here!
+                   //fSiIsHit-TpadC[i][j]
+                   
+                   //cout << i << endl;
+                   }
+                 }
+                 // Separate the Bragg peaks by the track number. 
+                 hBraggB_30s_jch[j]->Fill(i,dEpadB[i][j]);
+               } // end if : flag_ssd && SsdOR
+               if (flag_ssd && !SsdOR) { // d/s condition
+               } // end if : flag_ssd && !SsdOR
+             } // end if : gate_30s
+             if (gate_29p) {
+               hBraggB_29p->Fill(i,dEpadB[i][j]);
+             } // end if: gate_29p
+             if (gate_31s) hBraggB_31s->Fill(i,dEpadB[i][j]);
+            } // end for j: track loop
+          } // end for i : pad number loop
+          
+          //center
+          Double_t dEpadCTotal=0; // declare this somewhere else and just reset i
+      t here 04 Apr 2011 16:49:04 
+          
+          for(UShort_t i=0;i<8;i++){ // loop over all pads (now by pad number)
+            //for(UShort_t j=0;j<1;j++){ // first track
+            for(UShort_t j=0;j<TracksC[i];j++){ // loop for each track
+              if ( dEpadC[i][j]>1.){// 
+              //if ( dEpadC[i][j]>1. && proton_beam ){// proton beam (I assume?)
+              //if ( dEpadC[i][j]>1. && ((fSiE[1][1]>110.) || ( fSiE[1][2]>110.) 
+      || ( fSiE[1][3]>120.))){// proton beam (I assume?)
+              //if ( dEpadC[i][j]>1. && ((fSiE[1][1]<1100. && fSiE[1][1]>900.) ||
+       (fSiE[1][2]<1100. && fSiE[1][2]>900.) || (fSiE[1][3]<1100. && fSiE[1][3]>900.)))
+      {// proton beam (I assume?)
+              //if (dEpadC[i][j]>1. && (SiIsHit[0] == true || SiIsHit[1] == true)
+      ) { // 
+                dEpadCTotal = dEpadCTotal + dEpadC[i][j];
+                hBraggC->Fill(i,dEpadC[i][j]);
+                hPadXC->Fill(i,XpadC[i][j]);
+              }
+            }
+          }
+          /*
+          for (UShort_t i=0;i<3;i++){
+            if (dEpadCTotal > 1. && fSiE[1][i+1]>10. && fSiE[1][i+1]<4000.){
+              hTpc_ch_dE[i+9]->Fill(fSiEcal[1][i+1],dEpadCTotal);       
+            }
+          }
+          */
+        } // end if: flag_detail
+
+      } // end if: flag_tpc
+
+   } // close loop on jentry
+
+   delete ssd_strip_calib;
+   delete ssd_pad_calib;
+   delete ppac_calib;
+} // close Analyzer::Loop
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Analyzer_8h}{Analyzer.h}\item 
+\hyperlink{Analyzer_8cxx}{Analyzer.cxx}\end{DoxyCompactItemize}

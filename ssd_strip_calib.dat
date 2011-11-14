@@ -1,0 +1,197 @@
+# Lines starting form "#" are comments.
+# One channel/one line 
+# offset gain  
+#20.20   0.0152
+#30.12   0.0145
+# strip_ch1 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0019600995
+121.05274	0.0082281806
+# strip_ch2 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0014483156
+86.595089	0.0079794968
+# strip_ch3 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0017622924
+86.043123	0.0078783627
+# strip_ch4 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0018210932
+98.50233	0.0081805995
+# strip_ch5 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0021947841
+119.27366	0.008168227
+# strip_ch6 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.002167219
+109.77788	0.0083842406
+# strip_ch7 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0054410298
+122.17382	0.0088747886
+# strip_ch8 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0021117496
+101.77365	0.0089409483
+# strip_ch9 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0047169627
+84.217739	0.0084354326
+# strip_ch10 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0046366511
+94.055276	0.008045267
+# strip_ch11 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0053344653
+94.215549	0.0083101598
+# strip_ch12 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0051509536
+120.47711	0.0081254347
+# strip_ch13 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.005444953
+87.722935	0.0084270829
+# strip_ch14 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0048919273
+73.011171	0.0083082358
+# strip_ch15 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.011494713
+135.9925	0.0087012463
+# strip_ch16 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0045417222
+52.117119	0.0085158158
+# strip_ch17 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0025748427
+84.237438	0.0070594097
+# strip_ch18 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0025231242
+68.997521	0.0069734382
+# strip_ch19 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0023952369
+61.269828	0.0068772718
+# strip_ch20 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0025863747
+93.025936	0.0068840046
+# strip_ch21 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0026770741
+99.017159	0.0068425555
+# strip_ch22 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.002504579
+70.565692	0.0066666782
+# strip_ch23 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.002448879
+78.243488	0.0067941933
+# strip_ch24 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0029138043
+76.866828	0.0071785376
+# strip_ch25 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.088066414
+94.60611	0.0072626633
+# strip_ch26 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.059927764
+101.70139	0.0072588197
+# strip_ch27 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.092416828
+81.990377	0.0075872934
+# strip_ch28 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.095880814
+121.27874	0.008002367
+# strip_ch29 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.10290938
+118.97318	0.007638134
+# strip_ch30 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.095871394
+123.7959	0.0074796777
+# strip_ch31 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.10147903
+95.19217	0.0076972443
+# strip_ch32 ssd-alpha-calib-7.root CRIB alpha source 3 Chisquare: 0.10210427
+91.26994	0.0080659234
+# strip_ch33 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0040553183
+98.827143	0.0049793867
+# strip_ch34 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0040729295
+79.559968	0.0047922538
+# strip_ch35 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0036675918
+109.58938	0.0052168677
+# strip_ch36 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0038037124
+83.110432	0.0049905799
+# strip_ch37 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0033719953
+76.804192	0.0054218279
+# strip_ch38 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0034339429
+107.21164	0.0050222789
+# strip_ch39 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0034366532
+110.55918	0.0050265979
+# strip_ch40 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.001581593
+103.59758	0.0052219942
+# strip_ch41 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0018151767
+122.63023	0.005231813
+# strip_ch42 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0017563915
+105.3919	0.0051643496
+# strip_ch43 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0017126255
+88.615822	0.0051409546
+# strip_ch44 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0017875381
+113.37231	0.0052264948
+# strip_ch45 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0018305503
+126.09423	0.0052256943
+# strip_ch46 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0014011927
+115.06803	0.0051753748
+# strip_ch47 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0018360792
+122.5298	0.0052915923
+# strip_ch48 ssd-alpha-calib-7.root CRIB alpha source 2 Chisquare: 0.0019293948
+75.782694	0.0055278825
+# strip_ch49 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0035342276
+125.63647	0.0028070829
+# strip_ch50 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0030626826
+96.507147	0.0027632537
+# strip_ch51 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0018267863
+117.94222	0.002766187
+# strip_ch52 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0028434729
+113.2238	0.0027548416
+# strip_ch53 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.002712232
+118.44885	0.0027737908
+# strip_ch54 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0025816933
+115.68085	0.0027600401
+# strip_ch55 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0025486355
+95.263763	0.0027848455
+# strip_ch56 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0024415455
+132.00274	0.0028149376
+# strip_ch57 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0020118166
+118.37497	0.002751388
+# strip_ch58 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0020242885
+121.39358	0.0027931441
+# strip_ch59 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0027666615
+104.27497	0.0027005351
+# strip_ch60 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0016820726
+105.90241	0.0027712706
+# strip_ch61 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0017134631
+109.84741	0.0027557087
+# strip_ch62 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0026585983
+121.52667	0.0027776685
+# strip_ch63 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0015164253
+122.19529	0.0027812547
+# strip_ch64 ssd-alpha-calib-14.root CRIB alpha source 2 Chisquare: 0.0015841525
+95.398573	0.0026257743
+# strip_ch65 is garbage
+1 		0
+# strip_ch66 is garbage
+1 		0
+# strip_ch67 is garbage
+1 		0
+# strip_ch68 is garbage
+1 		0
+# strip_ch69 is garbage
+1 		0
+# strip_ch70 is garbage
+1 		0
+# strip_ch71 is garbage
+1 		0
+# strip_ch72 is garbage
+1 		0
+# strip_ch73 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0024694687
+103.27623	0.0026724559
+# strip_ch74 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0025593552
+103.4463	0.0026442438
+# strip_ch75 is garbage 
+1 		0
+# strip_ch76 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0024717942
+112.58557	0.0027402693
+# strip_ch77 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0025124122
+121.05449	0.0027216638
+# strip_ch78 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0022927279
+96.896682	0.0025933556
+# strip_ch79 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0023875853
+112.47978	0.0025599591
+# strip_ch80 alpha-calib-post-1012.root CRIB alpha source 2 Chisquare: 0.0024845781
+105.84938	0.002814768
+# strip_ch81 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.03902298
+12.682229	0.002599761
+# strip_ch82 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.04039839
+37.596188	0.0025942556
+# strip_ch83 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.040500482
+69.84849	0.002702329
+# strip_ch84 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.038862922
+61.218927	0.0025553453
+# strip_ch85 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.038792593
+58.899542	0.0024736318
+# strip_ch86 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.041040613
+65.450144	0.002612353
+# strip_ch87 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.038910497
+53.611209	0.0025627349
+# strip_ch88 is garbage
+1		0
+# strip_ch89 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.047045771
+40.038082	0.0026762188
+# strip_ch90 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.032346323
+52.166452	0.0025264332
+# strip_ch91 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.033726628
+39.645233	0.0027099729
+# strip_ch92 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.032989764
+62.037739	0.0028052647
+# strip_ch93 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.034384783
+67.284364	0.00279075
+# strip_ch94 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.031919795
+45.429448	0.0027736039
+# strip_ch95 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.033707894
+93.999297	0.0027225436
+# strip_ch96 alpha-calib-post-1012.root CRIB alpha source 3 Chisquare: 0.029965861
+57.115191	0.0028555068

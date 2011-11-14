@@ -1,0 +1,15 @@
+# PPAC calibration from anapaw
+# One channel, one line
+# F3 PPACa X1, X2, Y1, Y2
+0.0 0.09765625
+0.0 0.09765625
+0.0 0.09765625
+0.0 0.09765625
+0.0 0.0
+# F3 PPACb X2, X1, Y1, Y2
+# switched X1 <-> X2 from anapaw since I switched the cables
+0.0 0.09765625
+0.0 0.09765625
+0.0 0.09765625
+0.0 0.09765625
+0.0 0.0
