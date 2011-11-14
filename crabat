@@ -1,0 +1,412 @@
+#!/bin/bash
+#######################################################################
+# Copyright: 
+# 2011 daid KAHL
+#
+# This file has an identity crisis: is IS crabat and also
+# part of the crabat project.
+#
+# crabat is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# crabat is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with crabat.  If not, see <http://www.gnu.org/licenses/>.
+#######################################################################
+
+# Shell script for calling run
+# Here we can (evaluated in this order):
+#   1) Define default run options in run.conf
+#   2) Send options manually at the command line just like for run
+#   3) Use a simple GUI to select run file and options
+
+# Define all the functions we want to call
+
+Init () { 
+  # flag declaration
+  # DO NOT EDIT - CHANGE IN run.conf INSTEAD
+  Cflag= 		# If we want to clean the output tree directory (mainly for use with loop)
+  Bflag= 		# Call run in non-interactive mode Batch mode (needs -R flag)
+  Rflag= 		# Pass Run number Rval
+  Rval= 		# The Run number to process
+  Hflag= 		# Pass Header to run
+  Hval= 		# The header to pass
+  Iflag= 		# Pass Input Tree path
+  Ival= 		# The path to pass
+  rflag= 		# raw data histograms
+  dflag= 		# detailed data histograms
+  sflag=		# ssd pad data
+  xflag=		# ssd strip data
+  pflag=		# ppac data
+  tflag=		# tpc data
+  Gflag=		# GUI option
+  Lflag= 		# Looping flag
+
+  PIDS=			# child process ID numbers
+}
+
+Config () { # read in run.conf and set the flags
+  if [ ! -e run.conf ] ; then
+    echo "Cannot find file run.conf"
+    echo "Please move this file to `pwd`!"
+    exit 1
+  fi
+  while read line
+  do
+    FLAG=$(echo $line | sed '/#/d') # throw away the comments
+    if [ $FLAG ]; then # if the line was kept, it isn't a comment
+      let "i += 1" # line number counting
+      [ $i -eq 1 ] && TREEIN=$FLAG
+      [ $i -eq 2 ] && TREEOUT=$FLAG
+      [ $i -eq 3 ] && NAME=$FLAG
+      if [ $i -gt 3 ]; then # flags start at item 4
+        export $(echo $FLAG)
+      fi
+    fi
+  done < run.conf 
+}
+
+# Helpful output for people that don't want to read shell scripts
+Usage () {
+  printf "CRIB Active Target analyzer 1.0\n"
+  printf "crabat shell script for running analysis\n"
+  printf "Copyright 2011 daid Kahl\n"
+  printf "Usage: %s: [-G ] [-R RunNumber] [-B ] [-C ] [-H header] [-I path] [-L ] [-r ] [-d ] [-s ] [-x ] [-p ] [-t ]\n" $0
+  printf "Description of options:\n"
+  printf "  -G\t\t: Enable GUI mode (requires that Zenity is installed)\n"
+  printf "  -R <int>\t: Call run on RunNumber <int> (or can be entered manually at runtime)\n"
+  printf "  -B\t\t: Call run in non-interactive Batch mode (requires -R flag)\n"
+  printf "  -C\t\t: Clean the output trees (for use with Loop)\n"
+  printf "  -H <string>\t: Use run header <string> instead of run header in run.conf\n"
+  printf "  -I <string>\t: Use ROOT Tree input directory path <string> instead of reading from run.conf\n"
+  printf "  -L\t\t: Loops 'run' over all runs matching the header from run.conf or passed by H flag (enables -B mode)\n"
+  printf "  -r\t\t: Raw data histograms\n"
+  printf "  -d\t\t: Detailed data histograms\n"
+  printf "  -s\t\t: Analyze SSD pad data\n"
+  printf "  -x\t\t: Analyze SSD strip data\n"
+  printf "  -p\t\t: Analyze PPAC data\n"
+  printf "  -t\t\t: Analyze TPC data\n"
+  exit 1
+}
+
+ReadFlags () {
+  # option handling
+  while getopts BCGH:I:LR:rdsxpt OPTION
+  do
+      case $OPTION in
+      B)    Bflag=1;;
+      C)    Cflag=1;;
+      G)    Gflag=1;;
+      L)    Lflag=1
+            Bflag=1;;
+      R) 	  Rflag=1
+      	  Rval="$OPTARG";;
+      H) 	  Hflag=1
+      	  Hval="$OPTARG"
+	  NAME="$Hval";;
+      I) 	  Iflag=1
+      	  Ival="$OPTARG"
+	  TREEIN="$Ival";;
+      r)    rflag=1;;
+      d)    dflag=1;;
+      s)    sflag=1;;
+      x)    xflag=1;;
+      p)    pflag=1;;
+      t)    tflag=1;;
+      ? | *) Usage;;  
+      esac
+  done
+}
+
+CheckFlags () {
+  if [[ $Bflag &&  ! $Rflag && ! $Lflag ]]; then
+    printf "Batch mode requires a run number!\n\n"
+    Usage
+  fi
+  if [[ $Rflag && $Lflag ]];then
+    printf "Cannot specify run number in loop mode!\n\n"
+    Usage
+  fi
+}
+
+Propaganda () {
+  printf "CRIB Active Target analyzer 1.0\n"
+  cat logo
+}
+
+Clean () { # clean the output root trees
+  FILES=$(ls "$TREEOUT"/"$NAME"/"$NAME"*.root 2> /dev/null | wc -l)
+  if [ "$FILES" != "0" ]; then
+  	for i in "$TREEOUT"/"$NAME"/"$NAME"-*.root
+  	do
+  		rm -v $i
+  	done
+  	echo "Cleaning finished."
+  else
+  	echo "Nothing to clean."
+  fi
+  exit
+}
+
+NeedClean () {
+  # check if we need to clean
+  NEEDCLEAN=
+  for i in "$TREEIN"/"$NAME"*.root  # loop over all the existing raw runs of that name
+  do
+    OUTPUT=`echo $i | sed "s#$TREEIN/##" |sed "s#$NAME#$TREEOUT/$NAME/$NAME-#"  `
+    if [ -e $OUTPUT ];then
+      echo "$OUTPUT exists."
+      NEEDCLEAN=1
+    fi
+  done
+  # if we need to clean, exit
+  if [ $NEEDCLEAN ]; then
+    if [ $Hflag ]; then
+      echo "To clean, please run: $0 -C -H $Hval"
+    else
+      echo "To clean, please run: $0 -C"
+    fi
+    echo "Exiting..."
+    exit
+  fi
+}
+
+GUI () { #GUI support with Zenity
+  #depcheck
+  type -P zenity &>/dev/null || { printf "crabat requires Zenity for GUI mode but it's not in your PATH or not installed.\n\t(see http://live.gnome.org/Zenity)\nAborting.\n" >&2; exit 1; }
+  
+  if [[ ! $Rflag && ! $Lflag ]]; then # if we didn't get a run number, file selection!
+    # file selection
+    ans=$(zenity --file-selection --filename="$TREEIN" --file-filter=*.root )
+    if [ ! $ans ];then 
+      echo "Cancel received"
+      echo "Quitting"
+      exit 1
+    else
+      echo "Using file: $ans"
+    fi
+    TREEIN=$(echo $ans| sed 's/\(.*\)\/.*/\1\//' | sed 's@/$@@')
+    Iflag=1
+    Ival=$TREEIN
+    echo "Determined the path is: $Ival"
+    HEADER=$(echo $ans| sed 's@.*/@@' | sed 's/\.root//' | rev | cut -b 5- | rev )
+    Hflag=1
+    Hval=$HEADER
+    echo "Determined the header is: $Hval"
+    RUNNO=$(echo $ans| sed 's@.*/@@' | sed 's/\.root//' | sed "s/$HEADER//" )
+    Rflag=1
+    Rval=$RUNNO
+    echo "Determined the run number is: $Rval"
+  fi
+
+  #base command
+  ZCMD='zenity  --height 260 --width 250 --list  --title "crabat" --text "Select data to analyze" --checklist  --column "" --column "flag" --column "Check all that apply"'
+  
+  #add the options already selected, either by the shell default or user at command line
+  [ $rflag ] && ZCMD="$ZCMD"' TRUE rflag "raw data"' || ZCMD="$ZCMD"' FALSE rflag "raw data"'
+  [ $dflag ] && ZCMD="$ZCMD"' TRUE dflag "detailed data"' || ZCMD="$ZCMD"' FALSE dflag "detailed data"'
+  [ $sflag ] && ZCMD="$ZCMD"' TRUE sflag "ssd pad data"' || ZCMD="$ZCMD"' FALSE sflag "ssd pad data"'
+  [ $xflag ] && ZCMD="$ZCMD"' TRUE xflag "ssd strip data"' || ZCMD="$ZCMD"' FALSE xflag "ssd strip data"'
+  [ $pflag ] && ZCMD="$ZCMD"' TRUE pflag "ppac data"' || ZCMD="$ZCMD"' FALSE pflag "ppac data"'
+  [ $tflag ] && ZCMD="$ZCMD"' TRUE tflag "tpc data"' || ZCMD="$ZCMD"' FALSE tflag "tpc data"'
+  
+  ZCMD="$ZCMD"' --separator=":"'
+  
+  # make the Zenity call, store the reply
+  ans=$(echo $ZCMD | bash)
+ 
+  # check the answer
+  if [ $ans ] ; then
+    printf "Received these options from Zenity\n\t$ans\n"
+  else
+    echo "Cancel received or no boxes selected!"
+    echo "Quitting"
+    exit 1
+  fi
+
+  # turn flags on or off based on Zenity answer
+  if ( $(echo $ans| grep rflag > /dev/null) );then
+    rflag=1
+  else
+    rflag=
+  fi
+  if ( $(echo $ans| grep dflag > /dev/null) );then
+    dflag=1
+  else
+    dflag=
+  fi
+  if ( $(echo $ans| grep sflag > /dev/null) );then
+    sflag=1
+  else
+    sflag=
+  fi
+  if ( $(echo $ans| grep xflag > /dev/null) );then
+    xflag=1
+  else
+    xflag=
+  fi
+  if ( $(echo $ans| grep pflag > /dev/null) );then
+    pflag=1
+  else
+    pflag=
+  fi
+  if ( $(echo $ans| grep tflag > /dev/null) );then
+    tflag=1
+  else
+    tflag=
+  fi
+}
+
+Make () {
+  echo "Checking if the binary is current..."
+  make
+}
+
+GetCores () {
+  # get the number of CPU cores so with Loop we can multi-thread
+  CORES=`grep CPU /proc/interrupts  | awk '{print NF}'`
+}
+
+control_c () { # if we get a Ctrl+C, kill.  If running loop, kill all child run
+  echo
+  echo "Received kill signal..."
+  [ ! $Lflag ] && exit
+  echo "killing child run processes..."
+  [ -e .looptmp ] && rm .looptmp
+  kill -1 $PIDS 2> /dev/null # redirect error since many PIDs won't exist
+  exit
+}
+# trap keyboard interrupt 
+trap control_c SIGINT
+
+SetFlags () {
+  # base command
+  CMD="./run"
+  # add options based on final flags
+  [ $Rflag ] && CMD="$CMD -R $Rval"
+  [ $Bflag ] && CMD="$CMD -B"
+  [ $Hflag ] && CMD="$CMD -H $Hval"
+  [ $Iflag ] && CMD="$CMD -I $Ival"
+  [ $rflag ] && CMD="$CMD -r"
+  [ $dflag ] && CMD="$CMD -d"
+  [ $sflag ] && CMD="$CMD -s"
+  [ $xflag ] && CMD="$CMD -x"
+  [ $pflag ] && CMD="$CMD -p"
+  [ $tflag ] && CMD="$CMD -t"
+}
+
+Run () {
+  # execute the command verbose
+  printf "Executing run with the command:\n\t$CMD\n"
+  $CMD 
+}
+
+Loop () {
+  # looping function over all runs with the same header, multi-threaded per core.
+  for i in "$TREEIN"/"$NAME"*.root  # loop over all the existing raw runs of that name
+  do
+    # name of the output file and path, eg Tree/30s_production/30s_production-1001.root
+    OUTPUT=`echo $i | sed "s#$TREEIN/##" |sed "s#$NAME#$TREEOUT/$NAME/$NAME-#"  `
+    INFILE=`echo $i | sed 's$.*/$$'` # name of the input file name, eg 30s_production1001.root
+    if [ ! -e  $OUTPUT ];then # only run if the output file does not exist (won't overwrite existing data)
+      if [ ! $Cflag ];then # only call the program if we aren't cleaning 
+        echo "Outputting to $OUTPUT..."
+        RUNNO=`echo $INFILE | sed "s/$NAME//" | sed 's/\..*//'` # get the run number
+        # there is a way to do this using the Run function?  Seems trickier with backgrounding, getting PID, and so on
+        CMD="$CMD -R $RUNNO"
+        printf "Executing run with the command:\n\t$CMD\n"
+        $CMD & PIDS="$PIDS $!" && sudo renice -n -10 -p $! # call run on the run number in background, renice to -10
+        while [ `jobs | wc -l` -eq $CORES ] # only run one run command per core
+        do
+        	jobs > /dev/null # without this the while loop doesn't seem to refresh?
+        	sleep 1 # keep waiting until run is not running on a core
+        done
+      fi
+    else # the output file exists -- should never happen as we check NeedClean first, but anyway, safer
+      echo "$OUTPUT exists, please run clean!"
+      exit 1  
+    fi
+  done
+}
+
+WaitFinish () {
+  # wait until all child run are finished
+  # this is just when we loop and run in the background
+  
+  TMP=.looptmp
+  # create list of PIDS
+  echo "$PIDS" | sed "s/\ /\\n/g" > $TMP
+  sed -i '1,1d' $TMP # removes the first (empty) line
+  
+  # init variable to be unequal
+  DEAD=0 # Number of run which finished
+  CALLED=1 # Number of run called
+  while [ "$CALLED" != "$DEAD" ] # all CALLED run should be DEAD
+  do
+    # reset variables
+    DEAD=0
+    CALLED=0
+    while read -r line # loop over each PID
+    do
+      kill -0 $line 2> /dev/null
+      KILLSTAT="$?"
+      DEAD=$(($DEAD + $KILLSTAT)) 
+      CALLED=$(($CALLED + 1))
+      # remove the PID from the list if dead
+      if [ "$KILLSTAT" -eq 1 ];then
+        sed -i "/$line/d" $TMP
+      fi
+    done < $TMP
+    sleep 1
+  done
+  rm .looptmp
+  #all child run finished!
+}
+
+HAdd () {
+  # hadd to combine the outputs into one root file when we ran Loop
+  # note of course run itself can Chain runs, but then we cannot see individual runs
+  # this way, we get a summed output and individual outputs
+  if [ -e "$TREEOUT"/"$NAME"/sum.root ];then  # make sure sum.root does not exist
+    rm -v "$TREEOUT"/"$NAME"/sum.root # if so, delete it
+  fi
+  hadd "$TREEOUT"/"$NAME"/sum.root "$TREEOUT"/"$NAME"/"$NAME"*.root # add the histograms and make it into sum.root
+  # open a TBrowser on sum.root
+  ./tbrowser/tb "$TREEOUT"/"$NAME"/sum.root
+}
+
+# Now we do stuff
+Init
+Config
+ReadFlags "$@"
+CheckFlags
+if [ $Cflag ];then
+  read -p "Really clean $TREEOUT/$NAME (y/n)? "
+  case $REPLY in
+  y|Y|yes|ye|Yes|YES|YE) Clean ;;
+  *) 
+    echo "Exiting..."
+    exit 1
+    ;;
+  esac
+fi
+Propaganda
+[ $Gflag ] &&  GUI
+
+Make
+SetFlags
+if [ $Lflag ];then
+  NeedClean
+  GetCores
+  Loop
+  WaitFinish
+  HAdd
+  exit 
+fi
+Run
