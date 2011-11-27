@@ -39,7 +39,7 @@ Runtime options dictate how data will be analyzed (raw and/or detailed) and whic
 cout << "This is C++ code, not a ROOT macro!" << endl;
 cout << "To continue, run:" << endl;
 cout << "make" << endl;
-cout << "./ana" << endl;
+cout << "./run" << endl;
 gApplication->Terminate();
 }
 #endif
