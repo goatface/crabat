@@ -1,0 +1,269 @@
+crabat - the CRIB Active Target analyzer
+ 
+ Copyright: 
+ 2010 daid KAHL, OTA shinsuke, HASHIMOTO takashi, YAMAGUCHI hidetoshi 
+ 2011 daid KAHL
+
+ This file is part of crabat
+
+ crabat is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ crabat is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with crabat.  If not, see <http://www.gnu.org/licenses/>.
+
+Last updated by daid 28 Nov 2011 07:20:02 
+
+################
+1. INTRODUCTION
+################
+
+The data processed here are assumed to have been taken by the RIBFDAQ 
+(see http://ribf.riken.jp/RIBFDAQ/), using both standard VME crates, as well
+as a flash ADC system (COPPER).
+
+These data are then converted to ROOT (we are using a ROOT macro ridf2root.C).
+
+Here we are interested to analyze the ROOT formated raw data and write out
+histograms. 
+
+################
+2. INSTALLATION
+################
+
+This software is designed to run under GNU/Linux.
+
+These programs are assumed to run locally and not be installed.  However, 
+installation is possible if desired (see below).
+
+To use the software, one simply needs to install the relevant dependencies
+and compile the code with the make command.
+
+The dependencies are: 
+	ROOT (http://root.cern.ch) (version 5.26 or greater)
+	KaliVeda (http://indra.in2p3.fr/KaliVedaDoc/)
+	Doxygen (http://www.stack.nl/~dimitri/doxygen/)
+
+(As of this release, KaliVeda is not implemented, so this dependency could be
+removed from the Makefile; however, future releases will make use of this 
+library, and at present the included headers are not checked to pull in all
+relevant libraries without use of KaliVeda.)
+
+The KVROOT environment variable must be exported in the shell, or otherwise
+the Makefile should be changed to explicitly define the installation path
+for KaliVeda.
+
+The code also requires a release of the gcc which includes gfortran.  This is
+common, but there are some instances of the gcc which do not include it.  We
+assume the gcc is something like version 4.2 or greater.
+
+For GUI support of runtime variables, one also needs to install Zenity, which
+is a tool to display GTK dialog boxes (here within a shell script).
+(http://live.gnome.org/Zenity)
+	The version of Zenity should be at least newer than 2.16 because we 
+	use the --file-filter option.  The --filename option may not work 
+	well in GNOME, but works fine in Xfce.  If there is an issue with 
+	the crabat script crashing on Zenity, please consider this point.
+
+Given proper dependencies, one can issue the make command.  Here is the 
+expected successful output to be seen:
+
+	daid@titan ~/active/crabat % make
+	make tbrowser
+	make[1]: Entering directory `/home/daid/active/crabat/tbrowser'
+	CXX tbrowser.C
+	CXX tb tbrowser.o
+	
+	binary: /home/daid/active/crabat/tbrowser/tb
+	make[1]: Leaving directory `/home/daid/active/crabat/tbrowser'
+	ar: creating libenewzlib.a
+	FC enewzsub/range_z.o
+	FC enewzsub/eloss_z.o
+	FC enewzsub/string.o
+	FC enewzsub/table.o
+	FC enewzsub/enewzsub.o
+	FC enewzsub/scoef.o
+	FC enewzsub/srho_gas.o
+	FC enewzsub/stop.o
+	FC enewzsub/snke_matter.o
+	ROOT dictCal.cxx
+	CXX dictCal.o dictCal.cxx
+	ROOT dictAnaly.cxx
+	CXX dictAnaly.o dictAnaly.cxx
+	CXX run.o run.cxx
+	LD run
+	        copy of any errors recorded in log/linker.log
+	
+	Compile successful!
+	binary: /home/daid/active/crabat/run
+	
+	Generating documentation...
+	        all output and errors directed to log/doxygen.log
+
+If any changes are made to the source code, please re-run make.
+
+#########################
+3. FURTHER DOCUMENTATION
+#########################
+
+As the project is using Doxygen, documentation for the class structure is 
+generated automatically during compile-time.  You may easily view the 
+documentation by opening doc/html/index.html in a web browser. Alternatively,
+you may enter the doc/latex directory, and if you have latex installed, simple
+issue the make command there, and the file refman.pdf will be automatically
+generated, and can be easily read or printed.
+
+The documentation of the class structure is still a work in progress, so 
+please feel free to help contribute!
+
+#############
+4. FIRST USE
+#############
+
+Omitting any details of the physics analysis, in order to run the program 
+for the first time, one need only to do two things.  Firstly, create the 
+output Tree directory:
+
+	mkdir Tree
+
+Then, modify run.conf to one's liking.  At the very least, the input Tree,
+output Tree, and header should be correct (although the input Tree and run
+header can be changed at runtime).
+
+At this point, just run the crabat shell script and ask for help:
+(sorry, the 'help' option does not exist yet, but anyway it works)
+
+	./crabat: illegal option -- -
+	CRIB Active Target analyzer 1.0
+	crabat shell script for running analysis
+	Copyright 2011 daid Kahl
+	Usage: ./crabat: [-G ] [-R RunNumber] [-B ] [-C ] [-H header] [-I path] [-L ] [-r ] [-d ] [-s ] [-x ] [-p ] [-t ]
+	Description of options:
+	  -G            : Enable GUI mode (requires that Zenity is installed)
+	  -R <int>      : Call run on RunNumber <int> (or can be entered manually at runtime)
+	  -B            : Call run in non-interactive Batch mode (requires -R flag)
+	  -C            : Clean the output trees (for use with Loop)
+	  -H <string>   : Use run header <string> instead of run header in run.conf
+	  -I <string>   : Use ROOT Tree input directory path <string> instead of reading from run.conf
+	  -L            : Loops 'run' over all runs matching the header from run.conf or passed by H flag (enables -B mode)
+	  -r            : Raw data histograms
+	  -d            : Detailed data histograms
+	  -s            : Analyze SSD pad data
+	  -x            : Analyze SSD strip data
+	  -p            : Analyze PPAC data
+	  -t            : Analyze TPC data
+
+So here you can decide how to call the run.  The runtime options are specified
+and interpreted in the following order
+	1. run.conf
+	2. crabat or run flags passed
+	3. crabat GUI selection
+
+########################
+5. DESCRIPTION OF FILES
+########################
+
+Analyzer.cxx
+	This program is doing the analysis.  It depends on Calibration.cxx.
+
+Analyzer.h
+	This file is defining the class structure for Analyzer.cxx.
+
+AUTHORS
+	This text file will tell you who did the hard work, and when.
+
+Calibration.cxx
+	This program does basic offset and gain calibration.
+
+Calibration.h
+	The file is defining the class struture for Calibration.cxx
+
+crabat
+	This shell script will help you run the analysis.  It calls run under
+	the runtime parameters passed to it.  It can also loop over multiple
+	runs and multi-thread the run program for increased performance.
+
+enewzsub/
+	This directory contains a Fortran energy loss subroutine ENEWZ.  We
+	do not assume to modify the code here.
+
+examples/
+	This directory has an example of how to use KaliVeda and/or ENEWZ.
+
+LICENSE
+	Your own personal copy of the GNU GPL v.3
+
+linkdefAnaly.h
+	This file is to inform rootcint about the class structure of 
+	Analyzer.cxx
+
+linkdefCal.h
+	This file is to inform rootcint about the class structure of
+	Calibration.cxx
+
+log/
+	A directory where compile errors are stored.
+
+logo
+	Some ASCII art for fun.
+
+Makefile
+	Rules for use with make to compile the code and documentation.
+
+memcheck
+	A very simple shell script example for how to memory check with valgrind.
+
+ppac_calib.dat
+	PPAC calibration data.
+
+README
+	This file.
+
+run.cxx
+	This program interfaces the Analyzer with the input ROOT file,
+	and writes the histograms.  It can also interact with humans.
+
+run.h
+	This file declares all this histogram memory allocation and deletion.
+	It also has a Usage function as well as a couple ROOT header includes.
+
+run.conf
+	This file is read at runtime to define relevant variables, such as 
+	the path locations, the run header as well as which data to process.
+
+SCOEF.DAT
+	A data file for ENEWZ stopping power coefficients.
+
+SNKE_MATTER.DAT
+	A data file for ENEWZ matter definitions.
+
+ssd_pad_calib.dat
+	SSD pad calibration data.
+
+ssd_strip_calib.dat
+	SSD strip calibration data.
+
+tbrowser/
+	A simple program to create an executable which opens a ROOT Tree browser.
+
+###########
+6. UPDATES
+###########
+
+This project is hosted at https://github.com/goatface/crabat
+
+You can sync with any updates by issuing the following command:
+
+	git clone git@github.com:goatface/crabat.git
+
+Of course, you need git installed. (http://git-scm.com/)
+
+Also, if you make changes to your own Analyzer or histogram definitions,
+these will be overwritten!
