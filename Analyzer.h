@@ -106,13 +106,18 @@ public :
    Double_t        fSiEStripmax[12];
    Double_t        fSiT[18];   //[fNHitSi]
    Double_t        fSiTcal[18];   //[fNHitSi]
+   Double_t	   trig_dly_tpcB[48];
+   Double_t	   trig_dly_rf[2];
+   Double_t        trig_dly_ppac[2][4];
    Bool_t 	   SiIsHit[18]; // wants to know if an SSD is hit based on fSiT>-100
    Bool_t 	   SsdOR; // want to know if the SSD-OR trigger was invoked based on 1a,2a,3a,5a,6b
    UShort_t	   ssd_mult; // SSD Multiplicity
    UShort_t        ssdhit[5][2]; // which ssd is triggered
    Double_t        fPPAC[2][5];
    Double_t        fPPACcal[2][5];
+   Double_t        rf; // real RF value
    Double_t        fRF[2];
+   Double_t        fRFcal[2];
    Double_t        tof[2]; 
    Double_t        Tof; 
    Bool_t          PpacIsHit[2];

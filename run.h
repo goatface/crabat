@@ -71,6 +71,7 @@ Bool_t flag_ssd=false, flag_strip=false, flag_ppac=false, flag_tpc=false;
 
 //Histograms
 TH1F *hRf[2]; 
+TH1F *hRfcal[2]; 
 
 TH1F *hSiStripHit ;
 TH1F *hSiPadHit ;
@@ -273,6 +274,14 @@ void HistInit(){ // histogram initalization
     } // end if: flag_raw
     
     if (flag_detail){
+      for (UShort_t i=0;i<2;i++){
+        sprintf(name,"hRfcal%d",i);
+        hRfcal[i] = new TH1F(name,name,300,0,60);
+        hRfcal[i]->GetXaxis()->SetTitle("RF (ns)");
+	hRfcal[i]->GetXaxis()->CenterTitle(true);
+        hRfcal[i]->GetYaxis()->SetTitle("counts");
+	hRfcal[i]->GetYaxis()->CenterTitle(true);
+      }
       hRF0Tof = new TH2F("hRF0Tof","RF0 vs. PPAC Tof",600,0.,600.,200,0.,20.);
       hRF0Tof->SetOption("COL");
       hRF0Tof->GetXaxis()->SetTitle("RF (arb)");
@@ -714,6 +723,7 @@ void HistWrite() {
     } // end if: flag_raw
 
     if (flag_detail) { // write the PPAC detailed histograms
+       for (UShort_t i=0;i<2;i++) hRfcal[i]->Write();
        hRF0Tof->Write();
        hRF1Tof->Write();
        hPpac0XY->Write();
@@ -884,6 +894,7 @@ void HistClean(){ // function to free histogram memory
   delete hBraggC ;
   delete hBraggB_rp;
   for (int i=0;i<2;i++) delete hRf[i]; 
+  for (int i=0;i<2;i++) delete hRfcal[i]; 
   for (int j=0;j<15;j++) delete hBraggB_30s_jch[j];
   for (int i=0;i<97;i++){
     delete strip_ch[i];

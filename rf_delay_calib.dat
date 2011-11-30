@@ -1,0 +1,11 @@
+# RF calibration for delayed downscale
+# One channel, one line
+# gain is just from rf0 for now
+#322.333 0.1369266
+#308.895 0.1385151
+# ToF
+#322.333 0.1343137
+#308.895 0.1343137
+#RF from pedestal to max
+322.333 0.1372414
+308.895 0.1388372

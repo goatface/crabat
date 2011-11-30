@@ -158,6 +158,8 @@ void Analyzer::Loop(Int_t run,
    Calibration *ssd_strip_calib=new Calibration("ssd_strip_calib.dat",96);//12x8
    Calibration *ssd_pad_calib=new Calibration("ssd_pad_calib.dat",19);
    Calibration *ppac_calib=new Calibration("ppac_calib.dat",10);
+   Calibration *rf_calib=new Calibration("rf_calib.dat",2);
+   Calibration *rf_ds_calib=new Calibration("rf_delay_calib.dat",2);
    
    if (flag_detail){
      if (flag_strip){
@@ -171,6 +173,7 @@ void Analyzer::Loop(Int_t run,
      if (flag_ppac){
        ppac_calib->ScanFile();
        ppac_calib->ShowEntries();
+
        //PPACa -- check these values! 24 Jan 2011 11:56:55 
        PpacOffset[0][0]=0.92; //18 Jul 2011 16:56:44 
        PpacOffset[0][1]=1.58; //18 Jul 2011 16:56:57 
@@ -191,6 +194,23 @@ void Analyzer::Loop(Int_t run,
        PpacOffsetGeometry[1][0]=0.0;
        PpacOffsetGeometry[1][1]=0.0; // checked 08 Jul 2011 16:00:22 
        //PpacOffsetGeometry[1][1]=-3.5;
+       // PPAC downscale coincidence delay (nearly 805 ns, but here in ch)
+       trig_dly_ppac[0][0]=8246.;
+       trig_dly_ppac[0][1]=8244.;
+       trig_dly_ppac[0][2]=8244.;
+       trig_dly_ppac[0][3]=8242.;
+       trig_dly_ppac[1][0]=8247.;
+       trig_dly_ppac[1][1]=8246.;
+       trig_dly_ppac[1][2]=8250.;
+       trig_dly_ppac[1][3]=8248.;
+
+       rf_calib->ScanFile();
+       rf_calib->ShowEntries();
+       rf_ds_calib->ScanFile();
+       rf_ds_calib->ShowEntries();
+       rf=59.70;
+       ;
+
      }
    } // end if: flag_detail
    //int ssdTime[18] = {0};
@@ -433,7 +453,19 @@ void Analyzer::Loop(Int_t run,
 	
 	if (flag_detail) { // detailed PPAC data?
           //Calibration 
-          
+	  for (UShort_t i=0;i<2;i++) {
+	    if (fRF[i] > 0) {
+	      if (SsdOR) {
+	        fRFcal[i]=rf_calib->Calib(i,fRF[i]);
+	      }else{  
+	        fRFcal[i]=rf_ds_calib->Calib(i,fRF[i]);
+	        // the delay calibration can lead to negative RF
+	        // in that case, wrap-around the true RF.
+	        if (fRFcal[i]<0.) fRFcal[i]+=rf;
+	      }
+	      hRfcal[i]->Fill(fRFcal[i]);
+	    }
+	  }
           for(UShort_t i=0;i<2;i++){
 	  PpacIsHit[i] = false;
 	  if (fPPAC[i][0]>0. && fPPAC[i][1]>0. && fPPAC[i][2]>0. && fPPAC[i][3]>0.) PpacIsHit[i]=true;
@@ -441,7 +473,8 @@ void Analyzer::Loop(Int_t run,
               fPPACcal[i][j]=0.;
 	      //check here for PPACb X centering issue 18 Jul 2011 17:37:49 
 	      if ( fPPAC[i][j] > 0. )  {
-	        fPPACcal[i][j]=ppac_calib->Calib(i*5+j,fPPAC[i][j]);
+	        if (!SsdOR) fPPAC[i][j]-=trig_dly_ppac[i][j];
+		fPPACcal[i][j]=ppac_calib->Calib(i*5+j,fPPAC[i][j]);
 	      }
             }    
           }
