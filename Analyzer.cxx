@@ -216,15 +216,60 @@ void Analyzer::Loop(Int_t run,
 	
       //Can begin filling any histrograms you defined
       
+      //trigger conditions - even though using SSD data, any event may care about this
+      //need to go through run.h and this code for needless use of flag_ssd and so on.
+      for (UShort_t i=0; i<18; i++) {
+        SiIsHit[i] = false;
+        if ( fSiT[i] > -90 ) {
+          SiIsHit[i] = true;
+        } // end if : fSiT[i] > 0
+      } // end for i
+      // Set up the SSD-OR trigger condition
+      SsdOR = false; // SSD-OR is always false until true
+      ssd_mult = 0; // SSD Multiplicity is 0 until we know otherwise
+      for ( UShort_t i=0;i<5;i++){ //which SSDs triggered?
+        // SSD numbers
+        if (i==0) ssdhit[i][0]=0;
+        if (i==1) ssdhit[i][0]=1;
+        if (i==2) ssdhit[i][0]=2;
+        if (i==3) ssdhit[i][0]=4;
+        if (i==4) ssdhit[i][0]=11;
+        // By default, none are hit
+        ssdhit[i][1]=0; 
+      }
+      // Experiment trigger condition before run 1008: 1a,2a,3a,6b
+      if ( run < 1008 && ( SiIsHit[0] || SiIsHit[1] || SiIsHit[2] || SiIsHit[11] )) SsdOR = true; // SSD-OR trigger started the event
+      // Experiment trigger condition from run 1008 and later: 1a,2a,3a,5a,6b
+      if ( run > 1007 && ( SiIsHit[0] || SiIsHit[1] || SiIsHit[2] || SiIsHit[4] || SiIsHit[11] )) SsdOR = true; // SSD-OR trigger started the event
+      // was 4a in the trigger?!  check the dE-E telescopes!
+
+      if ( SsdOR ) { // Get the SSD trigger multiplicity
+        if ( SiIsHit[0] ) {
+          ssd_mult++;
+          ssdhit[0][1]=1;
+        }
+        if ( SiIsHit[1] ) {
+          ssd_mult++;
+          ssdhit[1][1]=1;
+        }
+        if ( SiIsHit[2] ) {
+          ssd_mult++;
+          ssdhit[2][1]=1;
+        }
+        if ( SiIsHit[4] && run > 1007 ) {
+          ssd_mult++;
+          ssdhit[3][1]=1;
+        }
+        if ( SiIsHit[11] ) {
+          ssd_mult++;
+          ssdhit[4][1]=1;
+        }
+      }
+
       //SSD Pad
       if (flag_ssd) { // process SSD data?
-        for (UShort_t i=0; i<18; i++) {
-          SiIsHit[i] = false;
-          if ( fSiT[i] > -90 ) {
-            SiIsHit[i] = true;
-          } // end if : fSiT[i] > 0
-        } // end for i
-        if (flag_raw) { // process raw SSD data?
+        //SiIsHit was defined here 28 Nov 2011 12:13:51 
+	if (flag_raw) { // process raw SSD data?
           for (UShort_t i=0; i<18; i++) {
             if (SiIsHit[i]) {
               hSiPadHit->Fill(i);	
@@ -291,48 +336,8 @@ void Analyzer::Loop(Int_t run,
             
             	}
   */    
-          // Set up the SSD-OR trigger condition
-          SsdOR = false; // SSD-OR is always false until true
-          ssd_mult = 0; // SSD Multiplicity is 0 until we know otherwise
-          for ( UShort_t i=0;i<5;i++){ //which SSDs triggered?
-            // SSD numbers
-            if (i==0) ssdhit[i][0]=0;
-            if (i==1) ssdhit[i][0]=1;
-            if (i==2) ssdhit[i][0]=2;
-            if (i==3) ssdhit[i][0]=4;
-            if (i==4) ssdhit[i][0]=11;
-            // By default, none are hit
-            ssdhit[i][1]=0; 
-          }
-          // Experiment trigger condition before run 1008: 1a,2a,3a,6b
-          if ( run < 1008 && ( SiIsHit[0] || SiIsHit[1] || SiIsHit[2] || SiIsHit[11] )) SsdOR = true; // SSD-OR trigger started the event
-          // Experiment trigger condition from run 1008 and later: 1a,2a,3a,5a,6b
-          if ( run > 1007 && ( SiIsHit[0] || SiIsHit[1] || SiIsHit[2] || SiIsHit[4] || SiIsHit[11] )) SsdOR = true; // SSD-OR trigger started the event
-          // was 4a in the trigger?!  check the dE-E telescopes!
-
-          if ( SsdOR ) { // Get the SSD trigger multiplicity
-            if ( SiIsHit[0] ) {
-              ssd_mult++;
-              ssdhit[0][1]=1;
-            }
-            if ( SiIsHit[1] ) {
-              ssd_mult++;
-              ssdhit[1][1]=1;
-            }
-            if ( SiIsHit[2] ) {
-              ssd_mult++;
-              ssdhit[2][1]=1;
-            }
-            if ( SiIsHit[4] && run > 1007 ) {
-              ssd_mult++;
-              ssdhit[3][1]=1;
-            }
-            if ( SiIsHit[11] ) {
-              ssd_mult++;
-              ssdhit[4][1]=1;
-            }
-          }
-        }//end if: flag_detail
+        // SsdOR was set true here 28 Nov 2011 12:14:07 
+	}//end if: flag_detail
       } // end if: ssd
      
      if (flag_strip){
@@ -412,7 +417,9 @@ void Analyzer::Loop(Int_t run,
 	if (flag_raw) { // raw PPAC data?
 	  for (UShort_t i=0;i<2;i++) if (fRF[i] > 0) hRf[i]->Fill(fRF[i]);
           
-          //raw PPAC data
+          //trigger timing
+	  
+	  //raw PPAC data
           if (fPPAC[0][0]>0.) hPpac0TX1->Fill(fPPAC[0][0]);
           if (fPPAC[0][1]>0.) hPpac0TX2->Fill(fPPAC[0][1]);
           if (fPPAC[0][2]>0.) hPpac0TY1->Fill(fPPAC[0][2]);
@@ -525,7 +532,7 @@ void Analyzer::Loop(Int_t run,
       } // end if: flag_ppac
 
       // PPAC and SSD
-      if (flag_detail && flag_ssd && flag_ppac){
+      if (flag_detail && flag_ppac){
 	if (SsdOR){ // physics event
 	  if (fRF[0] > 0. ) {
 	    hPpac0XRF0ssd->Fill(PpacX[0],fRF[0]);
@@ -554,9 +561,9 @@ void Analyzer::Loop(Int_t run,
 	  }
 	}
 
-      } // end if : flag_detail & flag_ssd & flag_ppac
+      } // end if : flag_detail & flag_ppac
 
-      if (flag_detail && flag_strip && flag_ppac) { // PPAC and SSD Strip detailed analysis?
+      if (flag_detail && flag_ssd && flag_ppac) { // PPAC and SSD Strip detailed analysis?
 	for(UShort_t i=0;i<18;i++){
 	    if (SiIsHit[i]){
 	      if (gate_30s)  hPpac0TpadT_30s_ch[i]->Fill(fSiT[i]-tof[0]);
@@ -814,19 +821,21 @@ void Analyzer::Loop(Int_t run,
 	       //if (ssd_detail && SsdOR) { // ssd-or condition
 	       //  hBraggB_ssd_ch[i]->Fill(dEpadB[i][j]);
 	       //}
-             if (gate_30s) {
+             if (flag_ppac && gate_30s) {
 	       
 	       hBraggB_30s->Fill(i,dEpadB[i][j]);
 	       hBraggB_ch[i]->Fill(dEpadB[i][j]);
 	       hBraggB_3D->Fill(i,j,dEpadB[i][j]);
 	       hPadXB_30s->Fill(i,XpadB[i][j]);
-	       if (flag_ssd && !SsdOR) { //downscale beam condition
+	       if (!SsdOR) { //downscale beam condition
+	         hBraggB_30s_ds->Fill(i,dEpadB[i][j]);
 	         hBraggB_ds_ch[i]->Fill(dEpadB[i][j]);
 	         hBraggB_3D_ds->Fill(i,j,dEpadB[i][j]);
-	       } // end if : flag_ssd && !SsdOR
+	       } // end if : !SsdOR
 	       // PUT PHYSICS HERE
-	       if (flag_ssd && SsdOR) { // ssd-or condition
-	         hPadYB_30s->Fill(i,YpadB[i][j]);
+	       if ( SsdOR) { // ssd-or condition
+	         hBraggB_30s_ssd->Fill(i,dEpadB[i][j]);
+		 hPadYB_30s->Fill(i,YpadB[i][j]);
 	         hBraggB_ssd_ch[i]->Fill(dEpadB[i][j]);
 	         hBraggB_3D_ssd->Fill(i,j,dEpadB[i][j]);
 	         
@@ -854,9 +863,9 @@ void Analyzer::Loop(Int_t run,
 	         }
 	         // Separate the Bragg peaks by the track number. 
 	         hBraggB_30s_jch[j]->Fill(i,dEpadB[i][j]);
-	       } // end if : flag_ssd && SsdOR
-	       if (flag_ssd && !SsdOR) { // d/s condition
-	       } // end if : flag_ssd && !SsdOR
+	       } // end if : SsdOR
+	       if (!SsdOR) { // d/s condition
+	       } // end if : !SsdOR
              } // end if : gate_30s
 	     if (gate_29p) {
 	       hBraggB_29p->Fill(i,dEpadB[i][j]);
