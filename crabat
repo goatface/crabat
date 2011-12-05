@@ -266,6 +266,12 @@ GUI () { #GUI support with Zenity
 Make () {
   echo "Checking if the binary is current..."
   make
+  if [ ! "$?" -eq 0 ]; then
+    echo ""
+    echo "make failed!"
+    echo "debug your program and re-run $0"
+    exit 1
+  fi
 }
 
 GetCores () {
