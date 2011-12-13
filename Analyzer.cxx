@@ -49,6 +49,7 @@ gApplication->Terminate();
 
 #include "Analyzer.h" // all other headers are here
 #include "Calibration.cxx"
+#include "Analyzer_config.cxx"
 
 Bool_t gate_30s=false,gate_29p=false,gate_31s=false;
 Bool_t proton_beam=false;
@@ -156,7 +157,8 @@ void Analyzer::Loop(Int_t run,
    //Calibration params
 
    Calibration *ssd_strip_calib=new Calibration("ssd_strip_calib.dat",96);//12x8
-   Calibration *ssd_pad_calib=new Calibration("ssd_pad_calib.dat",19);
+   Calibration *ssd_padE_calib=new Calibration("ssd_padE_calib.dat",19);
+   Calibration *ssd_padT_calib=new Calibration("ssd_padT_calib.dat",19);
    Calibration *ppac_calib=new Calibration("ppac_calib.dat",10);
    Calibration *rf_calib=new Calibration("rf_calib.dat",2);
    Calibration *rf_ds_calib=new Calibration("rf_delay_calib.dat",2);
@@ -167,34 +169,17 @@ void Analyzer::Loop(Int_t run,
        ssd_strip_calib->ShowEntries();
      }
      if (flag_ssd){
-       ssd_pad_calib->ScanFile();
-       ssd_pad_calib->ShowEntries();
+       ssd_padE_calib->ScanFile();
+       ssd_padE_calib->ShowEntries();
+       ssd_padT_calib->ScanFile();
+       ssd_padT_calib->ShowEntries();
      }
      if (flag_ppac){
        ppac_calib->ScanFile();
        ppac_calib->ShowEntries();
 
-       //PPACa -- check these values! 24 Jan 2011 11:56:55 
-       PpacOffset[0][0]=0.92; //18 Jul 2011 16:56:44 
-       PpacOffset[0][1]=1.58; //18 Jul 2011 16:56:57 
-       PpacOffsetLine[0][0]=0.0; //18 Jul 2011 16:58:08 
-       PpacOffsetLine[0][1]=-0.22; //18 Jul 2011 16:58:10 
-       PpacPositionGain[0][0]=0.6200; // 18 Jul 2011 16:54:57 
-       PpacPositionGain[0][1]=0.6210; // 18 Jul 2011 16:54:59 
-       PpacOffsetGeometry[0][0]=-0.60;
-       PpacOffsetGeometry[0][1]=0.0; // checked 08 Jul 2011 16:00:27 
-       //PpacOffsetGeometry[1][1]=1.83;
-       //PPACb -- check these values! 24 Jan 2011 11:56:52 
-       PpacOffset[1][0]=0.17; //18 Jul 2011 16:57:56 
-       PpacOffset[1][1]=0.11; //18 Jul 2011 16:57:54 
-       PpacOffsetLine[1][0]=-4.3; //18 Jul 2011 16:58:03 
-       PpacOffsetLine[1][1]=-1.0; //18 Jul 2011 16:58:04 
-       PpacPositionGain[1][0]=0.6205; //18 Jul 2011 16:55:04 
-       PpacPositionGain[1][1]=0.6125; //18 Jul 2011 16:55:06 
-       PpacOffsetGeometry[1][0]=0.0;
-       PpacOffsetGeometry[1][1]=0.0; // checked 08 Jul 2011 16:00:22 
-       //PpacOffsetGeometry[1][1]=-3.5;
        // PPAC downscale coincidence delay (nearly 805 ns, but here in ch)
+       //there should be no need for these data? 07 Dec 2011 01:01:38 
        trig_dly_ppac[0][0]=8246.;
        trig_dly_ppac[0][1]=8244.;
        trig_dly_ppac[0][2]=8244.;
@@ -208,12 +193,14 @@ void Analyzer::Loop(Int_t run,
        rf_calib->ShowEntries();
        rf_ds_calib->ScanFile();
        rf_ds_calib->ShowEntries();
-       rf=59.70;
-       ;
+       
+       SetRF();
 
      }
    } // end if: flag_detail
    //int ssdTime[18] = {0};
+
+static const UShort_t PpacSepZ = SetPpacSepZ();
 
    //Loop on entries
    for (Long64_t jentry=0; jentry<nentries-1;jentry++) {//-1...needed when the last event is not complete.
@@ -224,7 +211,7 @@ void Analyzer::Loop(Int_t run,
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
 
-      //      arr->Clear(); 
+     //       arr->Clear(); 
 
 
       nb = fChain->GetEntry(jentry);   nbytes += nb;
@@ -311,14 +298,15 @@ void Analyzer::Loop(Int_t run,
           for (UShort_t i=0; i<18; i++) {
             fSiEcal[i][0]=-100.;
             if (SiIsHit[i] == true ){
-              fSiTcal[i]=0.09765625*fSiT[i]; //calibration from ch to ns
+              //fSiTcal[i]=0.09765625*fSiT[i]; //calibration from ch to ns
             //if (SiIsHit[i] == true && proton_beam == true){
               //if (i==1)
-              hSiTcal->Fill(i,fSiT[i]);
+              fSiTcal[i]=ssd_padT_calib->Calib(i,fSiT[i]);
+              hSiTcal->Fill(i,fSiTcal[i]);
               //hSiT->Fill(1,fSiT[1]);
               //Fill individual ssd data 
               if (fSiE[i][0] > 0 ){ // don't fill the histogram with junk
-                fSiEcal[i][0]=ssd_pad_calib->CalibMeV(i,fSiE[i][0]);
+                fSiEcal[i][0]=ssd_padE_calib->CalibMeV(i,fSiE[i][0]);
                 //pad_ch[i]->Fill(fSiE[i][0]);
                 // BUG gate_30s is false up to here!!
                 if (gate_30s) { // this will only do something useful if ppac_detail == 1
@@ -435,7 +423,7 @@ void Analyzer::Loop(Int_t run,
       //PPAC
       if (flag_ppac) { // process PPAC?
 	if (flag_raw) { // raw PPAC data?
-	  for (UShort_t i=0;i<2;i++) if (fRF[i] > 0) hRf[i]->Fill(fRF[i]);
+	  for (UShort_t i=0;i<2;i++) if (fRF[i] > 0.) hRf[i]->Fill(fRF[i]);
           
           //trigger timing
 	  
@@ -478,42 +466,35 @@ void Analyzer::Loop(Int_t run,
 	      }
             }    
           }
-
-          // PPAC calibration for loop
-          for (UShort_t i=0;i<2;i++){
-	    //average time
-	    tof[i] = 0.25*(fPPACcal[i][0]+fPPACcal[i][1]+fPPACcal[i][2]+fPPACcal[i][3]);
-	    dxy[0]=(fPPACcal[i][0]-fPPACcal[i][1]);
-            dxy[1]=(fPPACcal[i][2]-fPPACcal[i][3]);
-            for (UShort_t ii = 0; ii < 2; ii++) {
-             // time calibration
-              dxy[ii] -=PpacOffset[i][ii];
-              dxy[ii] -= PpacOffsetLine[i][ii];
-             // position calibration
-              dxy[ii] *= PpacPositionGain[i][ii];
-              dxy[ii] -= PpacOffsetGeometry[i][ii];
-            }
-              PpacX[i]=dxy[0];
-              if (i==0 ){PpacY[i]=dxy[1];} // PPACaY is normal
-              if (i==1 ){PpacY[i]=(dxy[1]*-1.0);} // PPACbY cables were inverted
-          } //end PPAC calibration for loop
+          if (PpacXYCalib(flag_detail,flag_ppac)) cout << "PPAC XY Calibration failed!" << endl;
           if (tof[0]>0. && tof[1]>0. && PpacIsHit[0] && PpacIsHit[1] ) Tof=tof[1]-tof[0]; 
           
 	  // fill basic PPAC histograms
-          hRF0Tof->Fill(fRF[0],Tof);
-          hRF1Tof->Fill(fRF[1],Tof);
+          
+	  hRF0Tof->Fill(fRFcal[0],Tof);
+          hRF1Tof->Fill(fRFcal[1],Tof);
           hPpac0XY->Fill(PpacX[0],PpacY[0]);
           hPpac1XY->Fill(PpacX[1],PpacY[1]);
-          if (fRF[0] > 0)
+          if (fRF[0] > 0.)
           {
-            hPpac0XRF0->Fill(PpacX[0],fRF[0]);
-            hPpac1XRF0->Fill(PpacX[1],fRF[0]);
+            hPpac0XRF0->Fill(PpacX[0],fRFcal[0]);
+            hPpac1XRF0->Fill(PpacX[1],fRFcal[0]);
           }
-          if (fRF[1] > 0)
+          if (fRF[1] > 0.)
           {
-            hPpac0XRF1->Fill(PpacX[0],fRF[1]);
-            hPpac1XRF1->Fill(PpacX[1],fRF[1]);
+            hPpac0XRF1->Fill(PpacX[0],fRFcal[1]);
+            hPpac1XRF1->Fill(PpacX[1],fRFcal[1]);
           }
+          // target projection function
+	  //Double_t Ppac_sepz=156.; // PPAC separation center to center in mm
+	  fTargetX = new TF1("fTargetX","[0]+((x/(x-[2]))*([1]-[0]))",0,1000);
+	  //fTargetX = new TF1("fTargetX","[1]+((x/[2])*([1]-[0]))",0,1000);
+          fTargetX->SetParNames("PPACaX","PPACbX","PPAC Separation");
+          fTargetX->SetParameters(PpacX[0],PpacX[1],PpacSepZ);
+	  fTargetY = new TF1("fTargetY","[0]+((x/(x-[2]))*([1]-[0]))",0,1000);
+	  //fTargetY = new TF1("fTargetY","[1]+((x/[2])*([1]-[0]))",0,1000);
+          fTargetY->SetParNames("PPACaY","PPACbY","PPAC Separation");
+          fTargetY->SetParameters(PpacY[0],PpacY[1],PpacSepZ);
           
 	  // Turn off all the gates for a new event
           gate_30s=false;
@@ -545,22 +526,29 @@ void Analyzer::Loop(Int_t run,
           
           if (gate_30s) {
 	    hPpacToF_30s->Fill(Tof);
-	      hPpac0XRF0_30s->Fill(PpacX[0],fRF[0]);
-              hPpac1XRF0_30s->Fill(PpacX[1],fRF[0]);
-	      hPpac0XRF1_30s->Fill(PpacX[0],fRF[1]);
-              hPpac1XRF1_30s->Fill(PpacX[1],fRF[1]);
+	      hPpac0XRF0_30s->Fill(PpacX[0],fRFcal[0]);
+              hPpac1XRF0_30s->Fill(PpacX[1],fRFcal[0]);
+	      hPpac0XRF1_30s->Fill(PpacX[0],fRFcal[1]);
+              hPpac1XRF1_30s->Fill(PpacX[1],fRFcal[1]);
+	      if (WindowCut(fTargetX->Eval(452.),fTargetY->Eval(452.)))  hTargetXY_30s->Fill(fTargetX->Eval(452.),fTargetY->Eval(452.)); // PPACa center to window
+	      //hTargetXY_30s->Fill(fTargetX->Eval(654.4),fTargetY->Eval(654.4)); // PPACb center to SSD -- wrong under new format, use PPACa distance
 	  }
           if (gate_29p) {
 	    hPpacToF_29p->Fill(Tof);
-	      hPpac0XRF0_29p->Fill(PpacX[0],fRF[0]);
-              hPpac1XRF0_29p->Fill(PpacX[1],fRF[0]);
-	      hPpac0XRF1_29p->Fill(PpacX[0],fRF[1]);
-              hPpac1XRF1_29p->Fill(PpacX[1],fRF[1]);
+	      hPpac0XRF0_29p->Fill(PpacX[0],fRFcal[0]);
+              hPpac1XRF0_29p->Fill(PpacX[1],fRFcal[0]);
+	      hPpac0XRF1_29p->Fill(PpacX[0],fRFcal[1]);
+              hPpac1XRF1_29p->Fill(PpacX[1],fRFcal[1]);
+	      //hTargetXY_29p->Fill(fTargetX->Eval(654.4),fTargetY->Eval(654.4));
+	      //hTargetXY_29p->Fill(fTargetX->Eval(452),fTargetY->Eval(452));
 	  }
 	  if (gate_30s){
-	        hPpac0XRF1cut->Fill(PpacX[0],fRF[1]);
-	        hPpac1XRF1cut->Fill(PpacX[1],fRF[1]);
+	        hPpac0XRF1cut->Fill(PpacX[0],fRFcal[1]);
+	        hPpac1XRF1cut->Fill(PpacX[1],fRFcal[1]);
 	  }
+	  //if (PpacIsHit[0] && PpacIsHit[1]) hTargetXY->Fill(fTargetX->Eval(654.4),fTargetY->Eval(654.4));
+	  if (PpacIsHit[0] && PpacIsHit[1]) hTargetXY->Fill(fTargetX->Eval(452),fTargetY->Eval(452));
+
         } // end if: flag_detail
       } // end if: flag_ppac
 
@@ -568,26 +556,26 @@ void Analyzer::Loop(Int_t run,
       if (flag_detail && flag_ppac){
 	if (SsdOR){ // physics event
 	  if (fRF[0] > 0. ) {
-	    hPpac0XRF0ssd->Fill(PpacX[0],fRF[0]);
-            hPpac1XRF0ssd->Fill(PpacX[1],fRF[0]);
+	    hPpac0XRF0ssd->Fill(PpacX[0],fRFcal[0]);
+            hPpac1XRF0ssd->Fill(PpacX[1],fRFcal[0]);
             hPpac1XYcut->Fill(PpacX[1],PpacY[1]);
 	  }
 	  if (fRF[1] > 0. ) {
-	    hPpac0XRF1ssd->Fill(PpacX[0],fRF[1]);
-            hPpac1XRF1ssd->Fill(PpacX[1],fRF[1]);
+	    hPpac0XRF1ssd->Fill(PpacX[0],fRFcal[1]);
+            hPpac1XRF1ssd->Fill(PpacX[1],fRFcal[1]);
 	  }
 	}
 	else{ // downscale event
 	  if (fRF[0] > 0.){
-	    hPpac0XRF0ds->Fill(PpacX[0],fRF[0]);
-            hPpac1XRF0ds->Fill(PpacX[1],fRF[0]);
+	    hPpac0XRF0ds->Fill(PpacX[0],fRFcal[0]);
+            hPpac1XRF0ds->Fill(PpacX[1],fRFcal[0]);
 	    if (gate_30s){
 	    // can fill here
 	    }
 	  }
 	  if (fRF[1] > 0.){
-	    hPpac0XRF1ds->Fill(PpacX[0],fRF[1]);
-            hPpac1XRF1ds->Fill(PpacX[1],fRF[1]);
+	    hPpac0XRF1ds->Fill(PpacX[0],fRFcal[1]);
+            hPpac1XRF1ds->Fill(PpacX[1],fRFcal[1]);
 	    if (gate_30s){
 	      //hPpac1XRF1cut->Fill(PpacX[1],fRF[1]);
 	    }
@@ -599,8 +587,14 @@ void Analyzer::Loop(Int_t run,
       if (flag_detail && flag_ssd && flag_ppac) { // PPAC and SSD Strip detailed analysis?
 	for(UShort_t i=0;i<18;i++){
 	    if (SiIsHit[i]){
-	      if (gate_30s)  hPpac0TpadT_30s_ch[i]->Fill(fSiT[i]-tof[0]);
-	      if (gate_29p) hPpac0TpadT_29p_ch[i]->Fill(fSiT[i]-tof[0]);
+	      if (gate_30s)  {
+	        hPpac0TpadT_30s_ch[i]->Fill(fSiTcal[i]-tof[0]);
+	        hPpac1TpadT_30s_ch[i]->Fill(fSiTcal[i]-tof[1]);
+              }
+	      if (gate_29p) {
+	        hPpac0TpadT_29p_ch[i]->Fill(fSiTcal[i]-tof[0]);
+	        hPpac1TpadT_29p_ch[i]->Fill(fSiTcal[i]-tof[1]);
+              }
 	    }
 	}
       } // end if: flag_detail & flag_strip & flag_ppac
@@ -935,9 +929,15 @@ void Analyzer::Loop(Int_t run,
 
       } // end if: flag_tpc
 
+  // arr->Clear(); 
+   delete fTargetX;
+   delete fTargetY;
    } // close loop on jentry
 
    delete ssd_strip_calib;
-   delete ssd_pad_calib;
+   delete ssd_padE_calib;
+   delete ssd_padT_calib;
    delete ppac_calib;
+   delete rf_calib;
+   delete rf_ds_calib;
 } // close Analyzer::Loop

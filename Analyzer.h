@@ -46,6 +46,9 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#include <TF1.h>
+#include <TMath.h>
+#include <TCutG.h>
 
 const Int_t kMaxfadc = 437;
 
@@ -83,6 +86,14 @@ public:
 
 ClassImp(TArtFadcHit);
 
+class TDetector : public TObject {
+public :
+  TDetector(){}
+  virtual ~TDetector(){}
+   ClassDef(TDetector,2);
+};
+
+ClassImp(TDetector);
 /** 
  * @class Analyzer
  * @brief Class for analyzing the data.
@@ -99,6 +110,9 @@ public :
    TChain          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
 
+   // Define any constants -- note in class structure we cannot use static const style
+   // as it is forbidden by ISO C++
+   //#define        rf 59.70; // real RF value
    // Declaration of leaf types
    Double_t        fSiE[18][9];   //[fNHitSi]
    Double_t        fSiEcal[18][9];   //
@@ -115,7 +129,6 @@ public :
    UShort_t        ssdhit[5][2]; // which ssd is triggered
    Double_t        fPPAC[2][5];
    Double_t        fPPACcal[2][5];
-   Double_t        rf; // real RF value
    Double_t        fRF[2];
    Double_t        fRFcal[2];
    Double_t        tof[2]; 
@@ -161,13 +174,10 @@ public :
    Double_t        ZpadC[8][20];
    Double_t        dEpadC[8][20];
    Double_t        TpadC[8][20];
-   // PPAC calibration that is not handled in ppac_calib.dat
-   Float_t dxy[2]; // 1 is X, 2 is Y; tmp variable for calibration loops
-   Float_t PpacOffset[2][2];
-   Float_t PpacOffsetLine[2][2];
-   Float_t PpacPositionGain[2][2];
-   Float_t PpacOffsetGeometry[2][2];
+   // ppac calib?
    Double_t PpacX[2], PpacY[2];
+   TF1 *fTargetX ;
+   TF1 *fTargetY ;
    
    TClonesArray *arr;
    
@@ -184,11 +194,16 @@ public :
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    void Init(TChain *tree);
+   virtual void SetRF();
+   virtual UShort_t SetPpacSepZ();
+   virtual Bool_t WindowCut(Double_t x=99., Double_t y=99.);
+   //virtual Bool_t WindowCut(Double_t &x, Double_t &y);
    virtual void     Loop(Int_t run=0,
      Bool_t flag_raw=0, Bool_t flag_detail=0, 
      Bool_t flag_ssd=0, Bool_t flag_strip=0, 
      Bool_t flag_ppac=0, 
      Bool_t flag_tpc=0);
+   virtual UShort_t PpacXYCalib(Bool_t flag_detail=0, Bool_t flag_ppac=0);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 

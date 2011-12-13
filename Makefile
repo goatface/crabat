@@ -54,7 +54,7 @@ clean:
 	@rm -rf doc/html doc/latex
 	@find . -maxdepth 2 -name "*.o" | xargs -I{} rm {}
 
-%.o: %.cxx Analyzer.cxx run.h
+%.o: %.cxx Analyzer.cxx Analyzer_config.cxx run.h
 	@echo "CXX $@ $<"
 	@$(CXX) $(CXXFLAGS) $(INCLUDE) -c -o $@ $<
 
@@ -66,6 +66,6 @@ dictCal.cxx: Calibration.h linkdefCal.h Calibration.cxx
 	@echo "ROOT $@"
 	@rootcint -f $@ -c $(CXXFLAGS) $< linkdefCal.h
 
-dictAnaly.cxx: Analyzer.h linkdefAnaly.h Analyzer.cxx
+dictAnaly.cxx: Analyzer.h linkdefAnaly.h Analyzer.cxx Analyzer_config.cxx
 	@echo "ROOT $@"
 	@rootcint -f $@ -c $(CXXFLAGS )$< linkdefAnaly.h

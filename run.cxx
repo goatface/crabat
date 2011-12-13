@@ -47,7 +47,6 @@ gApplication->Terminate();
 #include "run.h" // mainly allocates memory for histograms
 #include "Analyzer.cxx" // the analysis code
 #include "TRint.h" // so we can run a ROOT session after analysis finishes
-#include "KVNucleus.h" 		// KaliVeda class
 #include "KV2Body.h" 		// KaliVeda class
 
 // how to get the code of this into doxygen...?
@@ -250,7 +249,8 @@ int main(int argc, char **argv)
   // Initalize the histograms
   HistInit();
   // ANALYZE THE DATA!
-  Analyzer t(ch); t.Loop(run_proc,flag_raw,flag_detail,flag_ssd,flag_strip,flag_ppac,flag_tpc);
+  Analyzer t(ch); 
+  t.Loop(run_proc,flag_raw,flag_detail,flag_ssd,flag_strip,flag_ppac,flag_tpc);
   //t.Show(0);
   
   // set up the histogram output file

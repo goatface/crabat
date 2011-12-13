@@ -103,7 +103,9 @@ TH2F *hSiT ;
 TH2F *hSiTcal ;
 
 TH1F *hPpac0TpadT_30s_ch[18];
+TH1F *hPpac1TpadT_30s_ch[18];
 TH1F *hPpac0TpadT_29p_ch[18];
+TH1F *hPpac1TpadT_29p_ch[18];
 TH1F *hPpacToF_30s ;
 TH1F *hPpacToF_29p ;
 
@@ -122,6 +124,9 @@ TH1F *hPpac1TY2 ;
 TH2F *hPpac0XY ;
 TH2F *hPpac1XY ;
 TH2F *hPpac1XYcut ;
+TH2F *hTargetXY ;
+TH2F *hTargetXY_30s ;
+TH2F *hTargetXY_29p ;
 TH2F *hPpac0XRF0 ;
 TH2F *hPpac0XRF0_29p ;
 TH2F *hPpac0XRF1_29p ;
@@ -213,8 +218,12 @@ void HistInit(){ // histogram initalization
     } // end if: flag_raw
     
     if (flag_detail){
-      hSiTcal = new TH2F("hSiTcal","hSiTcal",18,-0.5,17.5, 30000,0.,30000.);
+      hSiTcal = new TH2F("hSiTcal","hSiTcal",18,-0.5,17.5, 30000,0.,3000.);
       hSiTcal->SetOption("COL");
+      hSiTcal->GetXaxis()->SetTitle("Detector number");
+      hSiTcal->GetXaxis()->CenterTitle(true);
+      hSiTcal->GetYaxis()->SetTitle("Time (ns)");
+      hSiTcal->GetYaxis()->CenterTitle(true);
       hSiPadEcal = new TH2F("hSiPadEcal","hSiPadEcal",18,-0.5,17.5, 410,0.,4100.);
     } // end if: flag_detail
     
@@ -276,22 +285,22 @@ void HistInit(){ // histogram initalization
     if (flag_detail){
       for (UShort_t i=0;i<2;i++){
         sprintf(name,"hRfcal%d",i);
-        hRfcal[i] = new TH1F(name,name,300,0,60);
+        hRfcal[i] = new TH1F(name,name,300,0.,60.);
         hRfcal[i]->GetXaxis()->SetTitle("RF (ns)");
 	hRfcal[i]->GetXaxis()->CenterTitle(true);
         hRfcal[i]->GetYaxis()->SetTitle("counts");
 	hRfcal[i]->GetYaxis()->CenterTitle(true);
       }
-      hRF0Tof = new TH2F("hRF0Tof","RF0 vs. PPAC Tof",600,0.,600.,200,0.,20.);
+      hRF0Tof = new TH2F("hRF0Tof","RF0 vs. PPAC Tof",300,0.,60.,200,0.,20.);
       hRF0Tof->SetOption("COL");
-      hRF0Tof->GetXaxis()->SetTitle("RF (arb)");
+      hRF0Tof->GetXaxis()->SetTitle("RF (ns)");
       hRF0Tof->GetXaxis()->CenterTitle(true);
       hRF0Tof->GetYaxis()->SetTitle("Time of Flight (ns)");
       hRF0Tof->GetYaxis()->CenterTitle(true);
       
-      hRF1Tof = new TH2F("hRF1Tof","RF1 vs. PPAC Tof",600,0.,600.,200,0.,20.);
+      hRF1Tof = new TH2F("hRF1Tof","RF1 vs. PPAC Tof",300,0.,60.,200,0.,20.);
       hRF1Tof->SetOption("COL");
-      hRF1Tof->GetXaxis()->SetTitle("RF (arb)");
+      hRF1Tof->GetXaxis()->SetTitle("RF (ns)");
       hRF1Tof->GetXaxis()->CenterTitle(true);
       hRF1Tof->GetYaxis()->SetTitle("Time of Flight (ns)");
       hRF1Tof->GetYaxis()->CenterTitle(true);
@@ -317,158 +326,179 @@ void HistInit(){ // histogram initalization
       hPpac1XYcut->GetYaxis()->SetTitle("Y Position (mm)");
       hPpac1XYcut->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF0 = new TH2F("hPpac0XRF0","PPACa X vs. RF0",160,-40.,40.,600,0.,600.);
+      hTargetXY = new TH2F("hTargetXY","Target X vs. Y",160,-40.,40.,160,-40.,40.);
+      hTargetXY->SetOption("COL");   
+      hTargetXY->GetXaxis()->SetTitle("X Position (mm)");
+      hTargetXY->GetXaxis()->CenterTitle(true);
+      hTargetXY->GetYaxis()->SetTitle("Y Position (mm)");
+      hTargetXY->GetYaxis()->CenterTitle(true);
+      
+      hTargetXY_30s = new TH2F("hTargetXY_30s","^{30}S Target X vs. Y",160,-40.,40.,160,-40.,40.);
+      hTargetXY_30s->SetOption("COL");   
+      hTargetXY_30s->GetXaxis()->SetTitle("X Position (mm)");
+      hTargetXY_30s->GetXaxis()->CenterTitle(true);
+      hTargetXY_30s->GetYaxis()->SetTitle("Y Position (mm)");
+      hTargetXY_30s->GetYaxis()->CenterTitle(true);
+      
+      hTargetXY_29p = new TH2F("hTargetXY_29p","^{29}P Target X vs. Y",160,-40.,40.,160,-40.,40.);
+      hTargetXY_29p->SetOption("COL");   
+      hTargetXY_29p->GetXaxis()->SetTitle("X Position (mm)");
+      hTargetXY_29p->GetXaxis()->CenterTitle(true);
+      hTargetXY_29p->GetYaxis()->SetTitle("Y Position (mm)");
+      hTargetXY_29p->GetYaxis()->CenterTitle(true);
+      
+      hPpac0XRF0 = new TH2F("hPpac0XRF0","PPACa X vs. RF0",160,-40.,40.,300,0.,60.);
       hPpac0XRF0->SetOption("COL");
       hPpac0XRF0->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF0->GetXaxis()->CenterTitle(true);
-      hPpac0XRF0->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF0->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF1 = new TH2F("hPpac0XRF1","PPACa X vs. RF1",160,-40.,40.,600,0.,600.);
+      hPpac0XRF1 = new TH2F("hPpac0XRF1","PPACa X vs. RF1",160,-40.,40.,300,0.,60.);
       hPpac0XRF1->SetOption("COL");
       hPpac0XRF1->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF1->GetXaxis()->CenterTitle(true);
-      hPpac0XRF1->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF1->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF0 = new TH2F("hPpac1XRF0","PPACb X vs. RF0",160,-40.,40.,600,0.,600.);
+      hPpac1XRF0 = new TH2F("hPpac1XRF0","PPACb X vs. RF0",160,-40.,40.,300,0.,60.);
       hPpac1XRF0->SetOption("COL");
       hPpac1XRF0->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF0->GetXaxis()->CenterTitle(true);
-      hPpac1XRF0->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF0->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF0_29p = new TH2F("hPpac0XRF0_29p","PPACa X vs. RF0 29P",160,-40.,40.,600,0.,600.);
+      hPpac0XRF0_29p = new TH2F("hPpac0XRF0_29p","PPACa X vs. RF0 29P",160,-40.,40.,300,0.,60.);
       hPpac0XRF0_29p->SetOption("COL");
       hPpac0XRF0_29p->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF0_29p->GetXaxis()->CenterTitle(true);
-      hPpac0XRF0_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0_29p->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF0_29p->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF1_29p = new TH2F("hPpac0XRF1_29p","PPACa X vs. RF1 29P",160,-40.,40.,600,0.,600.);
+      hPpac0XRF1_29p = new TH2F("hPpac0XRF1_29p","PPACa X vs. RF1 29P",160,-40.,40.,300,0.,60.);
       hPpac0XRF1_29p->SetOption("COL");
       hPpac0XRF1_29p->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF1_29p->GetXaxis()->CenterTitle(true);
-      hPpac0XRF1_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1_29p->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF1_29p->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF0_30s = new TH2F("hPpac0XRF0_30s","PPACa X vs. RF0 30S",160,-40.,40.,600,0.,600.);
+      hPpac0XRF0_30s = new TH2F("hPpac0XRF0_30s","PPACa X vs. RF0 30S",160,-40.,40.,300,0.,60.);
       hPpac0XRF0_30s->SetOption("COL");
       hPpac0XRF0_30s->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF0_30s->GetXaxis()->CenterTitle(true);
-      hPpac0XRF0_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0_30s->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF0_30s->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF1_30s = new TH2F("hPpac0XRF1_30s","PPACa X vs. RF1 30S",160,-40.,40.,600,0.,600.);
+      hPpac0XRF1_30s = new TH2F("hPpac0XRF1_30s","PPACa X vs. RF1 30S",160,-40.,40.,300,0.,60.);
       hPpac0XRF1_30s->SetOption("COL");
       hPpac0XRF1_30s->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF1_30s->GetXaxis()->CenterTitle(true);
-      hPpac0XRF1_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1_30s->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF1_30s->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF0_29p = new TH2F("hPpac1XRF0_29p","PPACb X vs. RF0 29P",160,-40.,40.,600,0.,600.);
+      hPpac1XRF0_29p = new TH2F("hPpac1XRF0_29p","PPACb X vs. RF0 29P",160,-40.,40.,300,0.,60.);
       hPpac1XRF0_29p->SetOption("COL");
       hPpac1XRF0_29p->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF0_29p->GetXaxis()->CenterTitle(true);
-      hPpac1XRF0_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0_29p->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF0_29p->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF1_29p = new TH2F("hPpac1XRF1_29p","PPACb X vs. RF1 29P",160,-40.,40.,600,0.,600.);
+      hPpac1XRF1_29p = new TH2F("hPpac1XRF1_29p","PPACb X vs. RF1 29P",160,-40.,40.,300,0.,60.);
       hPpac1XRF1_29p->SetOption("COL");
       hPpac1XRF1_29p->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF1_29p->GetXaxis()->CenterTitle(true);
-      hPpac1XRF1_29p->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1_29p->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF1_29p->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF0_30s = new TH2F("hPpac1XRF0_30s","PPACb X vs. RF0 30S",160,-40.,40.,600,0.,600.);
+      hPpac1XRF0_30s = new TH2F("hPpac1XRF0_30s","PPACb X vs. RF0 30S",160,-40.,40.,300,0.,60.);
       hPpac1XRF0_30s->SetOption("COL");
       hPpac1XRF0_30s->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF0_30s->GetXaxis()->CenterTitle(true);
-      hPpac1XRF0_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0_30s->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF0_30s->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF1_30s = new TH2F("hPpac1XRF1_30s","PPACb X vs. RF1 30S",160,-40.,40.,600,0.,600.);
+      hPpac1XRF1_30s = new TH2F("hPpac1XRF1_30s","PPACb X vs. RF1 30S",160,-40.,40.,300,0.,60.);
       hPpac1XRF1_30s->SetOption("COL");
       hPpac1XRF1_30s->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF1_30s->GetXaxis()->CenterTitle(true);
-      hPpac1XRF1_30s->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1_30s->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF1_30s->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF1cut = new TH2F("hPpac0XRF1cut","PPACa X vs. RF1",160,-40.,40.,600,0.,600.);
+      hPpac0XRF1cut = new TH2F("hPpac0XRF1cut","PPACa X vs. RF1",160,-40.,40.,300,0.,60.);
       hPpac0XRF1cut->SetOption("COL");
       hPpac0XRF1cut->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF1cut->GetXaxis()->CenterTitle(true);
-      hPpac0XRF1cut->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1cut->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF1cut->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF1cut = new TH2F("hPpac1XRF1cut","PPACb X vs. RF1",160,-40.,40.,600,0.,600.);
+      hPpac1XRF1cut = new TH2F("hPpac1XRF1cut","PPACb X vs. RF1",160,-40.,40.,300,0.,60.);
       hPpac1XRF1cut->SetOption("COL");
       hPpac1XRF1cut->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF1cut->GetXaxis()->CenterTitle(true);
-      hPpac1XRF1cut->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1cut->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF1cut->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF1 = new TH2F("hPpac1XRF1","PPACb X vs. RF1",160,-40.,40.,600,0.,600.);
+      hPpac1XRF1 = new TH2F("hPpac1XRF1","PPACb X vs. RF1",160,-40.,40.,300,0.,60.);
       hPpac1XRF1->SetOption("COL");
       hPpac1XRF1->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF1->GetXaxis()->CenterTitle(true);
-      hPpac1XRF1->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF1->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF0ds = new TH2F("hPpac0XRF0ds","PPACa X vs. RF0 downscale",160,-40.,40.,600,0.,600.);
+      hPpac0XRF0ds = new TH2F("hPpac0XRF0ds","PPACa X vs. RF0 downscale",160,-40.,40.,300,0.,60.);
       hPpac0XRF0ds->SetOption("COL");
       hPpac0XRF0ds->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF0ds->GetXaxis()->CenterTitle(true);
-      hPpac0XRF0ds->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0ds->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF0ds->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF1ds = new TH2F("hPpac0XRF1ds","PPACa X vs. RF1 downscale",160,-40.,40.,600,0.,600.);
+      hPpac0XRF1ds = new TH2F("hPpac0XRF1ds","PPACa X vs. RF1 downscale",160,-40.,40.,300,0.,60.);
       hPpac0XRF1ds->SetOption("COL");
       hPpac0XRF1ds->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF1ds->GetXaxis()->CenterTitle(true);
-      hPpac0XRF1ds->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1ds->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF1ds->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF0ssd = new TH2F("hPpac0XRF0ssd","PPACa X vs. RF0 SSD-OR",160,-40.,40.,600,0.,600.);
+      hPpac0XRF0ssd = new TH2F("hPpac0XRF0ssd","PPACa X vs. RF0 SSD-OR",160,-40.,40.,300,0.,60.);
       hPpac0XRF0ssd->SetOption("COL");
       hPpac0XRF0ssd->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF0ssd->GetXaxis()->CenterTitle(true);
-      hPpac0XRF0ssd->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF0ssd->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF0ssd->GetYaxis()->CenterTitle(true);
       
-      hPpac0XRF1ssd = new TH2F("hPpac0XRF1ssd","PPACa X vs. RF1 SSD-OR",160,-40.,40.,600,0.,600.);
+      hPpac0XRF1ssd = new TH2F("hPpac0XRF1ssd","PPACa X vs. RF1 SSD-OR",160,-40.,40.,300,0.,60.);
       hPpac0XRF1ssd->SetOption("COL");
       hPpac0XRF1ssd->GetXaxis()->SetTitle("X Position (mm)");
       hPpac0XRF1ssd->GetXaxis()->CenterTitle(true);
-      hPpac0XRF1ssd->GetYaxis()->SetTitle("RF (arb)");
+      hPpac0XRF1ssd->GetYaxis()->SetTitle("RF (ns)");
       hPpac0XRF1ssd->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF0ds = new TH2F("hPpac1XRF0ds","PPACb X vs. RF0 downscale",160,-40.,40.,600,0.,600.);
+      hPpac1XRF0ds = new TH2F("hPpac1XRF0ds","PPACb X vs. RF0 downscale",160,-40.,40.,300,0.,60.);
       hPpac1XRF0ds->SetOption("COL");
       hPpac1XRF0ds->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF0ds->GetXaxis()->CenterTitle(true);
-      hPpac1XRF0ds->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0ds->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF0ds->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF1ds = new TH2F("hPpac1XRF1ds","PPACb X vs. RF1 downscale",160,-40.,40.,600,0.,600.);
+      hPpac1XRF1ds = new TH2F("hPpac1XRF1ds","PPACb X vs. RF1 downscale",160,-40.,40.,300,0.,60.);
       hPpac1XRF1ds->SetOption("COL");
       hPpac1XRF1ds->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF1ds->GetXaxis()->CenterTitle(true);
-      hPpac1XRF1ds->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1ds->GetYaxis()->SetTitle("RF (ns");
       hPpac1XRF1ds->GetYaxis()->CenterTitle(true);
       
-      hPpac1XRF0ssd = new TH2F("hPpac1XRF0ssd","PPACb X vs. RF0 SSD-OR",160,-40.,40.,600,0.,600.);
+      hPpac1XRF0ssd = new TH2F("hPpac1XRF0ssd","PPACb X vs. RF0 SSD-OR",160,-40.,40.,300,0.,60.);
       hPpac1XRF0ssd->SetOption("COL");
       hPpac1XRF0ssd->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF0ssd->GetXaxis()->CenterTitle(true);
-      hPpac1XRF0ssd->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF0ssd->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF0ssd->GetYaxis()->CenterTitle(true);
 
-      hPpac1XRF1ssd = new TH2F("hPpac1XRF1ssd","PPACb X vs. RF1 SSD-OR",160,-40.,40.,600,0.,600.);
+      hPpac1XRF1ssd = new TH2F("hPpac1XRF1ssd","PPACb X vs. RF1 SSD-OR",160,-40.,40.,300,0.,60.);
       hPpac1XRF1ssd->SetOption("COL");
       hPpac1XRF1ssd->GetXaxis()->SetTitle("X Position (mm)");
       hPpac1XRF1ssd->GetXaxis()->CenterTitle(true);
-      hPpac1XRF1ssd->GetYaxis()->SetTitle("RF (arb)");
+      hPpac1XRF1ssd->GetYaxis()->SetTitle("RF (ns)");
       hPpac1XRF1ssd->GetYaxis()->CenterTitle(true);
 
       hPpacToF_30s = new TH1F("hPpacToF_30s","hPpacToF_30s",200,0.,20.);
@@ -481,8 +511,12 @@ void HistInit(){ // histogram initalization
     for (UShort_t i=0;i<18;i++) {
       sprintf(name,"hPpac0TpadT_30s_ch%d",i);
       hPpac0TpadT_30s_ch[i]= new TH1F(name, name, 15000,0.,1500.);
+      sprintf(name,"hPpac1TpadT_30s_ch%d",i);
+      hPpac1TpadT_30s_ch[i]= new TH1F(name, name, 15000,0.,1500.);
       sprintf(name,"hPpac0TpadT_29p_ch%d",i);
       hPpac0TpadT_29p_ch[i]= new TH1F(name, name, 15000,0,1500.);
+      sprintf(name,"hPpac1TpadT_29p_ch%d",i);
+      hPpac1TpadT_29p_ch[i]= new TH1F(name, name, 15000,0,1500.);
       sprintf(name,"pad_ch_gated%d",i);
       pad_ch_gated[i]= new TH1F(name, name, 800,0,4100);
     }
@@ -729,6 +763,9 @@ void HistWrite() {
        hPpac0XY->Write();
        hPpac1XY->Write();  
        hPpac1XYcut->Write();  
+       hTargetXY->Write();  
+       hTargetXY_30s->Write();  
+       hTargetXY_29p->Write();  
        hPpac0XRF0->Write(); 
        hPpac1XRF0->Write(); 
        hPpac0XRF1->Write(); 
@@ -760,7 +797,9 @@ void HistWrite() {
     if (flag_detail) { // write PPAC / SSD detailed histograms
        for (UShort_t i=0;i<18;i++){
          hPpac0TpadT_30s_ch[i]->Write();
+         hPpac1TpadT_30s_ch[i]->Write();
          hPpac0TpadT_29p_ch[i]->Write();
+         hPpac1TpadT_29p_ch[i]->Write();
        }
     } // end if: flag_detail
   } // end if: flag_ssd & flag_ppac
@@ -851,6 +890,9 @@ void HistClean(){ // function to free histogram memory
   delete hPpac0XY ;
   delete hPpac1XY ;
   delete hPpac1XYcut ;
+  delete hTargetXY ;
+  delete hTargetXY_29p ;
+  delete hTargetXY_30s ;
   delete hPpac0XRF0 ;
   delete hPpac0XRF0_29p ;
   delete hPpac0XRF1_29p ;
