@@ -24,4 +24,5 @@
 #pragma link off all typedef;
 #pragma link C++ class Analyzer;
 #pragma link C++ class TArtFadcHit;
+#pragma link C++ class TDetector;
 #endif

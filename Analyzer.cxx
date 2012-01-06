@@ -57,80 +57,6 @@ Bool_t goodRF_30s=false, goodPpacX_30s=false;
 Bool_t goodRF_29p=false, goodPpacX_29p=false;
 Bool_t goodRF_31s=false, goodPpacX_31s=false;
 
-// TPC pad mapping 
-Short_t tpc_ch[2][144]={
-
-{ -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,01:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,02:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,03:DISABLED
-  40,41,42,43,44,45,46,47,  // SET 0,04:Beam right downstream
-  32,33,34,35,36,37,38,39,  // SET 0,05:Beam right downstream
-  24,25,26,27,28,29,30,31,  // SET 0,06:Beam right downstream
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,07:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,08:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,09:DISABLED
-  16,17,18,19,20,21,22,23,  // SET 0,10:Beam right upstream
-  8,9,10,11,12,13,14,15,    // SET 0,11:Beam right upstream
-  0,1,2,3,4,5,6,7,          // SET 0,12:Beam right upstream
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,13:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,14:DISABLED
-  0,1,2,3,4,5,6,7,          // SET 0,15:Left upstream
-  7,6,5,4,3,2,1,0,          // SET 0,16:Center right      should it be?: // 0,1,2,3,4,5,6,7, // Center right
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
-  0,1,2,3,4,5,6,7},         // SET 0,18:Right upstream
-
- { 31,30,29,28,27,26,25,24, // SET 1,01:Beam left downstream
-  39,38,37,36,35,34,33,32,  // SET 1,02:Beam left downstream
-  47,46,45,44,43,42,41,40,  // SET 1,03:Beam left downstream
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,04:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,05:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,06:DISABLED 
-  7,6,5,4,3,2,1,0,          // SET 1,07:Beam left upstream
-  15,14,13,12,11,10,9,8,    // SET 1,08:Beam left upstream
-  23,22,21,20,19,18,17,16,  // SET 1,09:Beam left upstream
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,10:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,11:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,12:DISABLED
-  0,1,2,3,4,5,6,7,          // SET 1,13:Center left
-  0,1,2,3,4,5,6,7,          // SET 1,14:Left downstream
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
-  0,1,2,3,4,5,6,7           // SET 1,17:Right downstream
-  -1,-1,-1,-1,-1,-1,-1,-1}  // SET 1,18:DISABLED
-};
-
-//internal calibration for beam pad
-Double_t padBgain[2][48]={
-{ // runs 1001-1005
-  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,// 0-7
-  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
-  0.712629, .69137310,0.706643,0.732711,.74086605,0.655,1.,1., // 16-23
-  0.708874,0.706074,0.70031,0.701813,0.696598713,0.70119423,0.6988148,1., //24-31
-  0.69839515,0.693352,0.69736996,0.696989,0.697088,0.696793,0.69828,0.696932,  //32-39
-  1.,0.65594417,0.701976,0.701372,0.706313,0.70744137,.70876,0.68},  //40-47
-  //46 is weird here even though the same method is used...
-  //1.,0.65594417,0.701976,0.701372,0.706313,0.70744137,.77039460,0.68},  //40-47
-
-{ //other runs
-  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
-  1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
-  1.  ,1.10,1.  ,1.  ,0.95,1.  ,1.  ,1.  , // 16-23
-  1.  ,1.  ,1.  ,1.  ,0.97,0.99,0.94,1.  , // 24-31
-  0.97,1.  ,0.98,1.  ,1.  ,1.  ,1.  ,1.  , // 32-39
-  1.03,1.03,1.  ,1.  ,1.  ,0.97,0.90,1.  // 40-47
-}};
-
-
-/*
-Double_t padBgain[48]={
-1.,1.,1.,1.,1.,1.,1.,1.,
-1.,1.,1.,1.,1.,1.,1.,1.,
-1.,1.,1.,1.,1.,1.,1.,1.,
-1.,1.,1.,1.,1.,1.,1.,1.,
-1.,1.,1.,1.,1.,1.,1.,1.,
-1.,1.,1.,1.,1.,1.,1.,1.};
-*/
-
 /**
  * @brief Loops over the TChain and entries
  * @details Oh my god there are so many details here.
@@ -147,60 +73,73 @@ void Analyzer::Loop(Int_t run,
   //Fast function returns kBigNumber when it is TChain
   //Long64_t nentries = fChain->GetEntriesFast(); // I think this caused segfault -- daid
   Long64_t nentries = fChain->GetEntries();
-   cout << "Entries: " << nentries << endl;
+  cout << "Entries: " << nentries << endl;
 
-   Long64_t nbytes = 0, nb = 0;
+  Long64_t nbytes = 0, nb = 0;
 
-   //Fancy color palette
-   gStyle->SetPalette(1,0);
+  //Fancy color palette
+  gStyle->SetPalette(1,0);
 
-   //Calibration params
+  //Calibration params
 
-   Calibration *ssd_strip_calib=new Calibration("ssd_strip_calib.dat",96);//12x8
-   Calibration *ssd_padE_calib=new Calibration("ssd_padE_calib.dat",19);
-   Calibration *ssd_padT_calib=new Calibration("ssd_padT_calib.dat",19);
-   Calibration *ppac_calib=new Calibration("ppac_calib.dat",10);
-   Calibration *rf_calib=new Calibration("rf_calib.dat",2);
-   Calibration *rf_ds_calib=new Calibration("rf_delay_calib.dat",2);
-   
-   if (flag_detail){
-     if (flag_strip){
-       ssd_strip_calib->ScanFile();
-       ssd_strip_calib->ShowEntries();
-     }
-     if (flag_ssd){
-       ssd_padE_calib->ScanFile();
-       ssd_padE_calib->ShowEntries();
-       ssd_padT_calib->ScanFile();
-       ssd_padT_calib->ShowEntries();
-     }
-     if (flag_ppac){
-       ppac_calib->ScanFile();
-       ppac_calib->ShowEntries();
+  Calibration *ssd_strip_calib=new Calibration("ssd_strip_calib.dat",96);//12x8
+  Calibration *ssd_padE_calib=new Calibration("ssd_padE_calib.dat",19);
+  Calibration *ssd_padT_calib=new Calibration("ssd_padT_calib.dat",19);
+  Calibration *ppac_calib=new Calibration("ppac_calib.dat",10);
+  Calibration *rf_calib=new Calibration("rf_calib.dat",2);
+  Calibration *rf_ds_calib=new Calibration("rf_delay_calib.dat",2);
+ 
+  TDetector MSTPC;
+  vector<vector<Short_t> > tpc_ch=MSTPC.TDetector::SetTpcMap();
+  vector<vector<Double_t> > padBgain=MSTPC.TDetector::SetTpcBgain();
 
-       // PPAC downscale coincidence delay (nearly 805 ns, but here in ch)
-       //there should be no need for these data? 07 Dec 2011 01:01:38 
-       trig_dly_ppac[0][0]=8246.;
-       trig_dly_ppac[0][1]=8244.;
-       trig_dly_ppac[0][2]=8244.;
-       trig_dly_ppac[0][3]=8242.;
-       trig_dly_ppac[1][0]=8247.;
-       trig_dly_ppac[1][1]=8246.;
-       trig_dly_ppac[1][2]=8250.;
-       trig_dly_ppac[1][3]=8248.;
+  if (flag_detail){
+    if (flag_strip){
+      ssd_strip_calib->ScanFile();
+      ssd_strip_calib->ShowEntries();
+    }
+    if (flag_ssd){
+      ssd_padE_calib->ScanFile();
+      ssd_padE_calib->ShowEntries();
+      ssd_padT_calib->ScanFile();
+      ssd_padT_calib->ShowEntries();
+    }
+    if (flag_ppac){
+      ppac_calib->ScanFile();
+      ppac_calib->ShowEntries();
 
-       rf_calib->ScanFile();
-       rf_calib->ShowEntries();
-       rf_ds_calib->ScanFile();
-       rf_ds_calib->ShowEntries();
-       
-       SetRF();
+      // PPAC downscale coincidence delay (nearly 805 ns, but here in ch)
+      //there should be no need for these data? 07 Dec 2011 01:01:38 
+      trig_dly_ppac[0][0]=8246.;
+      trig_dly_ppac[0][1]=8244.;
+      trig_dly_ppac[0][2]=8244.;
+      trig_dly_ppac[0][3]=8242.;
+      trig_dly_ppac[1][0]=8247.;
+      trig_dly_ppac[1][1]=8246.;
+      trig_dly_ppac[1][2]=8250.;
+      trig_dly_ppac[1][3]=8248.;
 
-     }
-   } // end if: flag_detail
-   //int ssdTime[18] = {0};
+      rf_calib->ScanFile();
+      rf_calib->ShowEntries();
+      rf_ds_calib->ScanFile();
+      rf_ds_calib->ShowEntries();
+      
+      SetRF();
 
-static const UShort_t PpacSepZ = SetPpacSepZ();
+    }
+  } // end if: flag_detail
+  //int ssdTime[18] = {0};
+
+  static const UShort_t PpacSepZ = SetPpacSepZ();
+  // target projection function
+  //Double_t Ppac_sepz=156.; // PPAC separation center to center in mm
+  fTargetX = new TF1("fTargetX","[0]+((x/(x-[2]))*([1]-[0]))",0,1000);
+  //fTargetX = new TF1("fTargetX","[1]+((x/[2])*([1]-[0]))",0,1000);
+  fTargetX->SetParNames("PPACaX","PPACbX","PPAC Separation");
+  fTargetY = new TF1("fTargetY","[0]+((x/(x-[2]))*([1]-[0]))",0,1000);
+  //fTargetY = new TF1("fTargetY","[1]+((x/[2])*([1]-[0]))",0,1000);
+  fTargetY->SetParNames("PPACaY","PPACbY","PPAC Separation");
+  
 
    //Loop on entries
    for (Long64_t jentry=0; jentry<nentries-1;jentry++) {//-1...needed when the last event is not complete.
@@ -470,7 +409,7 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
           if (tof[0]>0. && tof[1]>0. && PpacIsHit[0] && PpacIsHit[1] ) Tof=tof[1]-tof[0]; 
           
 	  // fill basic PPAC histograms
-          
+           
 	  hRF0Tof->Fill(fRFcal[0],Tof);
           hRF1Tof->Fill(fRFcal[1],Tof);
           hPpac0XY->Fill(PpacX[0],PpacY[0]);
@@ -485,7 +424,16 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
             hPpac0XRF1->Fill(PpacX[0],fRFcal[1]);
             hPpac1XRF1->Fill(PpacX[1],fRFcal[1]);
           }
-          // target projection function
+  fTargetX->SetParameters(PpacX[0],PpacX[1],PpacSepZ);
+  fTargetY->SetParameters(PpacY[0],PpacY[1],PpacSepZ);
+  TargetX=-100.;
+  TargetY=-100.;
+  if (PpacIsHit[0] && PpacIsHit[1]){
+	      TargetX=fTargetX->Eval(452.);
+	      TargetY=fTargetY->Eval(452.); // PPACa center to window
+    
+  }
+          /*// target projection function
 	  //Double_t Ppac_sepz=156.; // PPAC separation center to center in mm
 	  fTargetX = new TF1("fTargetX","[0]+((x/(x-[2]))*([1]-[0]))",0,1000);
 	  //fTargetX = new TF1("fTargetX","[1]+((x/[2])*([1]-[0]))",0,1000);
@@ -495,7 +443,7 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
 	  //fTargetY = new TF1("fTargetY","[1]+((x/[2])*([1]-[0]))",0,1000);
           fTargetY->SetParNames("PPACaY","PPACbY","PPAC Separation");
           fTargetY->SetParameters(PpacY[0],PpacY[1],PpacSepZ);
-          
+          */
 	  // Turn off all the gates for a new event
           gate_30s=false;
 	  gate_29p=false;
@@ -530,8 +478,8 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
               hPpac1XRF0_30s->Fill(PpacX[1],fRFcal[0]);
 	      hPpac0XRF1_30s->Fill(PpacX[0],fRFcal[1]);
               hPpac1XRF1_30s->Fill(PpacX[1],fRFcal[1]);
-	      if (WindowCut(fTargetX->Eval(452.),fTargetY->Eval(452.)))  hTargetXY_30s->Fill(fTargetX->Eval(452.),fTargetY->Eval(452.)); // PPACa center to window
-	      //hTargetXY_30s->Fill(fTargetX->Eval(654.4),fTargetY->Eval(654.4)); // PPACb center to SSD -- wrong under new format, use PPACa distance
+	      hTargetXY_30s->Fill(fTargetX->Eval(452.),fTargetY->Eval(452.)); // PPACa center to window
+	      if (WindowCut(TargetX,TargetY))  hTargetXYcut_30s->Fill(TargetX,TargetY); // PPACa center to window
 	  }
           if (gate_29p) {
 	    hPpacToF_29p->Fill(Tof);
@@ -539,6 +487,7 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
               hPpac1XRF0_29p->Fill(PpacX[1],fRFcal[0]);
 	      hPpac0XRF1_29p->Fill(PpacX[0],fRFcal[1]);
               hPpac1XRF1_29p->Fill(PpacX[1],fRFcal[1]);
+	      if (WindowCut(TargetX,TargetY))  hTargetXY_29p->Fill(TargetX,TargetY); // PPACa center to window
 	      //hTargetXY_29p->Fill(fTargetX->Eval(654.4),fTargetY->Eval(654.4));
 	      //hTargetXY_29p->Fill(fTargetX->Eval(452),fTargetY->Eval(452));
 	  }
@@ -547,7 +496,11 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
 	        hPpac1XRF1cut->Fill(PpacX[1],fRFcal[1]);
 	  }
 	  //if (PpacIsHit[0] && PpacIsHit[1]) hTargetXY->Fill(fTargetX->Eval(654.4),fTargetY->Eval(654.4));
-	  if (PpacIsHit[0] && PpacIsHit[1]) hTargetXY->Fill(fTargetX->Eval(452),fTargetY->Eval(452));
+	  if (PpacIsHit[0] && PpacIsHit[1]) {
+	    hTargetXY->Fill(TargetX,TargetY);
+	    if (WindowCut(TargetX,TargetY))  hTargetXYcut->Fill(TargetX,TargetY); // PPACa center to window
+
+	  }
 
         } // end if: flag_detail
       } // end if: flag_ppac
@@ -930,10 +883,9 @@ static const UShort_t PpacSepZ = SetPpacSepZ();
       } // end if: flag_tpc
 
   // arr->Clear(); 
+   } // close loop on jentry
    delete fTargetX;
    delete fTargetY;
-   } // close loop on jentry
-
    delete ssd_strip_calib;
    delete ssd_padE_calib;
    delete ssd_padT_calib;

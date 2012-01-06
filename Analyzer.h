@@ -49,6 +49,8 @@
 #include <TF1.h>
 #include <TMath.h>
 #include <TCutG.h>
+#include <vector>
+using std::vector;
 
 const Int_t kMaxfadc = 437;
 
@@ -86,11 +88,14 @@ public:
 
 ClassImp(TArtFadcHit);
 
-class TDetector : public TObject {
+class TDetector {
+//class TDetector : public TObject {
 public :
   TDetector(){}
   virtual ~TDetector(){}
    ClassDef(TDetector,2);
+   virtual vector<vector<Short_t> > SetTpcMap();
+   virtual vector<vector<Double_t> > SetTpcBgain();
 };
 
 ClassImp(TDetector);
@@ -134,6 +139,8 @@ public :
    Double_t        tof[2]; 
    Double_t        Tof; 
    Bool_t          PpacIsHit[2];
+  // TPC pad mapping 
+   //Short_t tpc_ch[2][144];
    Bool_t          PadIsHit[144];
    Double_t        fSampleMax[144][20][20];
    Double_t        fClockMax[144][20][20];
@@ -176,6 +183,7 @@ public :
    Double_t        TpadC[8][20];
    // ppac calib?
    Double_t PpacX[2], PpacY[2];
+   Double_t TargetX, TargetY;
    TF1 *fTargetX ;
    TF1 *fTargetY ;
    
@@ -194,6 +202,7 @@ public :
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    void Init(TChain *tree);
+   //virtual Short_t **SetTpcMap();
    virtual void SetRF();
    virtual UShort_t SetPpacSepZ();
    virtual Bool_t WindowCut(Double_t x=99., Double_t y=99.);

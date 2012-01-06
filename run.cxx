@@ -210,11 +210,13 @@ int main(int argc, char **argv)
   char file_run[150];
   //exclude some run numbers for particular cases
   if (strcmp("30s_production",header)==0) {
-    if (run_no==1006 || run_no==1007 || run_no==1008 || run_no==1009 || run_no==1010 || run_no==1016){
+    if (0){
+    //if (run_no==1006 || run_no==1007 || run_no==1008 || run_no==1009 || run_no==1010 || run_no==1016){
       cout << "Run number " << run_no << " is junk for 30S Production Runs" << endl;
       return 0;
     }
-    if (run_no==1024 || run_no==1027 ){
+    if (0){
+    //if (run_no==1024 || run_no==1027 ){
       cout << "Run number " << run_no << " is calibration for 30S Production Runs" << endl;
       return 0;
     }

@@ -125,7 +125,9 @@ TH2F *hPpac0XY ;
 TH2F *hPpac1XY ;
 TH2F *hPpac1XYcut ;
 TH2F *hTargetXY ;
+TH2F *hTargetXYcut ;
 TH2F *hTargetXY_30s ;
+TH2F *hTargetXYcut_30s ;
 TH2F *hTargetXY_29p ;
 TH2F *hPpac0XRF0 ;
 TH2F *hPpac0XRF0_29p ;
@@ -333,12 +335,26 @@ void HistInit(){ // histogram initalization
       hTargetXY->GetYaxis()->SetTitle("Y Position (mm)");
       hTargetXY->GetYaxis()->CenterTitle(true);
       
+      hTargetXYcut = new TH2F("hTargetXYcut","Target X vs. Y window cut",160,-40.,40.,160,-40.,40.);
+      hTargetXYcut->SetOption("COL");   
+      hTargetXYcut->GetXaxis()->SetTitle("X Position (mm)");
+      hTargetXYcut->GetXaxis()->CenterTitle(true);
+      hTargetXYcut->GetYaxis()->SetTitle("Y Position (mm)");
+      hTargetXYcut->GetYaxis()->CenterTitle(true);
+      
       hTargetXY_30s = new TH2F("hTargetXY_30s","^{30}S Target X vs. Y",160,-40.,40.,160,-40.,40.);
       hTargetXY_30s->SetOption("COL");   
       hTargetXY_30s->GetXaxis()->SetTitle("X Position (mm)");
       hTargetXY_30s->GetXaxis()->CenterTitle(true);
       hTargetXY_30s->GetYaxis()->SetTitle("Y Position (mm)");
       hTargetXY_30s->GetYaxis()->CenterTitle(true);
+      
+      hTargetXYcut_30s = new TH2F("hTargetXYcut_30s","^{30}S Target X vs. Y window cut",160,-40.,40.,160,-40.,40.);
+      hTargetXYcut_30s->SetOption("COL");   
+      hTargetXYcut_30s->GetXaxis()->SetTitle("X Position (mm)");
+      hTargetXYcut_30s->GetXaxis()->CenterTitle(true);
+      hTargetXYcut_30s->GetYaxis()->SetTitle("Y Position (mm)");
+      hTargetXYcut_30s->GetYaxis()->CenterTitle(true);
       
       hTargetXY_29p = new TH2F("hTargetXY_29p","^{29}P Target X vs. Y",160,-40.,40.,160,-40.,40.);
       hTargetXY_29p->SetOption("COL");   
@@ -764,7 +780,9 @@ void HistWrite() {
        hPpac1XY->Write();  
        hPpac1XYcut->Write();  
        hTargetXY->Write();  
+       hTargetXYcut->Write();  
        hTargetXY_30s->Write();  
+       hTargetXYcut_30s->Write();  
        hTargetXY_29p->Write();  
        hPpac0XRF0->Write(); 
        hPpac1XRF0->Write(); 
@@ -891,8 +909,10 @@ void HistClean(){ // function to free histogram memory
   delete hPpac1XY ;
   delete hPpac1XYcut ;
   delete hTargetXY ;
+  delete hTargetXYcut ;
   delete hTargetXY_29p ;
   delete hTargetXY_30s ;
+  delete hTargetXYcut_30s ;
   delete hPpac0XRF0 ;
   delete hPpac0XRF0_29p ;
   delete hPpac0XRF1_29p ;

@@ -22,9 +22,15 @@
 @file Analyzer_config.cxx
 @author daid
 @version 1.0
-@brief Analyzer configurations which vary experiment-by-experiment
-@details Does detailed PPAC calibration.\n
-Defines rf frequency.
+ * @brief Sets configurations which vary experiment-by-experiment
+ * @details If we share analysis code across experiments,\n
+ * it is impractical to get new updates which over-ride experiment\n
+ * specific data.  But if we put these details all only in one file\n
+ * it is much easier for different experiments to use the crabat code.\n
+ * Handles MSTPC pad mapping.\n
+ * Handles MSTPC pad gain.\n
+ * Does detailed PPAC calibration.\n
+ * Defines rf frequency.
 @date 05 Dec 2011 16:03:48  
 */
 // If run from ROOT, exit with message
@@ -40,13 +46,162 @@ gApplication->Terminate();
 
 #define Analyzer_config_cxx
 
+
 /**
- * @brief Sets configurations which vary experiment-by-experiment
- * @details If we share analysis code across experiments,\n
- * it is impractical to get new updates which over-ride experiment\n
- * specific data.  But if we put these details all only in one file\n
- * it is much easier for different experiments to use the crabat code.
+ * @brief Sets the MSTPC pad mapping
+ * @details Creates a 2D vector for left and right channel mapping.  
+ * TPC mapping is non-trivial because there is not an invertible function,
+ * i.e. each pad has two sides.
+ * Thus we create two sets of 144 channels, half of which are not used
+ * on either side.  When the vector is queried with a raw channel map,
+ * it returns the pad number.
+*/
+vector<vector<Short_t> > TDetector::SetTpcMap()
+{
+  
+  //basic vector usage from http://www.cplusplus.com/forum/articles/7459/
+  static const Short_t HEIGHT=2;
+  static const Short_t WIDTH=144;
+  static const Short_t tpc_ch[HEIGHT][WIDTH]={
+
+// low gain mapping daid 26 Oct 2011 03:36:43 22Mg, now 30S 
+// should be correct now I think!
+{ 
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,00:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,01:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,02:OCCUPIED
+  7,6,5,4,3,2,1,0,          // SET 0,03:Beam right upstream
+  15,14,13,12,11,10,9,8,    // SET 0,04:Beam right upstream
+  23,22,21,20,19,18,17,16,  // SET 0,05:Beam right upstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,06:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,07:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,08:OCCUPIED
+  31,30,29,28,27,26,25,24,  // SET 0,09:Beam right downstream
+  39,38,37,36,35,34,33,32,  // SET 0,10:Beam right downstream
+  47,46,45,44,43,42,41,40,  // SET 0,11:Beam right downstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,12:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,13:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,14:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,15:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,16:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
+   },
+
+ { 
+  16,17,18,19,20,21,22,23,  // SET 1,00:Beam left upstream
+  8,9,10,11,12,13,14,15,    // SET 1,01:Beam left upstream
+  0,1,2,3,4,5,6,7           // SET 1,02:Beam left upstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,03:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,04:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,05:OCCUPIED 
+  40,41,42,43,44,45,46,47,  // SET 1,06:Beam left downstream
+  32,33,34,35,36,37,38,39,  // SET 1,07:Beam left downstream
+  24,25,26,27,28,29,30,31,  // SET 1,08:Beam left downstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,09:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,10:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,11:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,12:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,13:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,14:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,17:DISABLED
+  }
+};
+
+/*
+    { -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,01:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,02:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,03:DISABLED
+      40,41,42,43,44,45,46,47,  // SET 0,04:Beam right downstream
+      32,33,34,35,36,37,38,39,  // SET 0,05:Beam right downstream
+      24,25,26,27,28,29,30,31,  // SET 0,06:Beam right downstream
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,07:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,08:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,09:DISABLED
+      16,17,18,19,20,21,22,23,  // SET 0,10:Beam right upstream
+      8,9,10,11,12,13,14,15,    // SET 0,11:Beam right upstream
+      0,1,2,3,4,5,6,7,          // SET 0,12:Beam right upstream
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,13:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,14:DISABLED
+      0,1,2,3,4,5,6,7,          // SET 0,15:Left upstream
+      7,6,5,4,3,2,1,0,          // SET 0,16:Center right      should it be?: // 0,1,2,3,4,5,6,7, // Center right
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
+      0,1,2,3,4,5,6,7},         // SET 0,18:Right upstream
+    
+     { 31,30,29,28,27,26,25,24, // SET 1,01:Beam left downstream
+      39,38,37,36,35,34,33,32,  // SET 1,02:Beam left downstream
+      47,46,45,44,43,42,41,40,  // SET 1,03:Beam left downstream
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,04:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,05:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,06:DISABLED 
+      7,6,5,4,3,2,1,0,          // SET 1,07:Beam left upstream
+      15,14,13,12,11,10,9,8,    // SET 1,08:Beam left upstream
+      23,22,21,20,19,18,17,16,  // SET 1,09:Beam left upstream
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,10:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,11:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,12:DISABLED
+      0,1,2,3,4,5,6,7,          // SET 1,13:Center left
+      0,1,2,3,4,5,6,7,          // SET 1,14:Left downstream
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
+      -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
+      0,1,2,3,4,5,6,7           // SET 1,17:Right downstream
+      -1,-1,-1,-1,-1,-1,-1,-1}  // SET 1,18:DISABLED
+    };*/
+  
+  vector<vector<Short_t> > array2D;
+  array2D.resize(HEIGHT);
+  for (int i = 0; i < HEIGHT; ++i)
+    array2D[i].resize(WIDTH);
+  for (int i = 0; i < HEIGHT; i++)
+    for (int j = 0; j < WIDTH; j++)
+      array2D[i][j]=tpc_ch[i][j];
+  return array2D;
+}
+
+/**
+ * @brief Sets the MSTPC Beam pad gain
+ * @details Creates a vector for gain mapping.
+ * As a vector, we can create as many different gain 
+ * vectors as required, since vector sizes are dynamic.
+ * Here for 30S I create a 2D vector, since the gain was
+ * changed after some early production runs.
  */
+vector<vector<Double_t> > TDetector::SetTpcBgain()
+{
+  //basic vector use suggested at http://www.cplusplus.com/forum/articles/7459/
+  //internal calibration for beam pad
+  static const Short_t HEIGHT=2;
+  static const Short_t WIDTH=48;
+  static const Double_t padBgain[HEIGHT][WIDTH]={
+  { // runs 1001-1005
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,// 0-7
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    0.712629, .69137310,0.706643,0.732711,.74086605,0.655,1.,1., // 16-23
+    0.708874,0.706074,0.70031,0.701813,0.696598713,0.70119423,0.6988148,1., //24-31
+    0.69839515,0.693352,0.69736996,0.696989,0.697088,0.696793,0.69828,0.696932,  //32-39
+    1.,0.65594417,0.701976,0.701372,0.706313,0.70744137,.70876,0.68},  //40-47
+    //46 is weird here even though the same method is used...
+    //1.,0.65594417,0.701976,0.701372,0.706313,0.70744137,.77039460,0.68},  //40-47
+  
+  { //other runs
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.10,1.  ,1.  ,0.95,1.  ,1.  ,1.  , // 16-23
+    1.  ,1.  ,1.  ,1.  ,0.97,0.99,0.94,1.  , // 24-31
+    0.97,1.  ,0.98,1.  ,1.  ,1.  ,1.  ,1.  , // 32-39
+    1.03,1.03,1.  ,1.  ,1.  ,0.97,0.90,1.  // 40-47
+  }};
+  vector<vector<Double_t> > array2D;
+  array2D.resize(HEIGHT);
+  for (int i = 0; i < HEIGHT; ++i)
+    array2D[i].resize(WIDTH);
+  for (int i = 0; i < HEIGHT; i++)
+    for (int j = 0; j < WIDTH; j++)
+      array2D[i][j]=padBgain[i][j];
+  return array2D;
+}
+
 void Analyzer::SetRF()
 {
    // Define RF

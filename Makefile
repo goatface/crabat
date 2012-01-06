@@ -8,6 +8,7 @@ CXX=g++
 #COPT=-O0 -g # valgrind
 #COPT=-O2 -march=native -pipe #debug
 COPT=-O2 -march=native -pipe -fomit-frame-pointer # run fastest
+#CDEBUG=-ansi -pendantic -g 
 ROOTFLAGS=$(shell root-config --cflags)
 CXXFLAGS=$(COPT) -Wall -Werror -fPIC $(ROOTFLAGS)
 FC=gfortran
