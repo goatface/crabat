@@ -315,6 +315,7 @@ Run () {
 
 Loop () {
   # looping function over all runs with the same header, multi-threaded per core.
+  CMDINIT="$CMD"
   for i in "$TREEIN"/"$NAME"*.root  # loop over all the existing raw runs of that name
   do
     # name of the output file and path, eg Tree/30s_production/30s_production-1001.root
@@ -325,7 +326,7 @@ Loop () {
         echo "Outputting to $OUTPUT..."
         RUNNO=`echo $INFILE | sed "s/$NAME//" | sed 's/\..*//'` # get the run number
         # there is a way to do this using the Run function?  Seems trickier with backgrounding, getting PID, and so on
-        CMD="$CMD -R $RUNNO"
+        CMD="$CMDINIT -R $RUNNO"
         printf "Executing run with the command:\n\t$CMD\n"
         $CMD & PIDS="$PIDS $!" && sudo renice -n -10 -p $! # call run on the run number in background, renice to -10
         while [ `jobs | wc -l` -eq $CORES ] # only run one run command per core
