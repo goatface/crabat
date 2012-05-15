@@ -1,6 +1,6 @@
 /*
  Copyright: 
- 2010, 2011 daid KAHL
+ 2010, 2011, 2012 daid KAHL
 
  This file is part of crabat
 
@@ -88,8 +88,9 @@ TH2F *hSiPadEcal ;
 //Each ssd channel
 TH1F *strip_ch[97];
 TH1F *strip_cal_ch[97];
-TH1F *strip_ch_gated30s[97];
-TH1F *strip_ch_gated29p[97];
+TH1F *strip_ch_gated30s[17];
+TH1F *strip_ch_gated29p[17];
+TH1F *strip_ch_gated17f[17];
 TH1F *pad_ch[18];
 TH1F *pad_ch_gated[18];
 
@@ -156,12 +157,18 @@ TH2F *hPpac1XRF1 ;
 TH2F *hGemMstpcAll ;
 TH2F *hGemMstpcSide ;
 TH2F *hPadC ;
+TH2F *hTpcPulse[500];
 
 TH2F *hTpc_dE_ch[144];
 
 // low gain pads
 
-TH1F *hBraggB_ch[48];
+TH1F *hBraggB_30s_ssd_ch[48];
+TH1F *hBraggB_30s_ds_ch[48];
+TH1F *hBraggB_29p_ssd_ch[48];
+TH1F *hBraggB_29p_ds_ch[48];
+TH1F *hBraggB_17f_ssd_ch[48];
+TH1F *hBraggB_17f_ds_ch[48];
 TH1F *hBraggB_ds_ch[48];
 TH1F *hBraggB_ssd_ch[48];
 
@@ -171,7 +178,9 @@ TH2F *hBraggB_30s ;
 TH2F *hBraggB_30s_ssd ;
 TH2F *hBraggB_30s_ds ;
 TH2F *hBraggB_29p ;
-TH2F *hBraggB_31s ;
+TH2F *hBraggB_29p_ssd ;
+TH2F *hBraggB_29p_ds ;
+TH2F *hBraggB_17f ;
 TH2F *hBraggB; 
 
 TH2F *hPadXB ;
@@ -203,7 +212,8 @@ Here we define the histograms and set all relevant histogramming options.
 void HistInit(){ // histogram initalization
    
   char name[100];
-  
+  int xbin,ybin;
+  double xmin,xmax,ymin,ymax;
   if (flag_ssd){ 
     
     if (flag_raw){ 
@@ -274,14 +284,14 @@ void HistInit(){ // histogram initalization
         sprintf(name,"hRf%d",i);
         hRf[i] = new TH1F(name,name,1000,0,1000);
       }
-      hPpac0TX1 = new TH1F("hPpac0TX1","hPpac0TX1",22000,0.,22000.);
-      hPpac0TX2 = new TH1F("hPpac0TX2","hPpac0TX2",22000,0.,22000.);
-      hPpac0TY1 = new TH1F("hPpac0TY1","hPpac0TY1",22000,0.,22000.);
-      hPpac0TY2 = new TH1F("hPpac0TY2","hPpac0TY2",22000,0.,22000.);
-      hPpac1TX1 = new TH1F("hPpac1TX1","hPpac1TX1",22000,0.,22000.);
-      hPpac1TX2 = new TH1F("hPpac1TX2","hPpac1TX2",22000,0.,22000.);
-      hPpac1TY1 = new TH1F("hPpac1TY1","hPpac1TY1",22000,0.,22000.);
-      hPpac1TY2 = new TH1F("hPpac1TY2","hPpac1TY2",22000,0.,22000.);
+      hPpac0TX1 = new TH1F("hPpac0TX1","hPpac0TX1",30000,0.,30000.);
+      hPpac0TX2 = new TH1F("hPpac0TX2","hPpac0TX2",30000,0.,30000.);
+      hPpac0TY1 = new TH1F("hPpac0TY1","hPpac0TY1",30000,0.,30000.);
+      hPpac0TY2 = new TH1F("hPpac0TY2","hPpac0TY2",30000,0.,30000.);
+      hPpac1TX1 = new TH1F("hPpac1TX1","hPpac1TX1",30000,0.,30000.);
+      hPpac1TX2 = new TH1F("hPpac1TX2","hPpac1TX2",30000,0.,30000.);
+      hPpac1TY1 = new TH1F("hPpac1TY1","hPpac1TY1",30000,0.,30000.);
+      hPpac1TY2 = new TH1F("hPpac1TY2","hPpac1TY2",30000,0.,30000.);
     } // end if: flag_raw
     
     if (flag_detail){
@@ -542,12 +552,14 @@ void HistInit(){ // histogram initalization
     //wtf why is this existing and empty?
   } // end if flag_ssd & flag_tpc
   
-  if (flag_detail && flag_strip && flag_ppac){
-    for (UShort_t i=1;i<97;i++) {
+  if (flag_detail && flag_ssd && flag_strip && flag_ppac){
+    for (UShort_t i=1;i<17;i++) {
       sprintf(name,"strip_ch_gated30s%d",i);     
       strip_ch_gated30s[i]= new TH1F(name, name, 4096,0,4096);
       sprintf(name,"strip_ch_gated29p%d",i);     
       strip_ch_gated29p[i]= new TH1F(name, name, 4096,0,4096);
+      sprintf(name,"strip_ch_gated17f%d",i);     
+      strip_ch_gated17f[i]= new TH1F(name, name, 4096,0,4096);
     }
   } // end if: flag_detail & flag_strip & flag_ppac
   
@@ -583,18 +595,20 @@ void HistInit(){ // histogram initalization
     } // end if: flag_raw
   
     if (flag_detail){ 
-      hBraggB = new TH2F("hBraggB","Beam Bragg Curves",48,-0.5,47.5,200,0.,2000.);
+      xbin=48;xmin=-0.5;xmax=47.5;ybin=3000;ymin=0.;ymax=30000.;
+      hBraggB = new TH2F("hBraggB","Beam Bragg Curves",xbin,xmin,xmax,ybin,ymin,ymax);
       hBraggB->SetOption("COLZ");
       hBraggB->GetXaxis()->SetTitle("Pad No.");
       hBraggB->GetXaxis()->CenterTitle(true);
       hBraggB->GetYaxis()->SetTitle("#DeltaE (arb.)");
       hBraggB->GetYaxis()->CenterTitle(true);
        
-      hBraggL = new TH2F("hBraggL","hBraggL",8,-0.5,7.5,200,0.,2000.);
+      hBraggL = new TH2F("hBraggL","hBraggL",xbin,xmin,xmax,ybin,ymin,ymax);
       hBraggL->SetOption("COLZ");
-      hBraggR = new TH2F("hBraggR","hBraggR",8,-0.5,7.5,200,0.,2000.);
+      xbin=8;xmin=-0.5;xmax=7.5;
+      hBraggR = new TH2F("hBraggR","hBraggR",xbin,xmin,xmax,ybin,ymin,ymax);
       hBraggR->SetOption("COLZ");
-      hBraggC = new TH2F("hBraggC","hBraggC",8,-0.5,7.5,2000,0.,2000.);
+      hBraggC = new TH2F("hBraggC","hBraggC",xbin,xmin,xmax,ybin,ymin,ymax);
       hBraggC->SetOption("COLZ");
       hPadXC = new TH2F("hPadXC","hPadXC",8,-0.5,7.5,200,-10.,10.);
       hPadXC->SetOption("COLZ");
@@ -619,30 +633,26 @@ void HistInit(){ // histogram initalization
       for (UShort_t i=0;i<144;i++) {
         sprintf(name,"hTrough%d",i);
         hTrough[i] = new TH1F(name,name,1500,-500.,1000.);
-        if (i<48){
-          sprintf(name,"hBraggB_ch%d",i);
-          hBraggB_ch[i] = new TH1F(name,name,2000,0,2000);
-        }
-      }
-      
-    
+      } 
+
     } // end if: flag_detail
   
   } // end if: flag_tpc
 
   if (flag_ppac && flag_tpc && flag_detail){
     
-    hBraggB_30s = new TH2F("hBraggB_30s","Beam Bragg Curve Gated on ^{30}S",48,-0.5,47.5,200,0.,2000.);
+    xbin=48;xmin=-0.5;xmax=47.5;ybin=3000;ymin=0.;ymax=30000.;
+    hBraggB_30s = new TH2F("hBraggB_30s","Beam Bragg Curve Gated on ^{30}S",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_30s->SetOption("COLZ");
     hBraggB_30s->GetXaxis()->SetTitle("Pad No.");
     hBraggB_30s->GetXaxis()->CenterTitle(true);
     hBraggB_30s->GetYaxis()->SetTitle("#DeltaE (arb.)");
     hBraggB_30s->GetYaxis()->CenterTitle(true);
     
-    hBraggB_29p = new TH2F("hBraggB_29p","hBraggB_29p",48,-0.5,47.5,200,0.,2000.);
+    hBraggB_29p = new TH2F("hBraggB_29p","hBraggB_29p",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_29p->SetOption("COLZ");
-    hBraggB_31s = new TH2F("hBraggB_31s","hBraggB_31s",48,-0.5,47.5,200,0.,2000.);
-    hBraggB_31s->SetOption("COLZ");
+    hBraggB_17f = new TH2F("hBraggB_17f","hBraggB_17f",xbin,xmin,xmax,ybin,ymin,ymax);
+    hBraggB_17f->SetOption("COLZ");
 
     hPadXB_30s = new TH2F("hPadXB_30s","Beam X Gated on ^{30}S",48,-0.5,47.5,80,-5.,5.);
     hPadXB_30s->SetOption("COLZ");
@@ -660,8 +670,17 @@ void HistInit(){ // histogram initalization
     
     for (UShort_t j=0;j<15;j++){
       sprintf(name,"hBraggB_30s_jch%d",j);
-      hBraggB_30s_jch[j] = new TH2F(name,name,48,-0.5,47.5,200,0.,2000.);
+      hBraggB_30s_jch[j] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
       hBraggB_30s_jch[j]->SetOption("COLZ");
+    }
+    
+    for (UShort_t j=0;j<500;j++){
+      sprintf(name,"hTpcPulse%d",j);
+      hTpcPulse[j] = new TH2F(name,name,50,0.,150.,600,400.,1000.);
+      hTpcPulse[j]->GetXaxis()->SetTitle("fClock (20 ns / bin)");
+      hTpcPulse[j]->GetXaxis()->CenterTitle(true);
+      hTpcPulse[j]->GetYaxis()->SetTitle("fSample (arb)");
+      hTpcPulse[j]->GetYaxis()->CenterTitle(true);
     }
     
     hBraggB_3D = new TH3F("hBraggB_3D","hBraggB_3D",48,-0.5,47.5,4,-0.5,3.5,400,0.,2000.);
@@ -671,21 +690,35 @@ void HistInit(){ // histogram initalization
     hBraggB_3D_ssd = new TH3F("hBraggB_3D_ssd","hBraggB_3D_ssd",48,-0.5,47.5,4,-0.5,3.5,400,0.,2000.);
     hBraggB_3D_ssd->SetOption("GLCOL");
       
-    hBraggB_30s_ds = new TH2F("hBraggB_30s_ds","Beam Bragg Curve Gated on ^{30}S DS",48,-0.5,47.5,200,0.,2000.);
+    hBraggB_30s_ds = new TH2F("hBraggB_30s_ds","Beam Bragg Curve Gated on ^{30}S DS",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_30s_ds->SetOption("COLZ");
     hBraggB_30s_ds->GetXaxis()->SetTitle("Pad No.");
     hBraggB_30s_ds->GetXaxis()->CenterTitle(true);
     hBraggB_30s_ds->GetYaxis()->SetTitle("#DeltaE (arb.)");
     hBraggB_30s_ds->GetYaxis()->CenterTitle(true);
     
-    hBraggB_30s_ssd = new TH2F("hBraggB_30s_ssd","Beam Bragg Curve Gated on ^{30}S SSD-OR",48,-0.5,47.5,200,0.,2000.);
+    hBraggB_30s_ssd = new TH2F("hBraggB_30s_ssd","Beam Bragg Curve Gated on ^{30}S SSD-OR",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_30s_ssd->SetOption("COLZ");
     hBraggB_30s_ssd->GetXaxis()->SetTitle("Pad No.");
     hBraggB_30s_ssd->GetXaxis()->CenterTitle(true);
     hBraggB_30s_ssd->GetYaxis()->SetTitle("#DeltaE (arb.)");
     hBraggB_30s_ssd->GetYaxis()->CenterTitle(true);
     
-    hBraggB_rp = new TH2F("hBraggB_rp","Beam Scattering Location for ^{30}S",48,-0.5,47.5,45,6.,50.);
+    hBraggB_29p_ds = new TH2F("hBraggB_29p_ds","Beam Bragg Curve Gated on ^{29}P DS",xbin,xmin,xmax,ybin,ymin,ymax);
+    hBraggB_29p_ds->SetOption("COLZ");
+    hBraggB_29p_ds->GetXaxis()->SetTitle("Pad No.");
+    hBraggB_29p_ds->GetXaxis()->CenterTitle(true);
+    hBraggB_29p_ds->GetYaxis()->SetTitle("#DeltaE (arb.)");
+    hBraggB_29p_ds->GetYaxis()->CenterTitle(true);
+    
+    hBraggB_29p_ssd = new TH2F("hBraggB_29p_ssd","Beam Bragg Curve Gated on ^{29}P SSD-OR",xbin,xmin,xmax,ybin,ymin,ymax);
+    hBraggB_29p_ssd->SetOption("COLZ");
+    hBraggB_29p_ssd->GetXaxis()->SetTitle("Pad No.");
+    hBraggB_29p_ssd->GetXaxis()->CenterTitle(true);
+    hBraggB_29p_ssd->GetYaxis()->SetTitle("#DeltaE (arb.)");
+    hBraggB_29p_ssd->GetYaxis()->CenterTitle(true);
+    
+    hBraggB_rp = new TH2F("hBraggB_rp","Beam Scattering Location for ^{30}S",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_rp->SetOption("COLZ");
     hBraggB_rp->GetXaxis()->SetTitle("Pad No.");
     hBraggB_rp->GetXaxis()->CenterTitle(true);
@@ -705,6 +738,20 @@ void HistInit(){ // histogram initalization
       hBraggB_ssd_ch[i]->GetXaxis()->CenterTitle(true);
       hBraggB_ssd_ch[i]->GetYaxis()->SetTitle("Counts");
       hBraggB_ssd_ch[i]->GetYaxis()->CenterTitle(true);
+    }
+    for (UShort_t i=0;i<48;i++) {
+      sprintf(name,"hBraggB_30s_ssd_ch%d",i);
+      hBraggB_30s_ssd_ch[i] = new TH1F(name,name,ybin,ymin,ymax);
+      sprintf(name,"hBraggB_30s_ds_ch%d",i);
+      hBraggB_30s_ds_ch[i] = new TH1F(name,name,ybin,ymin,ymax);
+      sprintf(name,"hBraggB_29p_ssd_ch%d",i);
+      hBraggB_29p_ssd_ch[i] = new TH1F(name,name,ybin,ymin,ymax);
+      sprintf(name,"hBraggB_29p_ds_ch%d",i);
+      hBraggB_29p_ds_ch[i] = new TH1F(name,name,ybin,ymin,ymax);
+      sprintf(name,"hBraggB_17f_ssd_ch%d",i);
+      hBraggB_17f_ssd_ch[i] = new TH1F(name,name,ybin,ymin,ymax);
+      sprintf(name,"hBraggB_17f_ds_ch%d",i);
+      hBraggB_17f_ds_ch[i] = new TH1F(name,name,ybin,ymin,ymax);
     }
 
   } // end if: flag_tpc & flag_ppac & flag_detail
@@ -822,6 +869,13 @@ void HistWrite() {
     } // end if: flag_detail
   } // end if: flag_ssd & flag_ppac
 
+  if (flag_detail && flag_ssd && flag_strip && flag_ppac){ // process PPAC & SSD strip details?
+    for (int i=1;i<17;i++){
+      strip_ch_gated30s[i]->Write();
+      strip_ch_gated29p[i]->Write();
+      strip_ch_gated17f[i]->Write();
+    } // enf for: i
+  } // end if: flag_detail && flag_strip && flag_ppac
   if (flag_tpc) { // process TPC?
     if (flag_raw) { // write TPC raw histograms
        hGemMstpcAll->Write();
@@ -846,7 +900,12 @@ void HistWrite() {
       for (UShort_t i=0;i<144;i++) {
          hTrough[i]->Write();
          if (i<48){
-           hBraggB_ch[i]->Write();
+           hBraggB_30s_ssd_ch[i]->Write();
+           hBraggB_30s_ds_ch[i]->Write();
+           hBraggB_29p_ssd_ch[i]->Write();
+           hBraggB_29p_ds_ch[i]->Write();
+           hBraggB_17f_ssd_ch[i]->Write();
+           hBraggB_17f_ds_ch[i]->Write();
          }
       }
     } // end if: flag_detail
@@ -858,18 +917,23 @@ void HistWrite() {
     hBraggB_30s->Write();
     //hBraggB_30s2->Write();
     hBraggB_29p->Write();
-    //hBraggB_31s->Write();
+    hBraggB_17f->Write();
     for (UShort_t i=0;i<15;i++) hBraggB_30s_jch[i]->Write();
     hBraggB_3D->Write();
 
     hBraggB_30s_ds->Write();
     hBraggB_30s_ssd->Write();
+    hBraggB_29p_ds->Write();
+    hBraggB_29p_ssd->Write();
     hBraggB_rp->Write();
     hBraggB_3D_ds->Write();
     hBraggB_3D_ssd->Write();
     for (UShort_t i=0;i<48;i++){
       hBraggB_ds_ch[i]->Write();
       hBraggB_ssd_ch[i]->Write();
+    }
+    for (UShort_t i=0;i<500;i++){
+      hTpcPulse[i]->Write();
     }
   } // end if: flag_ppac && flag_tpc && flag_detail
 
@@ -949,7 +1013,9 @@ void HistClean(){ // function to free histogram memory
   delete hBraggB_3D_ssd ;
   delete hPadB_3D;
   delete hBraggB_29p ;
-  delete hBraggB_31s ;
+  delete hBraggB_29p_ssd ;
+  delete hBraggB_29p_ds ;
+  delete hBraggB_17f ;
   delete hBraggB ;
   delete hBraggL ;
   delete hBraggR ;
@@ -958,11 +1024,15 @@ void HistClean(){ // function to free histogram memory
   for (int i=0;i<2;i++) delete hRf[i]; 
   for (int i=0;i<2;i++) delete hRfcal[i]; 
   for (int j=0;j<15;j++) delete hBraggB_30s_jch[j];
+  for (int j=0;j<500;j++) delete hTpcPulse[j];
   for (int i=0;i<97;i++){
     delete strip_ch[i];
     delete strip_cal_ch[i];
+  }
+  for (int i=0;i<17;i++){
     delete strip_ch_gated30s[i];
     delete strip_ch_gated29p[i];
+    delete strip_ch_gated17f[i];
   }
   delete hPpacToF_30s;
   delete hPpacToF_29p;
@@ -984,7 +1054,12 @@ void HistClean(){ // function to free histogram memory
     delete hTpc_dE_ch[i];
   }
   for (int i=0;i<48;i++){
-    delete hBraggB_ch[i];
+    delete hBraggB_30s_ssd_ch[i];
+    delete hBraggB_30s_ds_ch[i];
+    delete hBraggB_29p_ssd_ch[i];
+    delete hBraggB_29p_ds_ch[i];
+    delete hBraggB_17f_ssd_ch[i];
+    delete hBraggB_17f_ds_ch[i];
     delete hBraggB_ds_ch[i];
     delete hBraggB_ssd_ch[i];
   }

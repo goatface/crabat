@@ -142,7 +142,12 @@ public :
   // TPC pad mapping 
    //Short_t tpc_ch[2][144];
    Bool_t          PadIsHit[144];
+   Double_t	   fSampleRebin[1334]; // kMaxSample/3 elements
+   UShort_t	   rebinCounter;
+   Double_t	   rebinTemp;
+   Bool_t 	   truepeak;
    Double_t        fSampleMax[144][20][20];
+   Double_t        fSampleInt[144][20][2];
    Double_t        fClockMax[144][20][20];
    Double_t        fTimeMax[144][20][20];
    UShort_t           HitNo[144][20];
