@@ -1,7 +1,7 @@
 /*
  Copyright: 
  2010 daid KAHL, OTA shinsuke, HASHIMOTO takashi 
- 2011 daid KAHL
+ 2011, 2012 daid KAHL
 
  This file is part of crabat
 
