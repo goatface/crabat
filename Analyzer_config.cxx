@@ -65,6 +65,7 @@ vector<vector<Short_t> > TDetector::SetTpcMap()
   static const Short_t tpc_ch[HEIGHT][WIDTH]={
 
 // low gain mapping daid 26 Oct 2011 03:36:43 22Mg, now 30S 
+// rough high gain mapping daid 11 Sep 2012 00:09:38 (SET 0,15 might be inverted?)
 // should be correct now I think!
 { 
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,00:OCCUPIED
@@ -82,15 +83,17 @@ vector<vector<Short_t> > TDetector::SetTpcMap()
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,12:DISABLED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,13:DISABLED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,14:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,15:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,16:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
+  0,1,2,3,4,5,6,7,           // SET 0,15:high gain right center
+  //7,6,5,4,3,2,1,0,          // SET 1,15:high gain right center hacking
+  7,6,5,4,3,2,1,0,          // SET 1,15:high gain right downstream 
+  0,1,2,3,4,5,6,7,           // SET 0,15:high gain right upstream
+  //-1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
    },
 
  { 
   16,17,18,19,20,21,22,23,  // SET 1,00:Beam left upstream
   8,9,10,11,12,13,14,15,    // SET 1,01:Beam left upstream
-  0,1,2,3,4,5,6,7           // SET 1,02:Beam left upstream
+  0,1,2,3,4,5,6,7,           // SET 1,02:Beam left upstream
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,03:OCCUPIED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,04:OCCUPIED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,05:OCCUPIED 
@@ -100,9 +103,16 @@ vector<vector<Short_t> > TDetector::SetTpcMap()
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,09:OCCUPIED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,10:OCCUPIED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,11:OCCUPIED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,12:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,13:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,14:DISABLED
+  //0,1,2,3,4,5,6,7,           // SET 1,13:high gain left down
+  //6,5,-1,4,3,1,1,1,          // SET 1,12:high gain left center		//mismatching
+  7,6,5,4,3,2,1,0,          // SET 1,12:high gain left center
+  ///0,1,2,3,7,6,5,4,          // SET 1,12:high gain left center
+  7,6,5,4,3,2,1,0,          // SET 1,14:high gain left up
+  0,1,2,3,4,5,6,7,           // SET 1,13:high gain left down
+  ////7,6,5,4,0,1,2,3,           // SET 1,14:high gain left up
+  //7,6,5,4,3,2,1,0,          // SET 1,12:high gain left center
+  //0,-1,2,3,4,5,6,7,           // SET 1,14:high gain left up		//mismatching
+  //-1,7,6,5,4,2,2,0,          // SET 1,12:high gain left center		//mismatching
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,17:DISABLED
@@ -174,7 +184,7 @@ vector<vector<Double_t> > TDetector::SetTpcBgain()
   static const Short_t HEIGHT=2;
   static const Short_t WIDTH=48;
   static const Double_t padBgain[HEIGHT][WIDTH]={
-  { // runs 1001-1005
+/*  { // runs 1001-1005
     1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,// 0-7
     1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
     0.712629, .69137310,0.706643,0.732711,.74086605,0.655,1.,1., // 16-23
@@ -191,6 +201,22 @@ vector<vector<Double_t> > TDetector::SetTpcBgain()
     1.  ,1.  ,1.  ,1.  ,0.97,0.99,0.94,1.  , // 24-31
     0.97,1.  ,0.98,1.  ,1.  ,1.  ,1.  ,1.  , // 32-39
     1.03,1.03,1.  ,1.  ,1.  ,0.97,0.90,1.  // 40-47
+  }};*/
+  { // runs 1001-1005
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,// 0-7
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  }, // 8-15
+  
+  { //other runs
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.   // 8-15
   }};
   vector<vector<Double_t> > array2D;
   array2D.resize(HEIGHT);
@@ -202,7 +228,7 @@ vector<vector<Double_t> > TDetector::SetTpcBgain()
   return array2D;
 }
 
-void Analyzer::SetRF()
+void inline Analyzer::SetRF()
 {
    // Define RF
    // Note in class structure we cannot use static const style
@@ -210,7 +236,7 @@ void Analyzer::SetRF()
    #define        rf 59.70; // real RF value
 }
 
-UShort_t Analyzer::SetPpacSepZ()
+UShort_t inline Analyzer::SetPpacSepZ()
 {
   return(156) ; // mm 
   //#define PpacSepZ  156; // mm 
@@ -218,11 +244,11 @@ UShort_t Analyzer::SetPpacSepZ()
 }
 
 // change this to pass by address
-Bool_t Analyzer::WindowCut(Double_t x, Double_t y)
+Bool_t inline Analyzer::WindowCut(Double_t x, Double_t y)
 {
 // modified from http://root.cern.ch/phpBB3/viewtopic.php?f=3&t=1145
   double radius = 20; // real value 20 mm 
-  const Int_t n = 30; 
+  const Int_t n = 300; 
   Double_t winx[n+1],winy[n+1]; 
   Double_t rcut = 1.00*radius; 
   Double_t dphi = TMath::TwoPi()/n; 
@@ -236,10 +262,11 @@ Bool_t Analyzer::WindowCut(Double_t x, Double_t y)
     delete window;
     return(true);
   }
+  delete window;
   return (false);
 }
 
-UShort_t Analyzer::PpacXYCalib(Bool_t flag_detail, Bool_t flag_ppac){ 
+UShort_t inline Analyzer::PpacXYCalib(Bool_t flag_detail, Bool_t flag_ppac){ 
   if (!flag_detail || !flag_ppac) return(EXIT_FAILURE);
   // PPAC calibration that is not handled in ppac_calib.dat
   Float_t dxy[2]; // 1 is X, 2 is Y; tmp variable for calibration loops
@@ -260,6 +287,7 @@ UShort_t Analyzer::PpacXYCalib(Bool_t flag_detail, Bool_t flag_ppac){
   //PPACb -- check these values! 24 Jan 2011 11:56:52 
   PpacOffset[1][0]=0.17; //18 Jul 2011 16:57:56 
   PpacOffset[1][1]=0.11; //18 Jul 2011 16:57:54 
+  //PpacOffsetLine[1][0]=-1.4; //05 Sep 2012 18:07:28 
   PpacOffsetLine[1][0]=-4.3; //18 Jul 2011 16:58:03 
   PpacOffsetLine[1][1]=-1.0; //18 Jul 2011 16:58:04 
   PpacPositionGain[1][0]=0.6205; //18 Jul 2011 16:55:04 
@@ -278,6 +306,7 @@ UShort_t Analyzer::PpacXYCalib(Bool_t flag_detail, Bool_t flag_ppac){
     // we need to compare with SSDT data to see which direction
     // i.e. tof0+2 vs tof1-2
     dxy[0]=(fPPACcal[i][0]-fPPACcal[i][1]);
+    //if (i==1) dxy[0]=(fPPACcal[i][1]-fPPACcal[i][0]); // inverted PPACbX 03 Sep 2012 20:23:40 goatface
     dxy[1]=(fPPACcal[i][2]-fPPACcal[i][3]);
     for (UShort_t ii = 0; ii < 2; ii++) {
       // time calibration
@@ -288,8 +317,10 @@ UShort_t Analyzer::PpacXYCalib(Bool_t flag_detail, Bool_t flag_ppac){
       dxy[ii] -= PpacOffsetGeometry[i][ii];
     }
     PpacX[i]=dxy[0];
-    if (i==0) PpacY[i]=dxy[1]; // PPACaY is normal
-    if (i==1) PpacY[i]=(dxy[1]*-1.0); // PPACbY cables were inverted
+    PpacY[i]=dxy[1]; 
+    // Previously I thought the PPACbY cable was inverted...must be false from projection data! 28 Aug 2012 19:48:04 
+    // PPACaY is normal
+    //if (i==1) PpacY[i]=(dxy[1]*-1.0); // PPACbY cables were inverted
   } //end PPAC calibration for loop
   return(EXIT_SUCCESS);
 }
