@@ -7,17 +7,18 @@
 CXX=g++
 #COPT=-O0 -g # valgrind
 #COPT=-O2 -march=native -pipe #debug
+#COPT=-DDEBUG -I"" -O0 -g3 -Wall -c -fmessage-length=0 # another debug
+#CDEBUG=-ansi -pendantic -g # some problems? 
 COPT=-O2 -march=native -pipe -fomit-frame-pointer # run fastest
-#CDEBUG=-ansi -pendantic -g 
 ROOTFLAGS=$(shell root-config --cflags)
 CXXFLAGS=$(COPT) -Wall -Werror -fPIC $(ROOTFLAGS)
 FC=gfortran
 FFLAGS=-lstdc++
 FSRC=$(wildcard ./enewzsub/*.f)
-LD=gcc $(FFLAGS)
+LD=g++ $(FFLAGS)
 ROOTLIBS=$(shell root-config --libs)
 KVLIBS=-L$(KVROOT)/lib -lKVMultiDet
-LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS)
+LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) -lstdc++
 INCLUDE=$(addprefix -I,$(KVROOT)/include)
 COBJS=dictCal.o dictAnaly.o run.o
 FOBJS=$(FSRC:%.f=%.o)
@@ -39,7 +40,7 @@ $(ARCHIVE):
 
 $(TGT): $(FOBJS) $(COBJS)
 	@printf "LD $(TGT)\n\tcopy of any errors recorded in log/linker.log\n"
-	@$(LD) -o $@ $(LIBS) -O  $(COBJS) $(FOBJS) $(ARCHIVE) 2>&1 | tee log/linker.log 
+	@$(LD) -O  $(COBJS) $(FOBJS) $(ARCHIVE) -o $@ $(LIBS) 2>&1 | tee log/linker.log 
 	@printf "\nCompile successful!\nbinary: $(shell pwd)/$(TGT)\n\n"
 
 $(DOCS): $(TGT) 
@@ -56,8 +57,8 @@ clean:
 	@find . -maxdepth 2 -name "*.o" | xargs -I{} rm {}
 
 %.o: %.cxx Analyzer.cxx Analyzer_config.cxx run.h
-	@echo "CXX $@ $<"
-	@$(CXX) $(CXXFLAGS) $(INCLUDE) -c -o $@ $<
+	@echo "CXX $< $@"
+	@$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@ 
 
 %.o: %.f
 	@echo "FC $@"
@@ -69,4 +70,4 @@ dictCal.cxx: Calibration.h linkdefCal.h Calibration.cxx
 
 dictAnaly.cxx: Analyzer.h linkdefAnaly.h Analyzer.cxx Analyzer_config.cxx
 	@echo "ROOT $@"
-	@rootcint -f $@ -c $(CXXFLAGS )$< linkdefAnaly.h
+	@rootcint -f $@ -c $(CXXFLAGS) $< linkdefAnaly.h
