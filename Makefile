@@ -17,8 +17,9 @@ FFLAGS=-lstdc++
 FSRC=$(wildcard ./enewzsub/*.f)
 LD=g++ $(FFLAGS)
 ROOTLIBS=$(shell root-config --libs)
-KVLIBS=-L$(KVROOT)/lib -lKVMultiDet
-LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) -lstdc++
+KVLIBS=-L$(KVROOT)/lib -lKVMultiDet -lrange
+RANGELIBS=-L/usr/local/lib -lrange
+LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) $(RANGELIBS) -lstdc++
 INCLUDE=$(addprefix -I,$(KVROOT)/include)
 COBJS=dictCal.o dictAnaly.o run.o
 FOBJS=$(FSRC:%.f=%.o)
@@ -40,7 +41,7 @@ $(ARCHIVE):
 
 $(TGT): $(FOBJS) $(COBJS)
 	@printf "LD $(TGT)\n\tcopy of any errors recorded in log/linker.log\n"
-	@$(LD) -O  $(COBJS) $(FOBJS) $(ARCHIVE) -o $@ $(LIBS) 2>&1 | tee log/linker.log 
+	$(LD) -O  $(COBJS) $(FOBJS) $(ARCHIVE) -o $@ $(LIBS) 2>&1 | tee log/linker.log 
 	@printf "\nCompile successful!\nbinary: $(shell pwd)/$(TGT)\n\n"
 
 $(DOCS): $(TGT) 
