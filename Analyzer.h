@@ -49,6 +49,7 @@
 #include <TF1.h>
 #include <TMath.h>
 #include <TCutG.h>
+#include <TGraph.h>
 #include <vector>
 using std::vector;
 
@@ -119,12 +120,13 @@ public :
    // as it is forbidden by ISO C++
    //#define        rf 59.70; // real RF value
    // Declaration of leaf types
-   Double_t        fSiE[18][9];   //[fNHitSi]
+   Double_t        fSiE[18][9];   //
    Double_t        fSiEcal[18][9];   //
    Double_t        fSiEmax[18];
    Double_t        fSiEStripmax[12];
-   Double_t        fSiT[18];   //[fNHitSi]
-   Double_t        fSiTcal[18];   //[fNHitSi]
+   Short_t        fSiEStripmax_ch[12];
+   Double_t        fSiT[18];   //
+   Double_t        fSiTcal[18];   //
    Double_t	   trig_dly_tpcB[48];
    Double_t	   trig_dly_rf[2];
    Double_t        trig_dly_ppac[2][4];
@@ -132,6 +134,7 @@ public :
    Bool_t 	   SsdOR; // want to know if the SSD-OR trigger was invoked based on 1a,2a,3a,5a,6b
    UShort_t	   ssd_mult; // SSD Multiplicity
    UShort_t        ssdhit[5][2]; // which ssd is triggered
+   UShort_t        ssd_evts[6];
    Double_t        fPPAC[2][5];
    Double_t        fPPACcal[2][5];
    Double_t        fRF[2];
@@ -150,9 +153,9 @@ public :
    Double_t        fSampleInt[144][20][2];
    Double_t        fClockMax[144][20][20];
    Double_t        fTimeMax[144][20][20];
-   UShort_t           HitNo[144][20];
-   //UShort_t           fNHit[144];
-   Short_t           fNHit[144];
+   UShort_t           MultiHit[144][20];
+   //UShort_t           fPulseNo[144];
+   Short_t           fPulseNo[144];
    Double_t        fHitMax[144];
    Double_t        baseline[144][20];
    Double_t        baseline_dev[144][20];
@@ -165,6 +168,7 @@ public :
    Double_t        ZpadB[48][20];
    Double_t        dEpadB[48][20];
    Double_t        TpadB[48][20];
+   UShort_t        padsHitB[20];
    // Left pad
    UShort_t        TracksL[8];
    Double_t        XpadL[8][20];
@@ -172,6 +176,8 @@ public :
    Double_t        ZpadL[8][20];
    Double_t        dEpadL[8][20];
    Double_t        TpadL[8][20];
+   Double_t        dEpadLTotal[20];
+   UShort_t        padsHitL[20];
    // Right pad
    UShort_t        TracksR[8];
    Double_t        XpadR[8][20];
@@ -179,6 +185,8 @@ public :
    Double_t        ZpadR[8][20];
    Double_t        dEpadR[8][20];
    Double_t        TpadR[8][20];
+   Double_t        dEpadRTotal[20];
+   UShort_t        padsHitR[20];
    // Center pad
    UShort_t        TracksC[8];
    Double_t        XpadC[8][20];
@@ -186,6 +194,8 @@ public :
    Double_t        ZpadC[8][20];
    Double_t        dEpadC[8][20];
    Double_t        TpadC[8][20];
+   Double_t        dEpadCTotal[20];
+   UShort_t        padsHitC[20];
    // ppac calib?
    Double_t PpacX[2], PpacY[2];
    Double_t TargetX, TargetY;

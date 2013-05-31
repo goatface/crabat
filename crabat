@@ -1,7 +1,7 @@
 #!/bin/bash
 #######################################################################
 # Copyright: 
-# 2011 daid KAHL
+# 2011, 2012 daid KAHL
 #
 # This file has an identity crisis: is IS crabat and also
 # part of the crabat project.
@@ -76,7 +76,9 @@ Config () { # read in run.conf and set the flags
 Usage () {
   printf "CRIB Active Target analyzer 1.0\n"
   printf "crabat shell script for running analysis\n"
-  printf "Copyright 2011 daid Kahl\n"
+  printf "Copyright 2011, 2012 daid Kahl\n"
+  printf "This is free software with ABSOLUTELY NO WARRANTY.\n"
+  printf "See the source code for further warranty and copyright information.\n\n"
   printf "Usage: %s: [-G ] [-R RunNumber] [-B ] [-C ] [-H header] [-I path] [-L ] [-r ] [-d ] [-s ] [-x ] [-p ] [-t ]\n" $0
   printf "Description of options:\n"
   printf "  -G\t\t: Enable GUI mode (requires that Zenity is installed)\n"
@@ -413,7 +415,7 @@ if [ $Lflag ];then
   GetCores
   Loop
   WaitFinish
-  HAdd
+  #HAdd # this is annoying right now because I have multiple gain conditions!
   exit 
 fi
 Run

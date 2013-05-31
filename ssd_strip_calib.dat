@@ -3,6 +3,8 @@
 # offset gain  
 #20.20   0.0152
 #30.12   0.0145
+# dummy
+0.0		1.0
 # strip_ch1 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0019600995
 121.05274	0.0082281806
 # strip_ch2 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0014483156
@@ -19,6 +21,8 @@
 122.17382	0.0088747886
 # strip_ch8 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0021117496
 101.77365	0.0089409483
+# strip_ch8 by enewz heavy ion fit (low gain data)
+#152.223		0.0192556
 # strip_ch9 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0047169627
 84.217739	0.0084354326
 # strip_ch10 alpha-calib-post-1010.root CRIB alpha source 2 Chisquare: 0.0046366511

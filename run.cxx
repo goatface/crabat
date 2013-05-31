@@ -1,7 +1,7 @@
 /*
  Copyright: 
  2010 daid KAHL, HASHIMOTO takashi, YAMAGUCHI hidetoshi 
- 2011 daid KAHL
+ 2011, 2012 daid KAHL
 
  This file is part of crabat
 
@@ -43,7 +43,7 @@ cout << "./run" << endl;
 gApplication->Terminate();
 }
 #endif
-
+using namespace std;
 #include "run.h" // mainly allocates memory for histograms
 #include "Analyzer.cxx" // the analysis code
 #include "TRint.h" // so we can run a ROOT session after analysis finishes
@@ -210,13 +210,11 @@ int main(int argc, char **argv)
   char file_run[150];
   //exclude some run numbers for particular cases
   if (strcmp("30s_production",header)==0) {
-    if (0){
-    //if (run_no==1006 || run_no==1007 || run_no==1008 || run_no==1009 || run_no==1010 || run_no==1016){
+    if (run_no==1006 || run_no==1007 || run_no==1008 || run_no==1009 || run_no==1010 || run_no==1016){
       cout << "Run number " << run_no << " is junk for 30S Production Runs" << endl;
       return 0;
     }
-    if (0){
-    //if (run_no==1024 || run_no==1027 ){
+    if (run_no==1024 || run_no==1027 ){
       cout << "Run number " << run_no << " is calibration for 30S Production Runs" << endl;
       return 0;
     }
@@ -226,7 +224,8 @@ int main(int argc, char **argv)
   cout << "raw data: " << flag_raw << endl << "detailed data: " << flag_detail << endl <<
   "ssd: " << flag_ssd << endl <<  "ssd_strip: " << flag_strip << endl << "ppac: " << flag_ppac << endl << "tpc: " << flag_tpc << endl;
   
-  Int_t nfiles; // count the number of files loaded
+  //unused for now
+  //Int_t nfiles; // count the number of files loaded
   TChain *ch=new TChain("rawdata"); // create a TChain in the case there is more than one root file to process
   
   for (int rn=run_no;rn<=run_no2;rn++) {
@@ -245,7 +244,8 @@ int main(int argc, char **argv)
     }
     ifile.close();
     
-    nfiles=ch->Add(file_run);
+    //nfiles=ch->Add(file_run); 
+    ch->Add(file_run);
   } // end for: run_no
   
   // Initalize the histograms

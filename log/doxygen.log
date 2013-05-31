@@ -1,31 +1,26 @@
 /home/daid/active/crabat/dictCal.cxx:511: warning: Compound G__cpp_setup_initdictCal is not documented.
-/home/daid/active/crabat/dictAnaly.cxx:630: warning: Compound G__Sizep2memfuncdictAnaly is not documented.
+/home/daid/active/crabat/dictAnaly.cxx:984: warning: Compound G__Sizep2memfuncdictAnaly is not documented.
+/home/daid/active/crabat/Analyzer.h:92: warning: Compound TDetector is not documented.
 /home/daid/active/crabat/dictCal.cxx:286: warning: Compound G__Sizep2memfuncdictCal is not documented.
 /home/daid/active/crabat/Calibration.h:31: warning: Compound Calibration is not documented.
-/home/daid/active/crabat/dictAnaly.cxx:1033: warning: Compound G__cpp_setup_initdictAnaly is not documented.
-/home/daid/active/crabat/dictAnaly.cxx:116: warning: documented function `TClass * TArtFadcHit::fgIsA' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:120: warning: documented function `const char * TArtFadcHit::Class_Name' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:126: warning: documented function `const char * TArtFadcHit::ImplFileName' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:132: warning: documented function `int TArtFadcHit::ImplFileLine' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:138: warning: documented function `void TArtFadcHit::Dictionary' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:144: warning: documented function `TClass * TArtFadcHit::Class' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:172: warning: documented function `void TArtFadcHit::Streamer' was not declared or defined.
-/home/daid/active/crabat/dictAnaly.cxx:205: warning: documented function `void TArtFadcHit::ShowMembers' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:1484: warning: Compound G__cpp_setup_initdictAnaly is not documented.
+/home/daid/active/crabat/dictAnaly.cxx:151: warning: documented function `TClass * TArtFadcHit::fgIsA' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:155: warning: documented function `const char * TArtFadcHit::Class_Name' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:161: warning: documented function `const char * TArtFadcHit::ImplFileName' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:167: warning: documented function `int TArtFadcHit::ImplFileLine' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:173: warning: documented function `void TArtFadcHit::Dictionary' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:179: warning: documented function `TClass * TArtFadcHit::Class' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:185: warning: documented function `TClass * TDetector::fgIsA' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:189: warning: documented function `const char * TDetector::Class_Name' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:195: warning: documented function `const char * TDetector::ImplFileName' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:201: warning: documented function `int TDetector::ImplFileLine' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:207: warning: documented function `void TDetector::Dictionary' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:213: warning: documented function `TClass * TDetector::Class' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:241: warning: documented function `void TArtFadcHit::Streamer' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:274: warning: documented function `void TArtFadcHit::ShowMembers' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:314: warning: documented function `void TDetector::Streamer' was not declared or defined.
+/home/daid/active/crabat/dictAnaly.cxx:329: warning: documented function `void TDetector::ShowMembers' was not declared or defined.
 <example_enewzsub.cxx>:3: warning: included file example_enewzsub.cxx is not found. Check your EXAMPLE_PATH
-/home/daid/active/crabat/Analyzer.cxx:53: warning: Member gate_30s (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:53: warning: Member gate_29p (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:53: warning: Member gate_31s (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:54: warning: Member proton_beam (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:55: warning: Member goodRF_30s (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:55: warning: Member goodPpacX_30s (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:56: warning: Member goodRF_29p (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:56: warning: Member goodPpacX_29p (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:57: warning: Member goodRF_31s (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:57: warning: Member goodPpacX_31s (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:99: warning: Member tpc_ch[2][144] (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.cxx:120: warning: Member padBgain[2][48] (variable) of file Analyzer.cxx is not documented.
-/home/daid/active/crabat/Analyzer.h:84: warning: Member ClassImp(TArtFadcHit) (function) of file Analyzer.h is not documented.
-/home/daid/active/crabat/Analyzer.h:50: warning: Member kMaxfadc (variable) of file Analyzer.h is not documented.
 Searching for include files...
 Searching for example files...
 Searching for images...
@@ -40,6 +35,8 @@ Preprocessing /home/daid/active/crabat/Analyzer.cxx...
 Parsing file /home/daid/active/crabat/Analyzer.cxx...
 Preprocessing /home/daid/active/crabat/Analyzer.h...
 Parsing file /home/daid/active/crabat/Analyzer.h...
+Preprocessing /home/daid/active/crabat/Analyzer_config.cxx...
+Parsing file /home/daid/active/crabat/Analyzer_config.cxx...
 Preprocessing /home/daid/active/crabat/Calibration.cxx...
 Parsing file /home/daid/active/crabat/Calibration.cxx...
 Preprocessing /home/daid/active/crabat/Calibration.h...
@@ -115,6 +112,7 @@ Generating docs for example example_enewzsub.cxx...
 Generating file sources...
 Generating code for file Analyzer.cxx...
 Generating code for file Analyzer.h...
+Generating code for file Analyzer_config.cxx...
 Generating code for file Calibration.cxx...
 Generating code for file Calibration.h...
 Generating code for file dictAnaly.cxx...
@@ -125,183 +123,282 @@ Generating code for file examples/enewzsub.cxx...
 Generating code for file linkdefAnaly.h...
 Generating code for file linkdefCal.h...
 Generating code for file run.cxx...
-Generating code for file run.h...
-Generating file documentation...
-Generating docs for file Analyzer.cxx...
-Generating docs for file Analyzer.h...
-Generating docs for file run./home/daid/active/crabat/run.cxx:75: warning: argument 'arcv' of command @param is not found in the argument list of main(int argc, char **argv)
-/home/daid/active/crabat/run.cxx:75: warning: The following parameters of main(int argc, char **argv) are not documented:
+Gener/home/daid/active/crabat/Analyzer.cxx:54: warning: Member gate_30s (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:54: warning: Member gate_29p (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:54: warning: Member gate_17f (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:55: warning: Member proton_beam (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:56: warning: Member ribeam_ssd (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:57: warning: Member goodRF_30s (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:57: warning: Member goodPpacX_30s (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:58: warning: Member goodRF_29p (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:58: warning: Member goodPpacX_29p (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:59: warning: Member goodRF_17f (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:59: warning: Member goodPpacX_17f (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:62: warning: Member pulsetrack (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:63: warning: Member pulsetrack1a (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:64: warning: Member pulsetrack2a (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:65: warning: Member pulsetrack3a (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:66: warning: Member specialtrack (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:68: warning: Member rebin (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:70: warning: Member centerprojsum (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:71: warning: Member ytestcounter (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:72: warning: Member ypointscounter (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:74: warning: Member XpadBcalib[2] (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.cxx:76: warning: Member padsize (variable) of file Analyzer.cxx is not documented.
+/home/daid/active/crabat/Analyzer.h:90: warning: Member ClassImp(TArtFadcHit) (function) of file Analyzer.h is not documented.
+/home/daid/active/crabat/Analyzer.h:102: warning: Member ClassImp(TDetector) (function) of file Analyzer.h is not documented.
+/home/daid/active/crabat/Analyzer.h:56: warning: Member kMaxfadc (variable) of file Analyzer.h is not documented.
+/home/daid/active/crabat/Analyzer_config.cxx:47: warning: Member Analyzer_config_cxx (define) of file Analyzer_config.cxx is not documented.
+/home/daid/active/crabat/Analyzer_config.cxx:236: warning: Member rf (define) of file Analyzer_config.cxx is not documented.
+/home/daid/active/crabat/run.cxx:74: warning: argument 'arcv' of command @param is not found in the argument list of main(int argc, char **argv)
+/home/daid/active/crabat/run.cxx:74: warning: The following parameters of main(int argc, char **argv) are not documented:
   parameter 'argv'
-/home/daid/active/crabat/run.h:63: warning: Member flag_Run (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:64: warning: Member flag_Batch (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:65: warning: Member flag_Header (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:66: warning: Member flag_Inpath (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:67: warning: Member flag_raw (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:67: warning: Member flag_detail (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:68: warning: Member flag_ssd (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:68: warning: Member flag_strip (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:68: warning: Member flag_ppac (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:68: warning: Member flag_tpc (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:71: warning: Member hRf[2] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:73: warning: Member hSiStripHit (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:74: warning: Member hSiPadHit (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:75: warning: Member hfSample[144] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:76: warning: Member hTrough[144] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:77: warning: Member hBeamPadCh (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:78: warning: Member hGemMstpcCh (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:80: warning: Member hSiStripE (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:81: warning: Member hSiStripEcal (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:82: warning: Member hSiPadE (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:83: warning: Member hSiEmax (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:84: warning: Member hSiPadEcal (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:86: warning: Member strip_ch[97] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:87: warning: Member strip_cal_ch[97] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:88: warning: Member strip_ch_gated30s[97] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:89: warning: Member strip_ch_gated29p[97] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:90: warning: Member pad_ch[18] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:91: warning: Member pad_ch_gated[18] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:94: warning: Member dE_E[6] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:95: warning: Member dE_Estrip[6] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:96: warning: Member dE_EBeamGateRF0[6] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:97: warning: Member dE_EBeamGateRF1[6] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:98: warning: Member dE_EBeamGateRFAll (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:99: warning: Member hSiT (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:100: warning: Member hSiTcal (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:102: warning: Member hPpac0TpadT_30s_ch[18] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:103: warning: Member hPpac0TpadT_29p_ch[18] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:104: warning: Member hPpacToF_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:105: warning: Member hPpacToF_29p (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:107: warning: Member hRF0Tof (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:108: warning: Member hRF1Tof (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:110: warning: Member hPpac0TX1 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:111: warning: Member hPpac0TX2 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:112: warning: Member hPpac0TY1 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:113: warning: Member hPpac0TY2 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:114: warning: Member hPpac1TX1 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:115: warning: Member hPpac1TX2 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:116: warning: Member hPpac1TY1 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:117: warning: Member hPpac1TY2 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:119: warning: Member hPpac0XY (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:120: warning: Member hPpac1XY (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:121: warning: Member hPpac1XYcut (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:122: warning: Member hPpac0XRF0 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:123: warning: Member hPpac0XRF0_29p (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:124: warning: Member hPpac0XRF1_29p (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:125: warning: Member hPpac0XRF0_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:126: warning: Member hPpac0XRF1_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:127: warning: Member hPpac0XRF0ds (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:128: warning: Member hPpac0XRF1ds (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:129: warning: Member hPpac0XRF0ssd (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:130: warning: Member hPpac0XRF1ssd (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:131: warning: Member hPpac1XRF0 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:132: warning: Member hPpac1XRF0_29p (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:133: warning: Member hPpac1XRF1_29p (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:134: warning: Member hPpac1XRF0_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:135: warning: Member hPpac1XRF1_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:136: warning: Member hPpac1XRF0ds (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:137: warning: Member hPpac1XRF1ds (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:138: warning: Member hPpac1XRF0ssd (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:139: warning: Member hPpac1XRF1ssd (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:140: warning: Member hPpac0XRF1 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:141: warning: Member hPpac0XRF1cut (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:142: warning: Member hPpac1XRF1cut (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:143: warning: Member hPpac1XRF1 (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:146: warning: Member hGemMstpcAll (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:147: warning: Member hGemMstpcSide (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:148: warning: Member hPadC (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:150: warning: Member hTpc_dE_ch[144] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:154: warning: Member hBraggB_ch[48] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:155: warning: Member hBraggB_ds_ch[48] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:156: warning: Member hBraggB_ssd_ch[48] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:158: warning: Member hBraggB_30s_jch[15] (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:159: warning: Member hBraggB_rp (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:160: warning: Member hBraggB_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:161: warning: Member hBraggB_29p (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:162: warning: Member hBraggB_31s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:163: warning: Member hBraggB (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:165: warning: Member hPadXB (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:166: warning: Member hPadXB_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:168: warning: Member hPadYB (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:169: warning: Member hPadYB_30s (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:171: warning: Member hPadB_3D (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:173: warning: Member hBraggB_3D (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:174: warning: Member hBraggB_3D_ds (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:175: warning: Member hBraggB_3D_ssd (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:178: warning: Member hBraggL (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:179: warning: Member hBraggR (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:180: warning: Member hBraggC (variable) of file run.h is not documented.
-/home/daid/active/crabat/run.h:183: warning: Member hPadXC (variable) of file run.h is not documented.
-/home/daid/active/crabat/Analyzer.h:176: warning: Member Analyzer(TChain *tree=0) (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:178: warning: Member Cut(Long64_t entry) (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:179: warning: Member GetEntry(Long64_t entry) (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:180: warning: Member LoadTree(Long64_t entry) (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:181: warning: Member Init(TChain *tree) (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:187: warning: Member Notify() (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:188: warning: Member Show(Long64_t entry=-1) (function) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:99: warning: Member fChain (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:104: warning: Member fSiEcal[18][9] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:105: warning: Member fSiEmax[18] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:106: warning: Member fSiEStripmax[12] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:107: warning: Member fSiT[18] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:108: warning: Member fSiTcal[18] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:109: warning: Member SiIsHit[18] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:110: warning: Member SsdOR (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:111: warning: Member ssd_mult (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:112: warning: Member ssdhit[5][2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:113: warning: Member fPPAC[2][5] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:114: warning: Member fPPACcal[2][5] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:115: warning: Member fRF[2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:116: warning: Member tof[2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:117: warning: Member Tof (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:118: warning: Member PpacIsHit[2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:119: warning: Member PadIsHit[144] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:120: warning: Member fSampleMax[144][20][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:121: warning: Member fClockMax[144][20][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:122: warning: Member fTimeMax[144][20][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:123: warning: Member HitNo[144][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:125: warning: Member fNHit[144] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:126: warning: Member fHitMax[144] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:127: warning: Member baseline[144][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:128: warning: Member baseline_dev[144][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:129: warning: Member trough (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:130: warning: Member pad[144] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:132: warning: Member TracksB[48] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:133: warning: Member XpadB[48][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:134: warning: Member YpadB[48][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:135: warning: Member ZpadB[48][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:136: warning: Member dEpadB[48][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:137: warning: Member TpadB[48][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:139: warning: Member TracksL[8] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:140: warning: Member XpadL[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:141: warning: Member YpadL[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:142: warning: Member ZpadL[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:143: warning: Member dEpadL[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:144: warning: Member TpadL[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:146: warning: Member TracksR[8] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:147: warning: Member XpadR[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:148: warning: Member YpadR[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:149: warning: Member ZpadR[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:150: warning: Member dEpadR[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:151: warning: Member TpadR[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:153: warning: Member TracksC[8] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:154: warning: Member XpadC[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:155: warning: Member YpadC[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:156: warning: Member ZpadC[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:157: warning: Member dEpadC[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:158: warning: Member TpadC[8][20] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:160: warning: Member dxy[2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:161: warning: Member PpacOffset[2][2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:162: warning: Member PpacOffsetLine[2][2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:163: warning: Member PpacPositionGain[2][2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:164: warning: Member PpacOffsetGeometry[2][2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:165: warning: Member PpacX[2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:165: warning: Member PpacY[2] (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:167: warning: Member arr (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:170: warning: Member b_fSiE (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:171: warning: Member b_fSiT (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:172: warning: Member b_fPPAC (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:173: warning: Member b_fRF (variable) of class Analyzer is not documented.
-/home/daid/active/crabat/Analyzer.h:174: warning: Member b_fadc_ (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/run.h:65: warning: Member flag_Run (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:66: warning: Member flag_Batch (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:67: warning: Member flag_Header (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:68: warning: Member flag_Inpath (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:69: warning: Member flag_raw (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:69: warning: Member flag_detail (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:70: warning: Member flag_ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:70: warning: Member flag_strip (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:70: warning: Member flag_ppac (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:70: warning: Member flag_tpc (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:73: warning: Member hRf_ds[2] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:74: warning: Member hRf_ssd[2] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:75: warning: Member hRfcal[2] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:77: warning: Member hSiStripHit (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:78: warning: Member hSiPadHit (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:79: warning: Member hfSample[144] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:80: warning: Member hTrough[144] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:81: warning: Member hBeamPadCh (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:82: warning: Member hGemMstpcCh (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:84: warning: Member hSiStripE (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:85: warning: Member hSiStripEcal (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:86: warning: Member hSiPadE (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:87: warning: Member hSiEmax (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:88: warning: Member hSiPadEcal (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:90: warning: Member strip_ch[97] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:91: warning: Member strip_cal_ch[97] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:92: warning: Member strip_ch_gated30s[17] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:93: warning: Member strip_ch_gated29p[17] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:94: warning: Member strip_ch_gated17f[17] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:95: warning: Member padE_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:96: warning: Member padT_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:97: warning: Member padT_cal_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:98: warning: Member pad_ch_gated[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:101: warning: Member dE_E[6] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:102: warning: Member padE_strip[8] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:103: warning: Member dE_Estrip[6] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:104: warning: Member dE_EBeamGateRF0[6] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:105: warning: Member dE_EBeamGateRF1[6] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:106: warning: Member dE_EBeamGateRFAll (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:107: warning: Member hSiT (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:108: warning: Member hSiTcal (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:110: warning: Member hPpac0TpadT_30s_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:111: warning: Member hPpac1TpadT_30s_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:112: warning: Member hPpac0TpadT_29p_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:113: warning: Member hPpac1TpadT_29p_ch[18] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:114: warning: Member hPpacToF_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:115: warning: Member hPpacToF_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:117: warning: Member hRF0Tof (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:118: warning: Member hRF1Tof (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:120: warning: Member hPpac0TX1 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:121: warning: Member hPpac0TX2 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:122: warning: Member hPpac0TY1 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:123: warning: Member hPpac0TY2 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:124: warning: Member hPpac1TX1 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:125: warning: Member hPpac1TX2 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:126: warning: Member hPpac1TY1 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:127: warning: Member hPpac1TY2 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:129: warning: Member hPpac0XY (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:130: warning: Member hPpac1XY (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:131: warning: Member hPpac1XYcut (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:132: warning: Member hTargetXY (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:133: warning: Member hTargetXZ (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:134: warning: Member hTargetXYcut (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:135: warning: Member hTargetXY_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:136: warning: Member hTargetXYcut_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:137: warning: Member hTargetXY_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:138: warning: Member hPpac0XRF0 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:139: warning: Member hPpac0XRF0_17f (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:140: warning: Member hPpac0XRF1_17f (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:141: warning: Member hPpac0XRF0_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:142: warning: Member hPpac0XRF1_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:143: warning: Member hPpac0XRF0_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:144: warning: Member hPpac0XRF0_30s_ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:145: warning: Member hPpac0XRF1_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:146: warning: Member hPpac0XRF0ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:147: warning: Member hPpac0XRF1ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:148: warning: Member hPpac0XRF0ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:149: warning: Member hPpac0XRF1ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:150: warning: Member hPpac1XRF0 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:151: warning: Member hPpac1XRF0_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:152: warning: Member hPpac1XRF1_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:153: warning: Member hPpac1XRF0_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:154: warning: Member hPpac1XRF1_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:155: warning: Member hPpac1XRF0ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:156: warning: Member hPpac1XRF1ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:157: warning: Member hPpac1XRF0ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:158: warning: Member hPpac1XRF1ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:159: warning: Member hPpac0XRF1 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:160: warning: Member hPpac0XRF1cut (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:161: warning: Member hPpac1XRF1cut (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:162: warning: Member hPpac1XRF1 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:165: warning: Member hGemMstpcAll (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:166: warning: Member hGemMstpcSide (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:167: warning: Member hPadC (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:168: warning: Member hTpcPulse[500] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:170: warning: Member hTpc_dE_ch[144] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:174: warning: Member hBraggB_30s_ssd_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:175: warning: Member hBraggB_30s_ds_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:176: warning: Member hBraggB_29p_ssd_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:177: warning: Member hBraggB_29p_ds_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:178: warning: Member hBraggB_17f_ssd_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:179: warning: Member hBraggB_17f_ds_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:180: warning: Member hBraggB_ds_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:181: warning: Member hBraggB_ssd_ch[48] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:183: warning: Member hBraggB_30s_jch[15] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:184: warning: Member hBraggB_rp (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:185: warning: Member hBraggB_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:186: warning: Member hBraggB_30s_ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:187: warning: Member hBraggB_30s_ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:188: warning: Member hBraggB_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:189: warning: Member hBraggB_29p_ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:190: warning: Member hBraggB_29p_ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:191: warning: Member hBraggB_17f (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:192: warning: Member hBraggB (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:195: warning: Member hMultB (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:196: warning: Member hMultB_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:197: warning: Member hMultC_30s_1a (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:198: warning: Member hMultC_30s_2a (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:199: warning: Member hMultL_30s_3a (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:200: warning: Member hMultL_3a (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:202: warning: Member hPadXB (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:203: warning: Member hPadXB_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:204: warning: Member hPadXB_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:205: warning: Member hPadXBgeo (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:206: warning: Member hPadXBgeo_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:207: warning: Member hPadXBgeo_29p (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:209: warning: Member hPadYB (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:210: warning: Member hPadYBgeo (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:211: warning: Member hPadYB_30s (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:213: warning: Member hPpacProj_3D (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:215: warning: Member hPadB_3D (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:217: warning: Member hBraggB_3D (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:218: warning: Member hBraggB_3D_ds (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:219: warning: Member hBraggB_3D_ssd (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:222: warning: Member hBraggL (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:223: warning: Member hBraggL_E[9] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:224: warning: Member hBraggR_E[9] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:225: warning: Member hBraggR (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:226: warning: Member hBraggC (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:227: warning: Member hBraggC_Eup[9] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:228: warning: Member hBraggC_Edown[9] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:229: warning: Member hBraggC_E[1] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:233: warning: Member hPadXC1asum3 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:234: warning: Member hPadXC1asum4 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:235: warning: Member hPadXC1asum5 (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:236: warning: Member hPadXC2asum (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:237: warning: Member hPadXC1a[100] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:238: warning: Member hPadXC2a[100] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:239: warning: Member hPadZL[100] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:240: warning: Member hPadZR[100] (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:241: warning: Member hPadYC1a (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:242: warning: Member hPadYC2a (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:243: warning: Member hPadYL (variable) of file run.h is not documented.
+/home/daid/active/crabat/run.h:244: warning: Member hPadYR (variable) of file run.h is not documented.
+/home/daid/active/crabat/Analyzer.h:214: warning: Member Analyzer(TChain *tree=0) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:216: warning: Member Cut(Long64_t entry) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:217: warning: Member GetEntry(Long64_t entry) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:218: warning: Member LoadTree(Long64_t entry) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:219: warning: Member Init(TChain *tree) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:221: warning: Member SetRF() (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:222: warning: Member SetPpacSepZ() (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:223: warning: Member WindowCut(Double_t x=99., Double_t y=99.) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:230: warning: Member PpacXYCalib(Bool_t flag_detail=0, Bool_t flag_ppac=0) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:231: warning: Member Notify() (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:232: warning: Member Show(Long64_t entry=-1) (function) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:116: warning: Member fChain (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:124: warning: Member fSiEcal[18][9] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:125: warning: Member fSiEmax[18] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:126: warning: Member fSiEStripmax[12] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:127: warning: Member fSiEStripmax_ch[12] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:128: warning: Member fSiT[18] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:129: warning: Member fSiTcal[18] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:130: warning: Member trig_dly_tpcB[48] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:131: warning: Member trig_dly_rf[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:132: warning: Member trig_dly_ppac[2][4] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:133: warning: Member SiIsHit[18] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:134: warning: Member SsdOR (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:135: warning: Member ssd_mult (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:136: warning: Member ssdhit[5][2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:137: warning: Member ssd_evts[6] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:138: warning: Member fPPAC[2][5] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:139: warning: Member fPPACcal[2][5] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:140: warning: Member fRF[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:141: warning: Member fRFcal[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:142: warning: Member tof[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:143: warning: Member Tof (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:144: warning: Member PpacIsHit[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:147: warning: Member PadIsHit[144] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:148: warning: Member fSampleRebin[1334] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:149: warning: Member rebinCounter (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:150: warning: Member rebinTemp (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:151: warning: Member truepeak (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:152: warning: Member fSampleMax[144][20][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:153: warning: Member fSampleInt[144][20][2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:154: warning: Member fClockMax[144][20][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:155: warning: Member fTimeMax[144][20][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:156: warning: Member MultiHit[144][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:158: warning: Member fPulseNo[144] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:159: warning: Member fHitMax[144] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:160: warning: Member baseline[144][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:161: warning: Member baseline_dev[144][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:162: warning: Member trough (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:163: warning: Member pad[144] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:165: warning: Member TracksB[48] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:166: warning: Member XpadB[48][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:167: warning: Member YpadB[48][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:168: warning: Member ZpadB[48][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:169: warning: Member dEpadB[48][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:170: warning: Member TpadB[48][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:171: warning: Member padsHitB[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:173: warning: Member TracksL[8] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:174: warning: Member XpadL[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:175: warning: Member YpadL[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:176: warning: Member ZpadL[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:177: warning: Member dEpadL[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:178: warning: Member TpadL[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:179: warning: Member dEpadLTotal[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:180: warning: Member padsHitL[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:182: warning: Member TracksR[8] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:183: warning: Member XpadR[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:184: warning: Member YpadR[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:185: warning: Member ZpadR[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:186: warning: Member dEpadR[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:187: warning: Member TpadR[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:188: warning: Member dEpadRTotal[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:189: warning: Member padsHitR[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:191: warning: Member TracksC[8] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:192: warning: Member XpadC[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:193: warning: Member YpadC[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:194: warning: Member ZpadC[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:195: warning: Member dEpadC[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:196: warning: Member TpadC[8][20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:197: warning: Member dEpadCTotal[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:198: warning: Member padsHitC[20] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:200: warning: Member PpacX[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:200: warning: Member PpacY[2] (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:201: warning: Member TargetX (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:201: warning: Member TargetY (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:202: warning: Member fTargetX (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:203: warning: Member fTargetY (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:205: warning: Member arr (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:208: warning: Member b_fSiE (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:209: warning: Member b_fSiT (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:210: warning: Member b_fPPAC (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:211: warning: Member b_fRF (variable) of class Analyzer is not documented.
+/home/daid/active/crabat/Analyzer.h:212: warning: Member b_fadc_ (variable) of class Analyzer is not documented.
 /home/daid/active/crabat/Calibration.h:46: warning: Member Calibration(const char *calibfile, int nmax_in) (function) of class Calibration is not documented.
 /home/daid/active/crabat/Calibration.h:50: warning: Member Init(const char *calibfile, int nmax_in) (function) of class Calibration is not documented.
 /home/daid/active/crabat/Calibration.h:51: warning: Member AddEntry(Double_t offset_in, Double_t gain_in) (function) of class Calibration is not documented.
@@ -312,18 +409,24 @@ Generating docs for file run./home/daid/active/crabat/run.cxx:75: warning: argum
 /home/daid/active/crabat/Calibration.h:58: warning: Member Gain(int n) (function) of class Calibration is not documented.
 /home/daid/active/crabat/Calibration.h:60: warning: Member Calib(int n, Double_t x) (function) of class Calibration is not documented.
 /home/daid/active/crabat/Calibration.h:61: warning: Member CalibMeV(int n, Double_t x) (function) of class Calibration is not documented.
-/home/daid/active/crabat/dictAnaly.cxx:633: warning: Member sizep2memfunc() (function) of class G__Sizep2memfuncdictAnaly is not documented.
+/home/daid/active/crabat/dictAnaly.cxx:987: warning: Member sizep2memfunc() (function) of class G__Sizep2memfuncdictAnaly is not documented.
 /home/daid/active/crabat/dictCal.cxx:289: warning: Member sizep2memfunc() (function) of class G__Sizep2memfuncdictCal is not documented.
-/home/daid/active/crabat/Analyzer.h:76: warning: Member Clear(Option_t *) (function) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:81: warning: Member ClassDef(TArtFadcHit, 2) (function) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:61: warning: Member fID (variable) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:62: warning: Member fHit (variable) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:63: warning: Member fNSample (variable) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:64: warning: Member fTime (variable) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:65: warning: Member fSample (variable) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:66: warning: Member fClock (variable) of class TArtFadcHit is not documented.
-/home/daid/active/crabat/Analyzer.h:60: warning: Member kMaxSample (variable) of class TArtFadcHit is not documented.
-cxx...
+/home/daid/active/crabat/Analyzer.h:82: warning: Member Clear(Option_t *) (function) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:87: warning: Member ClassDef(TArtFadcHit, 2) (function) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:67: warning: Member fID (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:68: warning: Member fHit (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:69: warning: Member fNSample (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:70: warning: Member fTime (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:71: warning: Member fSample (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:72: warning: Member fClock (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:66: warning: Member kMaxSample (variable) of class TArtFadcHit is not documented.
+/home/daid/active/crabat/Analyzer.h:97: warning: Member ClassDef(TDetector, 2) (function) of class TDetector is not documented.
+ating code for file run.h...
+Generating file documentation...
+Generating docs for file Analyzer.cxx...
+Generating docs for file Analyzer.h...
+Generating docs for file Analyzer_config.cxx...
+Generating docs for file run.cxx...
 Generating docs for file run.h...
 Generating page documentation...
 Generating group documentation...
@@ -341,6 +444,7 @@ Generating docs for compound G__cpp_setup_initdictCal...
 Generating docs for compound G__Sizep2memfuncdictAnaly...
 Generating docs for compound G__Sizep2memfuncdictCal...
 Generating docs for compound TArtFadcHit...
+Generating docs for compound TDetector...
 Generating namespace index...
 Generating namespace member index...
 Generating graph info page...

@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     
     // set nice plot colors
     // from http://ultrahigh.org/2007/08/20/making-pretty-root-color-palettes
+    /*
     const Int_t NRGBs = 5;
     const Int_t NCont = 255;
     Double_t stops[NRGBs] = { 0.00, 0.34, 0.61, 0.84, 1.00 };
@@ -44,7 +45,7 @@ int main(int argc, char **argv)
     Double_t blue[NRGBs]  = { 0.51, 1.00, 0.12, 0.00, 0.00 };
     TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
     gStyle->SetNumberContours(NCont); 
-    
+    */;
     cout << "" << endl;
     // Run interactive interface
     theApp->Run();

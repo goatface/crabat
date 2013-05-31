@@ -247,7 +247,7 @@ UShort_t inline Analyzer::SetPpacSepZ()
 Bool_t inline Analyzer::WindowCut(Double_t x, Double_t y)
 {
 // modified from http://root.cern.ch/phpBB3/viewtopic.php?f=3&t=1145
-  double radius = 20; // real value 20 mm 
+  double radius = 10; // real value 20 mm...practically speaking 22 is the cut off for 29P bragg appearing 
   const Int_t n = 300; 
   Double_t winx[n+1],winy[n+1]; 
   Double_t rcut = 1.00*radius; 
@@ -288,7 +288,7 @@ UShort_t inline Analyzer::PpacXYCalib(Bool_t flag_detail, Bool_t flag_ppac){
   PpacOffset[1][0]=0.17; //18 Jul 2011 16:57:56 
   PpacOffset[1][1]=0.11; //18 Jul 2011 16:57:54 
   //PpacOffsetLine[1][0]=-1.4; //05 Sep 2012 18:07:28 
-  PpacOffsetLine[1][0]=-4.3; //18 Jul 2011 16:58:03 
+  PpacOffsetLine[1][0]=-4.3; //18 Jul 2011 16:58:03 checking again 17 Apr 2013 15:57:19, and see Vol 4 p. 153...it has to be of such a value or projections wrong 
   PpacOffsetLine[1][1]=-1.0; //18 Jul 2011 16:58:04 
   PpacPositionGain[1][0]=0.6205; //18 Jul 2011 16:55:04 
   PpacPositionGain[1][1]=0.6125; //18 Jul 2011 16:55:06 
