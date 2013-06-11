@@ -25,15 +25,6 @@
  Publication includes, but is not limited to: books, peer-
  reviewed journals, conference proceedings, annual reports, etc.
  
- If any other publication is submitted prior to the publication of 
- the above stated reference, the author(s) must send a verbatim copy
- of that manuscript to the authors of crabat and receive express 
- written consent to publish that work.  Failure to do so may result
- in our requesting the publisher to withdraw the publication on 
- the grounds that it violates this copyright.  This is an additional
- restriction outside the terms of the license, and shall supersede any
- any clauses therein.
-
 */
 #ifdef __CINT__
 #pragma link off all globals;
