@@ -188,7 +188,7 @@ int main(int argc, char **argv)
   cout << ".root files in targeted output directory: " << endl;
   if (system(cmd)) { // runs the system command.  if ls is successful, exit status 0, but if it failed exit status 1
     cout << "Creating output directory based on output directory: " << file_dir_out << " and header: " << header << endl; 
-    sprintf(cmd,"mkdir %s/%s",file_dir_out,header); // if ls failed we need to create the directory for output 
+    sprintf(cmd,"mkdir -p %s/%s",file_dir_out,header); // if ls failed we need to create the directory for output 
     if (system(cmd)){ cout << "ERROR: No write permission in local directory!" << endl; return 1;} // if mkdir is not successful, report the error and quit
   }
   sprintf(cmd,"ls %s/%s/*.root 2> /dev/null",file_dir_out,header);

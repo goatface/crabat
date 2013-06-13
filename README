@@ -137,14 +137,12 @@ please feel free to help contribute!
 #############
 
 Omitting any details of the physics analysis, in order to run the program 
-for the first time, one need only to do two things.  Firstly, create the 
-output Tree directory:
+for the first time, it's pretty painless I hope! 
 
-	mkdir Tree
-
-Then, modify run.conf to one's liking.  At the very least, the input Tree,
+Modify run.conf to one's liking.  At the very least, the input Tree,
 output Tree, and header should be correct (although the input Tree and run
-header can be changed at runtime).
+header can be changed at runtime).  Note that it will mkdir on the output
+tree location for you, so you don't need to bother with that.
 
 At this point, just run the crabat shell script and ask for help:
 (sorry, the 'help' option does not exist yet, but anyway it works)
