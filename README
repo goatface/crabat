@@ -56,7 +56,8 @@ and compile the code with the make command.
 
 The dependencies are: 
 	ROOT (http://root.cern.ch) (version 5.26 or greater)
-	KaliVeda (http://indra.in2p3.fr/KaliVedaDoc/)
+		Removed for now: (13 Jun 2013 15:52:43 )
+		KaliVeda (http://indra.in2p3.fr/KaliVedaDoc/)
 	Doxygen (http://www.stack.nl/~dimitri/doxygen/)
 
 (As of this release, KaliVeda is not implemented, so this dependency could be
