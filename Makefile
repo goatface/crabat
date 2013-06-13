@@ -43,13 +43,13 @@ FFLAGS=-lstdc++
 FSRC=$(wildcard ./enewzsub/*.f)
 LD=g++ $(FFLAGS)
 ROOTLIBS=$(shell root-config --libs)
-KVLIBS=-L$(KVROOT)/lib -lKVMultiDet -lrange
+#KVLIBS=-L$(KVROOT)/lib -lKVMultiDet -lrange
 RANGELIBS=-L/usr/local/lib -lrange
 LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) $(RANGELIBS) -lstdc++
-INCLUDE=$(addprefix -I,$(KVROOT)/include)
+#INCLUDE=$(addprefix -I,$(KVROOT)/include)
 COBJS=dictCal.o dictAnaly.o run.o
-FOBJS=$(FSRC:%.f=%.o)
-ARCHIVE=libenewzlib.a
+#FOBJS=$(FSRC:%.f=%.o)
+#ARCHIVE=libenewzlib.a
 DOCCMD=doxygen
 DOCCFG=doc/Doxyfile
 DOCS=doc/html/index.html

@@ -56,7 +56,7 @@ using namespace std;
 #include "run.h" // mainly allocates memory for histograms
 #include "Analyzer.cxx" // the analysis code
 #include "TRint.h" // so we can run a ROOT session after analysis finishes
-#include "KV2Body.h" 		// KaliVeda class
+//#include "KV2Body.h" 		// KaliVeda class  // removed for now since we don't use it -- uncomment Makefile to enable
 
 // how to get the code of this into doxygen...?
 #include "TBrowser.h" // so we can open a TBrowser
@@ -76,10 +76,10 @@ Must be 32 characters followed by the \0 termination character.
 @param [in] thick1 Define the value of the thickness.
 @param [out] aft_ene Ion energy after energy loss in matter (MeV/A).
 */
-extern "C" { 
+/*extern "C" { // removed for now since we don't use it.  Uncomment Makefile to enable
 	void enewzsub_(int *z1, float *m1, float *e, char matter1[33], int *unit_pressure, float *pressure, float *temperature, int *unit_thick, float *thick1, float *aft_ene);
 }
-
+*/
 /**
 @brief main function of run.cxx which controls everything else.
 @details The main function gets the runtime options, can interact with the user to specify run number(s), reads the input ROOT Tree, passes the Tree to Analyzer, Writes the histograms to a new Tree, and optionally launches a ROOT session with a TBrowser attached to the output .root file.\n
