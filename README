@@ -56,18 +56,14 @@ and compile the code with the make command.
 
 The dependencies are: 
 	ROOT (http://root.cern.ch) (version 5.26 or greater)
-		Removed for now: (13 Jun 2013 15:52:43 )
-		KaliVeda (http://indra.in2p3.fr/KaliVedaDoc/)
+	KaliVeda (http://indra.in2p3.fr/KaliVedaDoc/)
 	Doxygen (http://www.stack.nl/~dimitri/doxygen/)
-
-(As of this release, KaliVeda is not implemented, so this dependency could be
-removed from the Makefile; however, future releases will make use of this 
-library, and at present the included headers are not checked to pull in all
-relevant libraries without use of KaliVeda.)
 
 The KVROOT environment variable must be exported in the shell, or otherwise
 the Makefile should be changed to explicitly define the installation path
 for KaliVeda.
+
+There is also some range library required for KV that should be installed.  I forget where it's from at the moment.
 
 The code also requires a release of the gcc which includes gfortran.  This is
 common, but there are some instances of the gcc which do not include it.  We
