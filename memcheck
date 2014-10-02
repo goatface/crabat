@@ -1,3 +1,4 @@
 #!/bin/bash
 # sorry, if we call this kind of garbage from crabat, we just get a pile of memory leaks associated with /bin/bash and not, say, Analyzer.h
-valgrind -v --suppressions=/etc/root/valgrind-root.supp --tool=memcheck --leak-check=full --show-reachable=yes ./run -R 1009 -H trigger_16N_test -I /home/daid/data -r -d -s -x -p 2>&1 | tee log/valgrind.log
+valgrind -v --suppressions=/etc/root/valgrind-root.supp --tool=memcheck --leak-check=full --show-reachable=yes ./run -R 1020 -d -s -p -t 2>&1 | tee log/valgrind.log
+#valgrind -v --suppressions=/etc/root/valgrind-root.supp --tool=memcheck --leak-check=full --show-reachable=yes ./run -R 1009 -H trigger_16N_test -I /home/daid/data -r -d -s -x -p 2>&1 | tee log/valgrind.log

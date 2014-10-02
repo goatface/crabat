@@ -106,6 +106,8 @@ public :
    ClassDef(TDetector,2);
    virtual vector<vector<Short_t> > SetTpcMap();
    virtual vector<vector<Double_t> > SetTpcBgain();
+   virtual vector<Double_t> SetGeoXB();
+   virtual vector<Double_t> SetGeoXC();
 };
 
 ClassImp(TDetector);
@@ -172,10 +174,14 @@ public :
    UShort_t           pad[144]; // place holder for the pad in physics loops
    // Beam pad
    UShort_t        TracksB[48];
+   Bool_t	   PadIsHitB[48][20];
+   Double_t        QratioB[48][20];
    Double_t        XpadB[48][20];
+   Double_t        XpadBraw[48][20];
    Double_t        YpadB[48][20];
    Double_t        ZpadB[48][20];
    Double_t        dEpadB[48][20];
+   Double_t        dEpadBcalib[48][20];
    Double_t        TpadB[48][20];
    UShort_t        padsHitB[20];
    // Left pad
@@ -198,6 +204,8 @@ public :
    UShort_t        padsHitR[20];
    // Center pad
    UShort_t        TracksC[8];
+   Bool_t	   PadIsHitC[8][20];
+   Double_t        QratioC[8][20];
    Double_t        XpadC[8][20];
    Double_t        YpadC[8][20];
    Double_t        ZpadC[8][20];

@@ -73,6 +73,116 @@ vector<vector<Short_t> > TDetector::SetTpcMap()
   static const Short_t WIDTH=144;
   static const Short_t tpc_ch[HEIGHT][WIDTH]={
 
+//Hayakawa found some inversions 23 Aug 2013 21:11:00 
+//daid confirming, order appears upside down
+{ 
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,00:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,01:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,02:OCCUPIED
+  6,7,4,5,3,2,1,0,          // SET 0,03:Beam right upstream
+  15,14,13,12,10,11,8,9,    // SET 0,04:Beam right upstream
+  23,22,21,20,19,18,16,17,  // SET 0,05:Beam right upstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,06:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,07:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,08:OCCUPIED
+  30,31,28,29,27,26,25,24,  // SET 0,09:Beam right downstream
+  39,38,37,36,34,35,32,33,  // SET 0,10:Beam right downstream
+  47,46,45,44,43,42,40,41,  // SET 0,11:Beam right downstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,12:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,13:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,14:DISABLED
+  //7,6,5,4,3,2,1,0,          // SET 1,15:high gain right center // hacking all this 01 Nov 2013 16:28:12 
+  0,1,2,3,4,5,6,7,           // SET 0,15:high gain right center hacking more 01 Nov 2013 19:04:20 
+  7,6,5,4,3,2,1,0,          // SET 1,15:high gain right down hacking
+  //7,6,5,4,3,2,1,0,          // SET 1,15:high gain right upstream
+  0,1,2,3,4,5,6,7,           // SET 0,15:high gain right upstream
+  //-1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
+   },
+
+ { 
+  17,16,19,18,20,21,22,23,  // SET 1,00:Beam left upstream
+  8,9,10,11,13,12,15,14,    // SET 1,01:Beam left upstream
+  0,1,2,3,4,5,7,6,           // SET 1,02:Beam left upstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,03:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,04:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,05:OCCUPIED 
+  41,40,43,42,44,45,46,47,  // SET 1,06:Beam left downstream
+  32,33,34,35,37,36,39,38,  // SET 1,07:Beam left downstream
+  24,25,26,27,28,29,31,30,  // SET 1,08:Beam left downstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,09:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,10:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,11:OCCUPIED
+  //0,1,2,3,4,5,6,7,           // SET 1,13:high gain left center // hacking 01 Nov 2013 16:29:08 
+  //6,5,-1,4,3,1,1,1,          // SET 1,12:high gain left center		//mismatching
+  7,6,5,4,3,2,1,0,          // SET 1,12:high gain left center
+  ///0,1,2,3,7,6,5,4,          // SET 1,12:high gain left center
+  //7,6,5,4,3,2,1,0,          // SET 1,14:high gain left up
+  0,1,2,3,4,5,6,7,           // SET 1,13:high gain left down
+  ////7,6,5,4,0,1,2,3,           // SET 1,14:high gain left up
+  7,6,5,4,3,2,1,0,          // SET 1,12:high gain left up more hacking 01 Nov 2013 19:03:44 
+  //0,-1,2,3,4,5,6,7,           // SET 1,14:high gain left up		//mismatching
+  //-1,7,6,5,4,2,2,0,          // SET 1,12:high gain left center		//mismatching
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1  // SET 1,17:DISABLED
+  }
+};
+
+/*
+//Hayakawa found some inversions 23 Aug 2013 21:11:00 
+{ 
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,00:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,01:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,02:OCCUPIED
+  6,7,5,4,3,2,1,0,          // SET 0,03:Beam right upstream
+  14,15,12,13,11,10,9,8,    // SET 0,04:Beam right upstream
+  23,22,21,20,18,19,16,17,  // SET 0,05:Beam right upstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,06:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,07:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,08:OCCUPIED
+  30,31,29,28,27,26,25,24,  // SET 0,09:Beam right downstream
+  38,39,36,37,35,34,33,32,  // SET 0,10:Beam right downstream
+  47,46,45,44,42,43,40,41,  // SET 0,11:Beam right downstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,12:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,13:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,14:DISABLED
+  0,1,2,3,4,5,6,7,           // SET 0,15:high gain right center
+  //7,6,5,4,3,2,1,0,          // SET 1,15:high gain right center hacking
+  7,6,5,4,3,2,1,0,          // SET 1,15:high gain right downstream 
+  0,1,2,3,4,5,6,7,           // SET 0,15:high gain right upstream
+  //-1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,17:DISABLED
+   },
+
+ { 
+  17,16,19,18,20,21,22,23,  // SET 1,00:Beam left upstream
+  8,9,10,11,13,12,15,14,    // SET 1,01:Beam left upstream
+  0,1,2,3,4,5,7,6,           // SET 1,02:Beam left upstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,03:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,04:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,05:OCCUPIED 
+  41,40,43,42,44,45,46,47,  // SET 1,06:Beam left downstream
+  32,33,34,35,37,36,39,38,  // SET 1,07:Beam left downstream
+  24,25,26,27,28,29,31,30,  // SET 1,08:Beam left downstream
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,09:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,10:OCCUPIED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,11:OCCUPIED
+  //0,1,2,3,4,5,6,7,           // SET 1,13:high gain left down
+  //6,5,-1,4,3,1,1,1,          // SET 1,12:high gain left center		//mismatching
+  7,6,5,4,3,2,1,0,          // SET 1,12:high gain left center
+  ///0,1,2,3,7,6,5,4,          // SET 1,12:high gain left center
+  7,6,5,4,3,2,1,0,          // SET 1,14:high gain left up
+  0,1,2,3,4,5,6,7,           // SET 1,13:high gain left down
+  ////7,6,5,4,0,1,2,3,           // SET 1,14:high gain left up
+  //7,6,5,4,3,2,1,0,          // SET 1,12:high gain left center
+  //0,-1,2,3,4,5,6,7,           // SET 1,14:high gain left up		//mismatching
+  //-1,7,6,5,4,2,2,0,          // SET 1,12:high gain left center		//mismatching
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1  // SET 1,17:DISABLED
+  }
+};
+*/
+/*
 // low gain mapping daid 26 Oct 2011 03:36:43 22Mg, now 30S 
 // rough high gain mapping daid 11 Sep 2012 00:09:38 (SET 0,15 might be inverted?)
 // should be correct now I think!
@@ -124,10 +234,10 @@ vector<vector<Short_t> > TDetector::SetTpcMap()
   //-1,7,6,5,4,2,2,0,          // SET 1,12:high gain left center		//mismatching
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,15:DISABLED
   -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,16:DISABLED
-  -1,-1,-1,-1,-1,-1,-1,-1,  // SET 1,17:DISABLED
+  -1,-1,-1,-1,-1,-1,-1,-1  // SET 1,17:DISABLED
   }
 };
-
+*/
 /*
     { -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,01:DISABLED
       -1,-1,-1,-1,-1,-1,-1,-1,  // SET 0,02:DISABLED
@@ -220,12 +330,46 @@ vector<vector<Double_t> > TDetector::SetTpcBgain()
     1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  }, // 8-15
   
   { //other runs
-    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
-    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
-    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
-    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
-    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
-    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.   // 8-15
+//    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+//    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+//    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+//    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 8-15
+//    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  , // 0-7
+//    1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.  ,1.   // 8-15
+0.,
+0.0001021486,
+0.0001088012,
+0.0001076046,
+0.0001072071,
+0.0001051142,
+0.0001066826,
+0.0001062733,
+0.0001040419,
+0.000101733,
+0.0001026983,
+0.0001013712,
+0.0001014689,
+0.0001034165,
+0.0001038815,
+0.0001042219,
+0.0001058612,
+0,
+0.0001137782,
+0.0001127487,
+0.0001174811,
+0.0001185898,
+0.0001182403,
+0.0001176346,
+0,
+0,
+0,
+0.0001090059,
+0.0001169127,
+0.0001150819,
+0.0001154769,
+0.0001132917,
+0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.
+  
   }};
   vector<vector<Double_t> > array2D;
   array2D.resize(HEIGHT);
@@ -235,6 +379,42 @@ vector<vector<Double_t> > TDetector::SetTpcBgain()
     for (int j = 0; j < WIDTH; j++)
       array2D[i][j]=padBgain[i][j];
   return array2D;
+}
+
+vector<Double_t> TDetector::SetGeoXB()
+{
+  //basic vector use suggested at http://www.cplusplus.com/forum/articles/7459/
+  //internal calibration for beam pad
+  static const Short_t HEIGHT=48;
+  static const Double_t padXBgeo[HEIGHT]={
+  5.21587,5.37543,5.535,5.69457,5.85414,6.0137,6.17327,6.33284,
+  6.49241,6.65197,6.81154,6.97111,7.13068,7.29024,7.44981,7.60938,
+  7.76895,7.92851,8.08808,8.24765,8.40722,8.56678,8.72635,8.88592,
+  9.04549,9.20505,9.36462,9.52419,9.68376,9.84332,10.0029,10.1625,
+  10.322,10.4816,10.6412,10.8007,10.9603,11.1199,11.2794,11.439,
+  11.5986,11.7581,11.9177,12.0773,12.2368,12.3964,12.556,12.7155
+  };
+  vector<Double_t> array1D;
+  array1D.resize(HEIGHT);
+  for (int i = 0; i < HEIGHT; i++)
+    array1D[i]=padXBgeo[i];
+  return array1D;
+}
+
+
+vector<Double_t> TDetector::SetGeoXC()
+{
+  //basic vector use suggested at http://www.cplusplus.com/forum/articles/7459/
+  //internal calibration for beam pad
+  static const Short_t HEIGHT=8;
+  static const Double_t padXCgeo[HEIGHT]={
+    13.4934,13.653,13.8126,13.9721,14.1317,14.2913,14.4508,14.6104
+  };
+  vector<Double_t> array1D;
+  array1D.resize(HEIGHT);
+  for (int i = 0; i < HEIGHT; i++)
+    array1D[i]=padXCgeo[i];
+  return array1D;
 }
 
 void inline Analyzer::SetRF()
@@ -256,7 +436,7 @@ UShort_t inline Analyzer::SetPpacSepZ()
 Bool_t inline Analyzer::WindowCut(Double_t x, Double_t y)
 {
 // modified from http://root.cern.ch/phpBB3/viewtopic.php?f=3&t=1145
-  double radius = 10; // real value 20 mm...practically speaking 22 is the cut off for 29P bragg appearing 
+  double radius = 20; // real value 20 mm...practically speaking 22 is the cut off for 29P bragg appearing 
   const Int_t n = 300; 
   Double_t winx[n+1],winy[n+1]; 
   Double_t rcut = 1.00*radius; 

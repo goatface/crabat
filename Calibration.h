@@ -67,6 +67,7 @@ public:
   Double_t Gain(int n) {if (n<nch) return gain[n]; else return 1;}
   //Get calibration parameter, (x-offset)*gain 
   Double_t Calib(int n,Double_t x) {return ((x-Offset(n))*Gain(n));}
+  Double_t CalibTPC(int n,Double_t x) {cout << n << "\t" << Gain(n) << endl; return ((x-Offset(n))*Gain(n));}
   Double_t CalibMeV(int n,Double_t x) {return ((x-Offset(n))*Gain(n));}
   //Double_t CalibMeV(int n,Double_t x) {return ((x-Offset(n))*Gain(n)/1000);}
 

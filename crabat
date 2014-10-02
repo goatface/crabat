@@ -288,6 +288,7 @@ Make () {
 GetCores () {
   # get the number of CPU cores so with Loop we can multi-thread
   CORES=`grep CPU /proc/interrupts  | awk '{print NF}'`
+  #CORES=1
 }
 
 control_c () { # if we get a Ctrl+C, kill.  If running loop, kill all child run
@@ -339,7 +340,8 @@ Loop () {
         # there is a way to do this using the Run function?  Seems trickier with backgrounding, getting PID, and so on
         CMD="$CMDINIT -R $RUNNO"
         printf "Executing run with the command:\n\t$CMD\n"
-        $CMD & PIDS="$PIDS $!" && sudo renice -n -10 -p $! # call run on the run number in background, renice to -10
+        $CMD & PIDS="$PIDS $!" # call run on the run number in background w/o renice
+        #$CMD & PIDS="$PIDS $!" && sudo renice -n 0 -p $! # call run on the run number in background, renice to -10
         while [ `jobs | wc -l` -eq $CORES ] # only run one run command per core
         do
         	jobs > /dev/null # without this the while loop doesn't seem to refresh?

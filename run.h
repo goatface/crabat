@@ -40,6 +40,8 @@
 //(previously some of this was done inline in Analyzer.cxx)
 //Anyway, it's a little more modular feeling this way
 
+#include <TGraph.h>
+#include <TGraphErrors.h>
 #include <TH2.h>
 #include <TH3.h>
 
@@ -79,6 +81,8 @@ Bool_t flag_raw=false, flag_detail=false;
 Bool_t flag_ssd=false, flag_strip=false, flag_ppac=false, flag_tpc=false; 
 
 //Histograms
+const int num_events=400;
+
 TH1F *hRf_ds[2]; 
 TH1F *hRf_ssd[2]; 
 TH1F *hRfcal[2]; 
@@ -89,6 +93,11 @@ TH1F *hfSample[144];
 TH1F *hTrough[144]; 
 TH2F *hBeamPadCh ;
 TH2F *hGemMstpcCh ;
+
+
+TH1F *hExcitation;
+TH1F *hExcitation2;
+TH2F *hExPad;
 
 TH2F *hSiStripE ;
 TH2F *hSiStripEcal ;
@@ -190,8 +199,15 @@ TH1F *hBraggB_ds_ch[48];
 TH1F *hBraggB_ssd_ch[48];
 
 TH2F *hBraggB_30s_jch[15]; 
-TH2F *hBraggB_rp ;
 TH2F *hBraggB_30s ;
+
+TH2F *hBraggBvX_30s[48] ;
+TH2F *hBraggBvX_29p[48] ;
+TH2F *hBraggCvX[8] ;
+TH2F *hBraggLvZ[8] ;
+
+TH2F *hEx_Si1a ;
+
 TH2F *hBraggB_30s_ssd ;
 TH2F *hBraggB_30s_ds ;
 TH2F *hBraggB_29p ;
@@ -199,6 +215,9 @@ TH2F *hBraggB_29p_ssd ;
 TH2F *hBraggB_29p_ds ;
 TH2F *hBraggB_17f ;
 TH2F *hBraggB; 
+TGraph *gPpacX_evt[num_events]; 
+TGraph *gPpacY_evt[num_events]; 
+TGraph *gBraggB_evt[num_events]; 
 
 // pad multiplicity
 TH1F *hMultB;
@@ -208,24 +227,36 @@ TH1F *hMultC_30s_2a;
 TH1F *hMultL_30s_3a;
 TH1F *hMultL_3a;
 
+TH1F *hPadCPulse[2][8][3];
+TH1F *hPadLPulseLow[2][8][8];
+TH1F *hPadLPulseHigh[2][8][8];
+
 TH2F *hPadXB ;
+TGraphErrors *gPadXB_evt[num_events] ;
 TH2F *hPadXB_30s ;
 TH2F *hPadXB_29p ;
 TH2F *hPadXBgeo ;
 TH2F *hPadXBgeo_30s ;
 TH2F *hPadXBgeo_29p ;
 
-TH2F *hPadYB ;
-TH2F *hPadYBgeo ;
+TH2F *hPadYB1 ;
+TH2F *hPadYB2 ;
+TH2F *hPadYB3 ;
+TH2F *hPadYB_ds ;
+TH2F *hPadYB_ssd ;
+TGraphErrors *gPadYB_evt[num_events] ;
+TH2F *hPadYBgeo1 ;
+TH2F *hPadYBgeo2 ;
+TH2F *hPadYBgeo3 ;
 TH2F *hPadYB_30s ;
 
-TH3F *hPpacProj_3D ;
 
 TH3F *hPadB_3D ;
 
-TH3F *hBraggB_3D ;
-TH3F *hBraggB_3D_ds ;
-TH3F *hBraggB_3D_ssd ;
+TH2F *hPadQB_30s[48];
+TH2F *hPadQB_29p[48];
+TH2F *hPadQC[8];
+TH2F *hPadQL[8];
 
 // high gain pads
 TH2F *hBraggL ;
@@ -233,12 +264,17 @@ TH2F *hBraggL_E[9] ;
 TH2F *hBraggR_E[9] ;
 TH2F *hBraggR ;
 TH2F *hBraggC ;
+TH2F *hBraggC3 ;
+TH2F *hBraggC4 ;
+TH2F *hBraggC5 ;
 TH2F *hBraggC_Eup[9];
 TH2F *hBraggC_Edown[9];
 TH2F *hBraggC_E[1];
 //TH2F *hBraggC ;
 
 //TGraph *gPadXC;
+TH2F *hPadXC;
+TGraph *gPadXC_evt[num_events];
 TH2F *hPadXC1asum3;
 TH2F *hPadXC1asum4;
 TH2F *hPadXC1asum5;
@@ -246,7 +282,9 @@ TH2F *hPadXC2asum;
 TH2F *hPadXC1a[100] ;
 TH2F *hPadXC2a[100] ;
 TH2F *hPadZL[100] ;
+TH2F *hPadZL3a[9] ;
 TH2F *hPadZR[100] ;
+TGraph *gPadYC_evt[num_events];
 TH2F *hPadYC1a;
 TH2F *hPadYC2a;
 TH2F *hPadYL;
@@ -331,7 +369,7 @@ void HistInit(){ // histogram initalization
     }
     for (UShort_t i=0;i<8;i++) {
       sprintf(name,"padE_strip%d",i);
-      padE_strip[i]= new TH2F(name, name, 500,100,600, 500,100,600);
+      padE_strip[i]= new TH2F(name, name, 300,200,500, 400,500,900);
       padE_strip[i]->SetOption("COL");
     }
 
@@ -652,8 +690,6 @@ void HistInit(){ // histogram initalization
       hPpacToF_30s = new TH1F("hPpacToF_30s","hPpacToF_30s",200,0.,20.);
       hPpacToF_29p = new TH1F("hPpacToF_29p","hPpacToF_29p",200,0.,20.);
       
-      hPpacProj_3D = new TH3F("hPpacProj_3D","hPpacProj_3D",10,10,30.,10,-10.,10.,60,200,800);
-      hPpacProj_3D->SetOption("GLCOL");
     } // end if: flag_detail
   
   } // end if: flag_ppac
@@ -741,8 +777,34 @@ void HistInit(){ // histogram initalization
       hBraggR->SetOption("COLZ");
       hBraggC = new TH2F("hBraggC","hBraggC",xbin,xmin,xmax,ybin,ymin,ymax);
       hBraggC->SetOption("COLZ");
+      xbin=8;xmin=-0.5;xmax=7.5;ybin=300;ymin=0.;ymax=100000.;
+      hBraggC3 = new TH2F("hBraggC3","hBraggC3",xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggC3->SetOption("COLZ");
+      hBraggC4 = new TH2F("hBraggC4","hBraggC4",xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggC4->SetOption("COLZ");
+      hBraggC5 = new TH2F("hBraggC5","hBraggC5",xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggC5->SetOption("COLZ");
       
-      xbin=8;xmin=-0.5;xmax=7.5;ybin=114;ymin=-40.;ymax=74.;
+      xbin=8;xmin=-0.5;xmax=7.5;ybin=100;ymin=-100.;ymax=100.;
+      hPadXC = new TH2F("hPadXC","hPadXC",xbin,xmin,xmax,ybin,ymin,ymax);
+      hPadXC->SetOption("COLZ");
+      for (UShort_t j=0;j<num_events;j++){
+        sprintf(name,"gPadXC_evt%d",j);
+        gPadXC_evt[j] = new TGraph();
+	gPadXC_evt[j]->SetName(name);
+        //hPadXC_evt[j] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+        //hPadXC_evt[j]->SetOption("BOX");
+      }  
+      xbin=8;xmin=-0.5;xmax=7.5;ybin=120;ymin=-60.;ymax=60.;
+      for (UShort_t j=0;j<num_events;j++){
+	sprintf(name,"gPadYC_evt%d",j);
+        gPadYC_evt[j] = new TGraph();
+	gPadYC_evt[j]->SetName(name);
+        //hPadYC_evt[j] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+        //hPadYC_evt[j]->SetOption("BOX");
+      }
+      xbin=8;xmin=-0.5;xmax=7.5;ybin=100;ymin=-100.;ymax=100.;
+      
       hPadXC1asum3 = new TH2F("hPadXC1asum3","hPadXC1asum3",xbin,xmin,xmax,ybin,ymin,ymax);
       hPadXC1asum3->SetOption("COLZ");
       hPadXC1asum4 = new TH2F("hPadXC1asum4","hPadXC1asum4",xbin,xmin,xmax,ybin,ymin,ymax);
@@ -759,17 +821,40 @@ void HistInit(){ // histogram initalization
         hPadXC2a[i] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
         hPadXC2a[i]->SetOption("COLZ");
       }
+      for (UShort_t i=0;i<8;i++) {
+        sprintf(name,"hPadQC%d",i);
+        hPadQC[i] = new TH2F(name,name,200,0,2000,200,0,2000);
+        hPadQC[i]->SetOption("COLZ");
+      }
+      for (UShort_t i=0;i<8;i++) {
+        sprintf(name,"hPadQL%d",i);
+        hPadQL[i] = new TH2F(name,name,200,0,2000,200,0,2000);
+        hPadQL[i]->SetOption("COLZ");
+      }
       for (UShort_t i=0;i<100;i++) {
         sprintf(name,"hPadZL%d",i);
-        hPadZL[i] = new TH2F(name,name,8,-0.5,7.5,234,-117,117.);
+        hPadZL[i] = new TH2F(name,name,8,-0.5,7.5,234,90,324);
         hPadZL[i]->SetOption("COLZ");
         sprintf(name,"hPadZR%d",i);
         hPadZR[i] = new TH2F(name,name,8,-0.5,7.5,234,-117,117.);
         hPadZR[i]->SetOption("COLZ");
       }
-      hPadYC1a = new TH2F("hPadYC1a","hPadYC1a",8,-0.5,7.5,100,0.,300.);
+      for (UShort_t i=0;i<9;i++) {
+        sprintf(name,"hPadZL3a%d",i);
+        hPadZL3a[i] = new TH2F(name,name,8,-0.5,7.5,90,0,324);
+        hPadZL3a[i]->SetOption("COLZ");
+      }
+      for (UShort_t i=0;i<48;i++) {
+        sprintf(name,"hPadQB_30s%d",i);
+        hPadQB_30s[i] = new TH2F(name,name,100,0,600,100,0,600);
+        hPadQB_30s[i]->SetOption("COLZ");
+        sprintf(name,"hPadQB_29p%d",i);
+        hPadQB_29p[i] = new TH2F(name,name,100,0,600,100,0,600);
+        hPadQB_29p[i]->SetOption("COLZ");
+      }
+      hPadYC1a = new TH2F("hPadYC1a","hPadYC1a",8,-0.5,7.5,120,-60.,60.);
       hPadYC1a->SetOption("COLZ");
-      hPadYC2a = new TH2F("hPadYC2a","hPadYC2a",8,-0.5,7.5,100,0.,300.);
+      hPadYC2a = new TH2F("hPadYC2a","hPadYC2a",8,-0.5,7.5,120,-60.,60.);
       hPadYC2a->SetOption("COLZ");
       hPadYL = new TH2F("hPadYL","hPadYL",8,-0.5,7.5,100,0.,300.);
       hPadYL->SetOption("COLZ");
@@ -783,12 +868,40 @@ void HistInit(){ // histogram initalization
       hPadXB->GetYaxis()->SetTitle("#DeltaX position (mm)");
       hPadXB->GetYaxis()->CenterTitle(true);
       
-      hPadYB = new TH2F("hPadYB","Beam Y",48,-0.5,47.5,300,0.,300.);
-      hPadYB->SetOption("COLZ");
-      hPadYB->GetXaxis()->SetTitle("Pad No.");
-      hPadYB->GetXaxis()->CenterTitle(true);
-      hPadYB->GetYaxis()->SetTitle("Y position (arb.)");
-      hPadYB->GetYaxis()->CenterTitle(true);
+      hPadYB1 = new TH2F("hPadYB1","Beam Y",48,-0.5,47.5,80,-20.,20.);
+      hPadYB1->SetOption("COLZ");
+      hPadYB1->GetXaxis()->SetTitle("Pad No.");
+      hPadYB1->GetXaxis()->CenterTitle(true);
+      hPadYB1->GetYaxis()->SetTitle("Y position (arb.)");
+      hPadYB1->GetYaxis()->CenterTitle(true);
+      
+      hPadYB2 = new TH2F("hPadYB2","Beam Y",48,-0.5,47.5,600,-300.,300.);
+      hPadYB2->SetOption("COLZ");
+      hPadYB2->GetXaxis()->SetTitle("Pad No.");
+      hPadYB2->GetXaxis()->CenterTitle(true);
+      hPadYB2->GetYaxis()->SetTitle("Y position (arb.)");
+      hPadYB2->GetYaxis()->CenterTitle(true);
+      
+      hPadYB3 = new TH2F("hPadYB3","Beam Y",48,-0.5,47.5,600,-300.,300.);
+      hPadYB3->SetOption("COLZ");
+      hPadYB3->GetXaxis()->SetTitle("Pad No.");
+      hPadYB3->GetXaxis()->CenterTitle(true);
+      hPadYB3->GetYaxis()->SetTitle("Y position (arb.)");
+      hPadYB3->GetYaxis()->CenterTitle(true);
+      
+      hPadYB_ds = new TH2F("hPadYB_ds","Beam Y",48,-0.5,47.5,600,-300.,300.);
+      hPadYB_ds->SetOption("COLZ");
+      hPadYB_ds->GetXaxis()->SetTitle("Pad No.");
+      hPadYB_ds->GetXaxis()->CenterTitle(true);
+      hPadYB_ds->GetYaxis()->SetTitle("Y position (arb.)");
+      hPadYB_ds->GetYaxis()->CenterTitle(true);
+      
+      hPadYB_ssd = new TH2F("hPadYB_ssd","Beam Y",48,-0.5,47.5,600,-300.,300.);
+      hPadYB_ssd->SetOption("COLZ");
+      hPadYB_ssd->GetXaxis()->SetTitle("Pad No.");
+      hPadYB_ssd->GetXaxis()->CenterTitle(true);
+      hPadYB_ssd->GetYaxis()->SetTitle("Y position (arb.)");
+      hPadYB_ssd->GetYaxis()->CenterTitle(true);
       
       hPadB_3D = new TH3F("hPadB_3D","hPadB_3D",3,-2.,1.,10,70.,115.,48,-0.5,47.5);
       hPadB_3D->SetOption("GLCOL");
@@ -825,7 +938,19 @@ void HistInit(){ // histogram initalization
         hBraggR_E[i] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
         hBraggR_E[i] ->SetOption("COLZ");
       }
-  
+      xbin=200;xmin=0.;xmax=1500.;
+      for (int i=0;i<2;i++)for(int j=0;j<8;j++)for(int k=0;k<3;k++){
+        sprintf(name,"hPadCPulse%d_%d_%d",i,j,k);
+        hPadCPulse[i][j][k]= new TH1F(name,name,xbin,xmin,xmax);
+      }
+      xbin=200;xmin=0.;xmax=1500.;
+      for (int i=0;i<2;i++)for(int j=0;j<8;j++)for(int k=0;k<8;k++){
+        sprintf(name,"hPadLPulse%d_%d_%dlow",i,j,k);
+        hPadLPulseLow[i][j][k]= new TH1F(name,name,xbin,xmin,xmax);
+        sprintf(name,"hPadLPulse%d_%d_%dhigh",i,j,k);
+        hPadLPulseHigh[i][j][k]= new TH1F(name,name,xbin,xmin,xmax);
+      }
+
   }
   if (flag_ppac && flag_tpc && flag_detail){
     
@@ -852,26 +977,99 @@ void HistInit(){ // histogram initalization
     hMultL_30s_3a->GetXaxis()->SetTitle("No. Pads Hit");
     hMultL_30s_3a->GetXaxis()->CenterTitle(true);
 
+    xbin=60;xmin=-30;xmax=30;ybin=3000;ymin=0.;ymax=30000.;
+    for (int i=0;i<48;i++){
+      sprintf(name,"hBraggBvX_30s%d",i);
+      hBraggBvX_30s[i] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggBvX_30s[i]->SetOption("COLZ");
+      hBraggBvX_30s[i]->GetXaxis()->SetTitle("X position (mm)");
+      hBraggBvX_30s[i]->GetXaxis()->CenterTitle(true);
+      hBraggBvX_30s[i]->GetYaxis()->SetTitle("#DeltaE (arb.)");
+      hBraggBvX_30s[i]->GetYaxis()->CenterTitle(true);
+      sprintf(name,"hBraggBvX_29p%d",i);
+      hBraggBvX_29p[i] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggBvX_29p[i]->SetOption("COLZ");
+      hBraggBvX_29p[i]->GetXaxis()->SetTitle("X position (mm)");
+      hBraggBvX_29p[i]->GetXaxis()->CenterTitle(true);
+      hBraggBvX_29p[i]->GetYaxis()->SetTitle("#DeltaE (arb.)");
+      hBraggBvX_29p[i]->GetYaxis()->CenterTitle(true);
+    }
+    xbin=60;xmin=10;xmax=70;ybin=300;ymin=0.;ymax=3000.;
+    for (int i=0;i<8;i++){
+      sprintf(name,"hBraggCvX%d",i);
+      hBraggCvX[i] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggCvX[i]->SetOption("COLZ");
+      hBraggCvX[i]->GetXaxis()->SetTitle("X position (mm)");
+      hBraggCvX[i]->GetXaxis()->CenterTitle(true);
+      hBraggCvX[i]->GetYaxis()->SetTitle("#DeltaE (arb.)");
+      hBraggCvX[i]->GetYaxis()->CenterTitle(true);
+    }
+    xbin=234;xmin=90;xmax=324;ybin=300;ymin=0.;ymax=3000.;
+    for (int i=0;i<8;i++){
+      sprintf(name,"hBraggLvZ%d",i);
+      hBraggLvZ[i] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+      hBraggLvZ[i]->SetOption("COLZ");
+      hBraggLvZ[i]->GetXaxis()->SetTitle("Z position (mm)");
+      hBraggLvZ[i]->GetXaxis()->CenterTitle(true);
+      hBraggLvZ[i]->GetYaxis()->SetTitle("#DeltaE (arb.)");
+      hBraggLvZ[i]->GetYaxis()->CenterTitle(true);
+    }
+
     //xbin=48;xmin=-0.5;xmax=47.5;ybin=200;ymin=0.;ymax=2000.;
+    //xbin=48;xmin=-0.5;xmax=47.5;ybin=3000;ymin=0.;ymax=30000.; //RAW
+    
+    hExcitation = new TH1F("hExcitation","hExcitation",44,0,4400); //100 keV/bin
+    hExcitation->GetXaxis()->SetTitle("Excitation Energy (keV)");
+    hExcitation->GetXaxis()->CenterTitle(true);
+    hExcitation->GetYaxis()->SetTitle("Counts");
+    hExcitation->GetYaxis()->CenterTitle(true);
+    
+    hExcitation2 = new TH1F("hExcitation2","hExcitation2",44,0,4400); //100 keV/bin
+    hExcitation2->GetXaxis()->SetTitle("Excitation Energy (keV)");
+    hExcitation2->GetXaxis()->CenterTitle(true);
+    hExcitation2->GetYaxis()->SetTitle("Counts");
+    hExcitation2->GetYaxis()->CenterTitle(true);
+    
+    hExPad = new TH2F("hExPad","hExPad",44,0,4400,48,0,48); //100 keV/bin
+    hExPad->GetXaxis()->SetTitle("Excitation Energy (keV)");
+    hExPad->GetXaxis()->CenterTitle(true);
+    hExPad->GetYaxis()->SetTitle("Pad Number");
+    hExPad->GetYaxis()->CenterTitle(true);
     xbin=48;xmin=-0.5;xmax=47.5;ybin=3000;ymin=0.;ymax=30000.;
+    //xbin=48;xmin=-0.5;xmax=47.5;ybin=2000;ymin=0.;ymax=2.;
     hBraggB_30s = new TH2F("hBraggB_30s","Beam Bragg Curve Gated on ^{30}S",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_30s->SetOption("COLZ");
     hBraggB_30s->GetXaxis()->SetTitle("Pad No.");
     hBraggB_30s->GetXaxis()->CenterTitle(true);
     hBraggB_30s->GetYaxis()->SetTitle("#DeltaE (arb.)");
     hBraggB_30s->GetYaxis()->CenterTitle(true);
+    xbin=48;xmin=-0.5;xmax=47.5;ybin=2000;ymin=0.;ymax=2.;
     
     hBraggB_29p = new TH2F("hBraggB_29p","hBraggB_29p",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_29p->SetOption("COLZ");
     hBraggB_17f = new TH2F("hBraggB_17f","hBraggB_17f",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_17f->SetOption("COLZ");
 
-    hPadYBgeo = new TH2F("hPadYBgeo","Beam Y",48,-0.5,47.5,80,-20.,20.);
-    hPadYBgeo->SetOption("COLZ");
-    hPadYBgeo->GetXaxis()->SetTitle("Pad No.");
-    hPadYBgeo->GetXaxis()->CenterTitle(true);
-    hPadYBgeo->GetYaxis()->SetTitle("Y position projected (mm)");
-    hPadYBgeo->GetYaxis()->CenterTitle(true);
+    hPadYBgeo1 = new TH2F("hPadYBgeo1","Beam Y",48,-0.5,47.5,800,-40.,40.);
+    hPadYBgeo1->SetOption("COLZ");
+    hPadYBgeo1->GetXaxis()->SetTitle("Pad No.");
+    hPadYBgeo1->GetXaxis()->CenterTitle(true);
+    hPadYBgeo1->GetYaxis()->SetTitle("Y position projected (mm)");
+    hPadYBgeo1->GetYaxis()->CenterTitle(true);
+      
+    hPadYBgeo2 = new TH2F("hPadYBgeo2","Beam Y",48,-0.5,47.5,800,-40.,40.);
+    hPadYBgeo2->SetOption("COLZ");
+    hPadYBgeo2->GetXaxis()->SetTitle("Pad No.");
+    hPadYBgeo2->GetXaxis()->CenterTitle(true);
+    hPadYBgeo2->GetYaxis()->SetTitle("Y position projected (mm)");
+    hPadYBgeo2->GetYaxis()->CenterTitle(true);
+      
+    hPadYBgeo3 = new TH2F("hPadYBgeo3","Beam Y",48,-0.5,47.5,800,-40.,40.);
+    hPadYBgeo3->SetOption("COLZ");
+    hPadYBgeo3->GetXaxis()->SetTitle("Pad No.");
+    hPadYBgeo3->GetXaxis()->CenterTitle(true);
+    hPadYBgeo3->GetYaxis()->SetTitle("Y position projected (mm)");
+    hPadYBgeo3->GetYaxis()->CenterTitle(true);
       
     hPadXBgeo = new TH2F("hPadXBgeo","Beam X Residual (corrected)",48,-0.5,47.5,500,-50.,50.);
     hPadXBgeo->SetOption("COLZ");
@@ -921,9 +1119,37 @@ void HistInit(){ // histogram initalization
       hBraggB_30s_jch[j]->SetOption("COLZ");
     }
     
+    for (UShort_t j=0;j<num_events;j++){
+      sprintf(name,"gPpacX_evt%d",j);
+      gPpacX_evt[j] = new TGraph();
+      gPpacX_evt[j]->SetName(name);
+      
+      sprintf(name,"gPpacY_evt%d",j);
+      gPpacY_evt[j] = new TGraph();
+      gPpacY_evt[j]->SetName(name);
+      
+      sprintf(name,"gBraggB_evt%d",j);
+      gBraggB_evt[j] = new TGraph();
+      gBraggB_evt[j]->SetName(name);
+      //hBraggB_evt[j] = new TH2F(name,name,xbin,xmin,xmax,ybin,ymin,ymax);
+      //hBraggB_evt[j]->SetOption("BOX");
+      sprintf(name,"gPadXB_evt%d",j);
+      gPadXB_evt[j] = new TGraphErrors();
+      gPadXB_evt[j]->SetName(name);
+      //hPadXB_evt[j] = new TH2F(name,name,48,-0.5,47.5,500,-50.,50.);
+      //hPadXB_evt[j]->SetOption("BOX");
+      sprintf(name,"gPadYB_evt%d",j);
+      gPadYB_evt[j] = new TGraphErrors();
+      gPadYB_evt[j]->SetName(name);
+      //hPadYB_evt[j] = new TH2F(name,name,48,-0.5,47.5,80,-20.,20.);
+      //hPadYB_evt[j]->SetOption("BOX");
+    }
+    
     for (UShort_t j=0;j<500;j++){
       sprintf(name,"hTpcPulse%d",j);
-      hTpcPulse[j] = new TH2F(name,name,33,0.,100.,600,400.,1000.);
+      hTpcPulse[j] = new TH2F(name,name,100,0.,100.,600,0.,600.);
+      hTpcPulse[j]->SetOption("BOX");
+      hTpcPulse[j]->SetFillColor(kBlack);
       //hTpcPulse[j] = new TH2F(name,name,66,0.,200.,600,400.,2000.);
       hTpcPulse[j]->GetXaxis()->SetTitle("fClock (20 ns / bin)");
       hTpcPulse[j]->GetXaxis()->CenterTitle(true);
@@ -931,19 +1157,19 @@ void HistInit(){ // histogram initalization
       hTpcPulse[j]->GetYaxis()->CenterTitle(true);
     }
     
-    hBraggB_3D = new TH3F("hBraggB_3D","hBraggB_3D",48,-0.5,47.5,4,-0.5,3.5,400,0.,2000.);
-    hBraggB_3D->SetOption("GLCOL");
-    hBraggB_3D_ds = new TH3F("hBraggB_3D_ds","hBraggB_3D_ds",48,-0.5,47.5,4,-0.5,3.5,400,0.,2000.);
-    hBraggB_3D_ds->SetOption("GLCOL");
-    hBraggB_3D_ssd = new TH3F("hBraggB_3D_ssd","hBraggB_3D_ssd",48,-0.5,47.5,4,-0.5,3.5,400,0.,2000.);
-    hBraggB_3D_ssd->SetOption("GLCOL");
-      
     hBraggB_30s_ds = new TH2F("hBraggB_30s_ds","Beam Bragg Curve Gated on ^{30}S DS",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_30s_ds->SetOption("COLZ");
     hBraggB_30s_ds->GetXaxis()->SetTitle("Pad No.");
     hBraggB_30s_ds->GetXaxis()->CenterTitle(true);
     hBraggB_30s_ds->GetYaxis()->SetTitle("#DeltaE (arb.)");
     hBraggB_30s_ds->GetYaxis()->CenterTitle(true);
+    
+    hEx_Si1a = new TH2F("hEx_Si1a","Garbage or not",40.,0.,4000.,4000.,0.,4000.);
+    hEx_Si1a->SetOption("COLZ");
+    hEx_Si1a->GetXaxis()->SetTitle("Excitation Energy (keV)");
+    hEx_Si1a->GetXaxis()->CenterTitle(true);
+    hEx_Si1a->GetYaxis()->SetTitle("SSD E (ch)");
+    hEx_Si1a->GetYaxis()->CenterTitle(true);
     
     hBraggB_30s_ssd = new TH2F("hBraggB_30s_ssd","Beam Bragg Curve Gated on ^{30}S SSD-OR",xbin,xmin,xmax,ybin,ymin,ymax);
     hBraggB_30s_ssd->SetOption("COLZ");
@@ -966,13 +1192,6 @@ void HistInit(){ // histogram initalization
     hBraggB_29p_ssd->GetYaxis()->SetTitle("#DeltaE (arb.)");
     hBraggB_29p_ssd->GetYaxis()->CenterTitle(true);
     
-    hBraggB_rp = new TH2F("hBraggB_rp","Beam Scattering Location for ^{30}S",xbin,xmin,xmax,ybin,ymin,ymax);
-    hBraggB_rp->SetOption("COLZ");
-    hBraggB_rp->GetXaxis()->SetTitle("Pad No.");
-    hBraggB_rp->GetXaxis()->CenterTitle(true);
-    hBraggB_rp->GetYaxis()->SetTitle("(#DeltaE_{i}-#DeltaE_{i-1})/Pad i");
-    hBraggB_rp->GetYaxis()->CenterTitle(true);
-      
     for (UShort_t i=0;i<48;i++) { // Beam Bragg pads
       sprintf(name,"hBraggB_ds_ch%d",i);
       hBraggB_ds_ch[i] = new TH1F(name,name,2000,0,2000);
@@ -1115,7 +1334,6 @@ void HistWrite() {
        hPpac1XRF1ssd->Write(); 
        hPpacToF_30s->Write();
        hPpacToF_29p->Write();
-       hPpacProj_3D->Write();
     } // end if: flag_detail
   } // end if: flag_ppac
 
@@ -1139,6 +1357,13 @@ void HistWrite() {
       hBraggL_E[i]->Write();
       hBraggR_E[i]->Write();
     }
+      for (int i=0;i<2;i++)for(int j=0;j<8;j++)for(int k=0;k<3;k++){
+        hPadCPulse[i][j][k]->Write();
+      }
+      for (int i=0;i<2;i++)for(int j=0;j<8;j++)for(int k=0;k<8;k++){
+        hPadLPulseLow[i][j][k]->Write();
+        hPadLPulseHigh[i][j][k]->Write();
+      }
   }
   if (flag_detail && flag_ssd && flag_strip && flag_ppac){ // process PPAC & SSD strip details?
     for (int i=1;i<17;i++){
@@ -1164,10 +1389,22 @@ void HistWrite() {
       hBraggL->Write();
       hBraggR->Write();
       hBraggC->Write();
+      hBraggC3->Write();
+      hBraggC4->Write();
+      hBraggC5->Write();
+      hPadXC->Write();
       hPadXC1asum3->Write();
       hPadXC1asum4->Write();
       hPadXC1asum5->Write();
       hPadXC2asum->Write();
+      for (UShort_t i=0;i<48;i++) {
+        hPadQB_30s[i]->Write();
+        hPadQB_29p[i]->Write();
+      }
+      for (UShort_t i=0;i<8;i++) {
+        hPadQC[i]->Write();
+        hPadQL[i]->Write();
+      }
       for (UShort_t i=0;i<100;i++) {
         hPadXC1a[i]->Write();
         hPadXC2a[i]->Write();
@@ -1176,6 +1413,9 @@ void HistWrite() {
         hPadZL[i]->Write();
         hPadZR[i]->Write();
       }
+      for (UShort_t i=0;i<9;i++) {
+        hPadZL3a[i]->Write();
+      }
       hPadYC1a->Write();
       hPadYC2a->Write();
       hPadYL->Write();
@@ -1183,12 +1423,20 @@ void HistWrite() {
       if (flag_ppac){
         hBraggB->Write();
         hPadXB->Write();
-        hPadYB->Write();
+        hPadYB1->Write();
+        hPadYB2->Write();
+        hPadYB3->Write();
+        hPadYB_ds->Write();
+        hPadYB_ssd->Write();
         hPadB_3D->Write();
         for (UShort_t i=0;i<144;i++) {
            hTrough[i]->Write();
            if (i<48){
-             hBraggB_30s_ssd_ch[i]->Write();
+             if (i<8) hBraggCvX[i]->Write();
+             if (i<8) hBraggLvZ[i]->Write();
+             hBraggBvX_30s[i]->Write();
+             hBraggBvX_29p[i]->Write();
+	     hBraggB_30s_ssd_ch[i]->Write();
              hBraggB_30s_ds_ch[i]->Write();
              hBraggB_29p_ssd_ch[i]->Write();
              hBraggB_29p_ds_ch[i]->Write();
@@ -1203,11 +1451,16 @@ void HistWrite() {
   if (flag_ppac && flag_tpc && flag_detail){
     hPadXB_30s->Write();
     hPadXB_29p->Write();
-    hPadYBgeo->Write();
+    hPadYBgeo1->Write();
+    hPadYBgeo2->Write();
+    hPadYBgeo3->Write();
     hPadXBgeo->Write();
     hPadXBgeo_30s->Write();
     hPadXBgeo_29p->Write();
     hPadYB_30s->Write();
+    hExcitation->Write();
+    hExcitation2->Write();
+    hExPad->Write();
     hBraggB_30s->Write();
     hMultB->Write();
     hMultB_30s->Write();
@@ -1218,15 +1471,21 @@ void HistWrite() {
     hBraggB_29p->Write();
     hBraggB_17f->Write();
     for (UShort_t i=0;i<15;i++) hBraggB_30s_jch[i]->Write();
-    hBraggB_3D->Write();
+    for (UShort_t i=0;i<num_events;i++) {
+      gPpacX_evt[i]->Write();
+      gPpacY_evt[i]->Write();
+      gBraggB_evt[i]->Write();
+      gPadXB_evt[i]->Write();
+      gPadYB_evt[i]->Write();
+      gPadXC_evt[i]->Write();
+      gPadYC_evt[i]->Write();
+    }
 
+    hEx_Si1a->Write();
     hBraggB_30s_ds->Write();
     hBraggB_30s_ssd->Write();
     hBraggB_29p_ds->Write();
     hBraggB_29p_ssd->Write();
-    hBraggB_rp->Write();
-    hBraggB_3D_ds->Write();
-    hBraggB_3D_ssd->Write();
     for (UShort_t i=0;i<48;i++){
       hBraggB_ds_ch[i]->Write();
       hBraggB_ssd_ch[i]->Write();
@@ -1302,7 +1561,6 @@ void HistClean(){ // function to free histogram memory
   delete hPpac0XRF1cut ;
   delete hPpac1XRF1cut ;
   delete hPpac1XRF1 ;
-  delete hPpacProj_3D ;
   delete hGemMstpcAll ;
   delete hGemMstpcSide ;
   delete hBraggB_30s ;
@@ -1313,6 +1571,8 @@ void HistClean(){ // function to free histogram memory
   delete hMultL_30s_3a;
   delete hMultL_3a;
   delete hBraggB_30s_ds ;
+  delete hExPad;
+  delete hEx_Si1a ;
   delete hBraggB_30s_ssd ;
   delete hPadXB ;
   delete hPadXB_30s ;
@@ -1320,11 +1580,15 @@ void HistClean(){ // function to free histogram memory
   delete hPadXBgeo;
   delete hPadXBgeo_30s;
   delete hPadXBgeo_29p;
-  delete hPadYB ;
+  delete hPadYB1 ;
+  delete hPadYB2 ;
+  delete hPadYB3 ;
+  delete hPadYBgeo1 ;
+  delete hPadYBgeo2 ;
+  delete hPadYBgeo3 ;
+  delete hPadYB_ds ;
+  delete hPadYB_ssd ;
   delete hPadYB_30s ;
-  delete hBraggB_3D ;
-  delete hBraggB_3D_ds ;
-  delete hBraggB_3D_ssd ;
   delete hPadB_3D;
   delete hBraggB_29p ;
   delete hBraggB_29p_ssd ;
@@ -1334,6 +1598,9 @@ void HistClean(){ // function to free histogram memory
   delete hBraggL ;
   delete hBraggR ;
   delete hBraggC ;
+  delete hBraggC3 ;
+  delete hBraggC4 ;
+  delete hBraggC5 ;
     for (int i=0;i<9;i++){ 
       if (i==0) delete hBraggC_E[i] ;
       else {
@@ -1343,7 +1610,13 @@ void HistClean(){ // function to free histogram memory
       delete hBraggL_E[i] ;
       delete hBraggR_E[i] ;
     }
-  delete hBraggB_rp;
+      for (int i=0;i<2;i++)for(int j=0;j<8;j++)for(int k=0;k<3;k++){
+        delete hPadCPulse[i][j][k];
+      }
+      for (int i=0;i<2;i++)for(int j=0;j<8;j++)for(int k=0;k<8;k++){
+        delete hPadLPulseLow[i][j][k];
+        delete hPadLPulseHigh[i][j][k];
+      }
   for (int i=0;i<2;i++) delete hRf_ds[i]; 
   for (int i=0;i<2;i++) delete hRf_ssd[i]; 
   for (int i=0;i<2;i++) delete hRfcal[i]; 
@@ -1376,6 +1649,17 @@ void HistClean(){ // function to free histogram memory
   }
   for (int i=0;i<8;i++){
     delete padE_strip[i];
+    delete hPadQC[i];
+    delete hPadQL[i];
+  }
+  for (int i=0;i<num_events;i++){
+    delete gPpacX_evt[i];
+    delete gPpacY_evt[i];
+    delete gBraggB_evt[i];
+    delete gPadXB_evt[i];
+    delete gPadYB_evt[i];
+    delete gPadXC_evt[i];
+    delete gPadYC_evt[i];
   }
   for (int i=0;i<144;i++){
     delete hfSample[i]; 
@@ -1383,6 +1667,10 @@ void HistClean(){ // function to free histogram memory
     delete hTpc_dE_ch[i];
   }
   for (int i=0;i<48;i++){
+    if (i<8) delete hBraggCvX[i];
+    if (i<8) delete hBraggLvZ[i];
+    delete hBraggBvX_30s[i];
+    delete hBraggBvX_29p[i];
     delete hBraggB_30s_ssd_ch[i];
     delete hBraggB_30s_ds_ch[i];
     delete hBraggB_29p_ssd_ch[i];
@@ -1391,5 +1679,7 @@ void HistClean(){ // function to free histogram memory
     delete hBraggB_17f_ds_ch[i];
     delete hBraggB_ds_ch[i];
     delete hBraggB_ssd_ch[i];
+    delete hPadQB_30s[i];
+    delete hPadQB_29p[i];
   }
 } // close HistClean    

@@ -32,24 +32,29 @@
 # Doxygen (http://www.stack.nl/~dimitri/doxygen/)
 CXX=g++
 #COPT=-O0 -g # valgrind
-#COPT=-O2 -march=native -pipe #debug
+COPT=-O2 -march=native -pipe #debug
 #COPT=-DDEBUG -I"" -O0 -g3 -Wall -c -fmessage-length=0 # another debug
 #CDEBUG=-ansi -pendantic -g # some problems? 
-COPT=-O2 -march=native -pipe -fomit-frame-pointer # run fastest
+#COPT=-O2 -march=native -pipe -fomit-frame-pointer # run fastest
 ROOTFLAGS=$(shell root-config --cflags)
-CXXFLAGS=$(COPT) -Wall -Werror -fPIC $(ROOTFLAGS)
+CXXFLAGS=$(COPT) -Wall -fPIC $(ROOTFLAGS)
+#CXXFLAGS=$(COPT) -Wall -Werror -fPIC $(ROOTFLAGS)
 FC=gfortran
 FFLAGS=-lstdc++
 FSRC=$(wildcard ./enewzsub/*.f)
-LD=g++ $(FFLAGS)
+LD=gfortran $(FFLAGS)
+#LD=g++ $(FFLAGS)
 ROOTLIBS=$(shell root-config --libs)
+KVLIBS=-L$(KVROOT)/lib -lKVMultiDet
 #KVLIBS=-L$(KVROOT)/lib -lKVMultiDet -lrange
+# make sure to run sudo ldconfig
 RANGELIBS=-L/usr/local/lib -lrange
-LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) $(RANGELIBS) -lstdc++
-#INCLUDE=$(addprefix -I,$(KVROOT)/include)
+LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) $(RANGELIBS)
+#LIBS=-lXpm -lX11 -lm $(ROOTLIBS) $(KVLIBS) $(RANGELIBS) -lstdc++
+INCLUDE=$(addprefix -I,$(KVROOT)/include)
 COBJS=dictCal.o dictAnaly.o run.o
-#FOBJS=$(FSRC:%.f=%.o)
-#ARCHIVE=libenewzlib.a
+FOBJS=$(FSRC:%.f=%.o)
+ARCHIVE=libenewzlib.a
 DOCCMD=doxygen
 DOCCFG=doc/Doxyfile
 DOCS=doc/html/index.html
